@@ -71,25 +71,25 @@ const Connect = () => {
         <ul className="space-y-4">
           <li className="flex items-center gap-2">
             <FaLinkedin className="h-6 w-6" />
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/company/acmuta/mycompany/" target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
           </li>
           <li className="flex items-center gap-2">
             <FaInstagram className="h-6 w-6" />
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/acmuta/" target="_blank" rel="noopener noreferrer">
               Instagram
             </a>
           </li>
           <li className="flex items-center gap-2">
             <FaDiscord className="h-6 w-6" />
-            <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://discord.gg/MdyAfWhM" target="_blank" rel="noopener noreferrer">
               Discord
             </a>
           </li>
           <li className="flex items-center gap-2">
             <FaEnvelope className="h-6 w-6" />
-            <a href="mailto:contact@acmutd.co">contact@acmutd.co</a>
+            <a href="mailto:acm.uta@gmail.com">acm.uta@gmail.com</a>
           </li>
         </ul>
       </div>
