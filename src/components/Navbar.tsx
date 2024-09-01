@@ -8,24 +8,23 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // TODO: Replace "#" with actual links
   const menuItems = [
-    { name: "Home", link: "#" },
-    { name: "About", link: "#" },
-    { name: "Officers", link: "#" },
-    { name: "Events", link: "#" },
-    { name: "Connect", link: "/connect" },
+    { name: "about", link: "#" },
+    { name: "officers", link: "#" },
+    { name: "events", link: "#" },
+    { name: "connect", link: "/connect" },
+    { name: "apply", link: "#" },
   ];
 
   return (
-    <nav className="backdrop-blur-sm bg-white/20 border-gray-200 sticky top-0 z-50">
+    <nav className="backdrop-blur-sm bg-white/10 border-gray-200 sticky top-0 z-50">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
-            src="/assets/acm-logo-white.png"
-            className="h-9"
-            alt="ACM UTA Logo"
-          />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap"></span>
+          <img src="/assets/acm-logo.svg" className="h-8" alt="ACM UTA Logo" />
+          <span className="self-center text-2xl font-extrabold whitespace-nowrap">
+            acmuta
+          </span>
         </a>
         <button
           type="button"
@@ -62,7 +61,11 @@ const Navbar = () => {
               <li key={index}>
                 <a
                   href={item.link}
-                  className="block py-2 px-3 text-white rounded lg:hover:bg-transparent sm:hover:bg-white/20 md:text-white-700 md:p-0"
+                  className={`block text-white rounded px-2 ${
+                    item.name === "apply"
+                      ? "md:border md:border-white/60 md:rounded-2xl md:px-2 py-0"
+                      : ""
+                  } lg:hover:bg-transparent sm:hover:bg-white/10 md:text-white-700`}
                   aria-current={item.name === "Home" ? "page" : undefined}
                 >
                   {item.name}
