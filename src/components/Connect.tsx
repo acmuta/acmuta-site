@@ -2,11 +2,12 @@
 'use client';
 
 import React, { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";             //using emailjs to send mail
+import emailjs from "@emailjs/browser"; // using emailjs to send mail
+import { FaLinkedin, FaInstagram, FaDiscord, FaEnvelope } from 'react-icons/fa'; // import icons
 
 const Connect = () => {
-    const formRef = useRef<HTMLFormElement>(null); 
-    const [form, setForm] = useState({
+  const formRef = useRef<HTMLFormElement>(null);
+  const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
@@ -14,8 +15,9 @@ const Connect = () => {
 
   const [loading, setLoading] = useState(false);
 
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
 
     setForm({
@@ -30,16 +32,16 @@ const Connect = () => {
 
     emailjs
       .send(
-        "service id",                  // Replace with service id
-        "template id",                  // Replace with template id
+        "service id", // Replace with service id
+        "template id", // Replace with template id
         {
           from_name: form.name,
           to_name: "ACM",
           from_email: form.email,
-          to_email: "acm mail",            // Replace with ACM mail
+          to_email: "acm mail", // Replace with ACM mail
           message: form.message,
         },
-        "public key"                       // Replace with public key
+        "public key" // Replace with public key
       )
       .then(
         () => {
@@ -62,14 +64,40 @@ const Connect = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10">
-      <h1>Connect</h1>
-      <p>This is the connect page.</p>
+    <div className="flex flex-col md:flex-row gap-10 p-8">
+      {/* Social Links Box */}
+      <div className="backdrop-blur-sm bg-white/20 rounded-tl-none rounded-tr-3xl rounded-bl-3xl rounded-br-none p-8 flex flex-col items-start text-white w-full md:w-1/3 md:ml-0 md:relative md:left-0 md:h-full">
+        <h3 className="text-lg font-bold mb-4">Connect with us!</h3>
+        <ul className="space-y-4">
+          <li className="flex items-center gap-2">
+            <FaLinkedin className="h-6 w-6" />
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </li>
+          <li className="flex items-center gap-2">
+            <FaInstagram className="h-6 w-6" />
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+          </li>
+          <li className="flex items-center gap-2">
+            <FaDiscord className="h-6 w-6" />
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
+              Discord
+            </a>
+          </li>
+          <li className="flex items-center gap-2">
+            <FaEnvelope className="h-6 w-6" />
+            <a href="mailto:contact@acmutd.co">contact@acmutd.co</a>
+          </li>
+        </ul>
+      </div>
 
       {/* Contact Form */}
-      <div className="p-8 rounded-2xl">
-        <h3>Connect with Me</h3>
-        <p>Feel free to drop me a message using the form below.</p>
+      <div className="p-8 rounded-2xl flex-1">
+        <h3>Connect with Us</h3>
+        <p>Feel free to drop me a message.</p>
         <form
           ref={formRef}
           onSubmit={handleSubmit}
