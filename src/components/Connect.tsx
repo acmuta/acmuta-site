@@ -66,15 +66,15 @@ const Connect = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-10 p-8">
+    <div className="flex flex-col md:flex-row gap-10 p-8 my-8">
       {/* Social Links Box */}
       <motion.div
         variants={slideIn("left", "tween", 0.2, 0.5)} // Slide in from the left
         initial="hidden"
         animate="show"
-        className="backdrop-blur-sm bg-white/20 rounded-tl-none rounded-tr-3xl rounded-bl-3xl rounded-br-none p-8 flex flex-col items-start text-white w-full md:w-1/3 flex-1"
+        className="backdrop-blur-sm bg-white/10  border-2 border-white/70  rounded-[30px] p-12 flex flex-col items-start text-white w-full md:w-1/3 flex-1"
       >
-        <h3 className="text-2xl font-bold mb-8">Connect with us!</h3>
+        <h3 className="text-2xl font-bold mb-8">connect with us!</h3>
         <ul className="space-y-6">
           <li className="flex items-center gap-4 text-xl">
             <FaLinkedin className="h-11 w-11" />
@@ -108,12 +108,11 @@ const Connect = () => {
         animate="show"
         className="p-8 rounded-2xl flex-1"
       >
-        <h3>Connect with Us</h3>
-        <p>Feel free to drop me a message.</p>
+        <h3 className="font-bold text-xl">drop us a message.</h3>
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className="mt-12 flex flex-col gap-8"
+          className="mt-6 flex flex-col gap-6"
         >
           <label className="flex flex-col">
             <input
@@ -121,8 +120,8 @@ const Connect = () => {
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="Your Name:"
-              className="bg-white py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
+              placeholder="name:"
+              className="bg-white/10 py-4 px-6 placeholder:text-white/70 text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -131,8 +130,8 @@ const Connect = () => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="Your email:"
-              className="bg-white py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
+              placeholder="email:"
+              className="bg-white/10 py-4 px-6 placeholder:text-white/70 text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -141,16 +140,16 @@ const Connect = () => {
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="Your Message:"
-              className="bg-white py-4 px-6 placeholder:text-secondary text-black rounded-lg outline-none border-none font-medium"
+              placeholder="message:"
+              className="bg-white/10 py-4 px-6 placeholder:text-white/70 text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
 
           <button
             type="submit"
-            className="bg-white py-3 px-8 rounded-xl outline-none w-fit text-black font-bold shadow-md shadow-primary"
+            className="border border-white/60 py-0 px-4 rounded-3xl outline-none w-fit text-white font-bold"
           >
-            {loading ? "Sending..." : "Send Message"}
+            {loading ? "sending..." : "send"}
           </button>
         </form>
       </motion.div>
