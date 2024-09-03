@@ -8,14 +8,14 @@ export const AboutAcmCard = () => {
           <img
             src="/assets/acm-logo-white.png"
             alt="ACM UTA Logo"
-            className="h-16 mb-4 md:h-20"
+            className="h-16 mb-4 md:h-24"
           />
         </div>
-        <p className="text-md leading-relaxed mb-6 font-medium">
+        <p className="text-lg md:text-xl leading-relaxed mb-6 font-medium">
           The Association for Computing Machinery (ACM) is the world’s largest
           computer science/engineering focused organization.
         </p>
-        <p className="text-md leading-relaxed font-medium">
+        <p className="text-lg md:text-xl leading-relaxed font-medium">
           The ACM chapter at UTA welcomes students of all background, majors,
           interests, and skill levels to join our community and share in our
           love for technology. ACM is currently comprised of four committees,
