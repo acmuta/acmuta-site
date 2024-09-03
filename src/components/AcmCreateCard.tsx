@@ -24,7 +24,7 @@ const AcmCreateCard = () => {
       {/* Button */}
       <div className="w-full flex justify-center md:justify-start">
         <Link href="https://github.com/acmuta" target="_blank">
-          <button className="bg-green-600 text-white px-4 py-2 rounded-lg">
+          <button className="font-bold border border-white/60 rounded-2xl px-3 py-1">
             github
           </button>
         </Link>
