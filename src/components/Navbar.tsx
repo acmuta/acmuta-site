@@ -10,7 +10,7 @@ const Navbar = () => {
 
   // TODO: Replace "#" with actual links
   const menuItems = [
-    { name: "about", link: "#" },
+    { name: "about", link: "/about" },
     { name: "officers", link: "/officers" },
     { name: "events", link: "#" },
     { name: "connect", link: "#" },
