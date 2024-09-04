@@ -3,7 +3,20 @@ import { BsLinkedin } from "react-icons/bs";
 import { FiInstagram } from "react-icons/fi";
 import { FaGlobeAmericas } from "react-icons/fa";
 
-export default function People({ name, role, imageUrl, socialLinks }) {
+interface PeopleProps {
+    name: string;
+    role: string;
+    bio: string;
+    imageUrl: string;
+    socialLinks: {
+      linkedin?: string;
+      instagram?: string;
+      website?: string; 
+      [key: string]: string | undefined; // If you want to support additional links
+    };
+  }
+
+  const People: React.FC<PeopleProps> = ({ name, role, imageUrl, socialLinks }) => {
   return (
     <div className="flex items-center space-x-6 py-4">
       <div className="flex-shrink-0">
@@ -40,3 +53,5 @@ export default function People({ name, role, imageUrl, socialLinks }) {
     </div>
   );
 }
+
+export default People;
