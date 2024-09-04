@@ -11,7 +11,7 @@ const Navbar = () => {
   // TODO: Replace "#" with actual links
   const menuItems = [
     { name: "about", link: "#" },
-    { name: "officers", link: "#" },
+    { name: "officers", link: "/officers" },
     { name: "events", link: "#" },
     { name: "connect", link: "#" },
     { name: "apply", link: "#" },

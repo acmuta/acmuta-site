@@ -1,10 +1,24 @@
-export default function Officers() {
-    return (
-      <main className="flex min-h-screen flex-col items-start justify-between p-32">
-        <h1 className="font-bold text-5xl">meet the team</h1>
-        <p className="font-medium mt-10 text-2xl">5 Division One Goal.</p>
+import People from "../../components/People"
+export default function MeetTheTeam() {
+  return (
+    <div className="py-10 px-5">
+      <header className="text-center mb-12">
+        <h1 className="text-4xl font-bold mb-4">meet the team</h1>
+        <p className="text-lg text-gray-600">get to know the amazing people behind our work!</p>
+      </header>
 
-        <h1 className="font-bold text-4xl">the board.</h1>
-      </main>
-    );
-  }
+      <section className="space-y-8">
+        <People 
+          name="Talha Tahmid" 
+          role="Software Engineer" 
+          bio="Talha is a computer science major and tech enthusiast." 
+          imageUrl="/images/talhaheadshot.jpg"
+          socialLinks={{
+            linkedin: 'https://linkedin.com/in/talhatahmid',
+            twitter: 'https://twitter.com/talhatahmid'
+          }}
+        />
+      </section>
+    </div>
+  );
+}
