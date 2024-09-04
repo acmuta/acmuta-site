@@ -6,7 +6,6 @@ import { FaGlobeAmericas } from "react-icons/fa";
 interface PeopleProps {
     name: string;
     role: string;
-    bio: string;
     imageUrl: string;
     socialLinks: {
       linkedin?: string;
@@ -34,17 +33,17 @@ interface PeopleProps {
         <h4 className="text-sm mb-2 text-green-100">{role}</h4>
         <div className="flex space-x-4">
           {socialLinks?.linkedin && (
-            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-black hover:text-blue-600 text-2xl">
+            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-100 text-lg">
               <BsLinkedin />
             </a>
           )}
           {socialLinks?.instagram && (
-            <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-black hover:text-rose-600 text-2xl">
+            <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:text-rose-100 text-lg">
               <FiInstagram />
             </a>
           )}
           {socialLinks?.website && (
-            <a href={socialLinks.website} target="_blank" rel="noopener noreferrer" className="text-black hover:text-indigo-600 text-2xl">
+            <a href={socialLinks.website} target="_blank" rel="noopener noreferrer" className="text-white hover:text-indigo-100 text-lg">
               <FaGlobeAmericas />
             </a>
           )}
