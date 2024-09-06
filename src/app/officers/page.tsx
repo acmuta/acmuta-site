@@ -166,9 +166,9 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/jaideep.png',
           socialLinks: {
-            linkedin: '',
-            instagram: '',
-            github: '',
+            linkedin: 'https://www.linkedin.com/in/jaideep-singh-4010342ab',
+            instagram: 'https://www.instagram.com/jaixsandhu',
+            github: 'https://github.com/jaidoescode',
           },
         },
         {
