@@ -341,7 +341,7 @@ export default function Officers() {
           />
         ))}
       </div>
-      <div className="absolute top-96 right-72 rotate-90 blur-sm transform -translate-y-1/2">
+      <div className="absolute top-96 right-72 rotate-90 blur-sm transform -translate-y-1/2 z-[-10]">
       <Image 
         src="/assets/crystal-1.png" 
         alt="Crystal Design Element" 
@@ -350,7 +350,7 @@ export default function Officers() {
         className="opacity-100" 
       />
     </div>
-    <div className="absolute top-60 right-24 transform blur-sm -translate-y-1/2">
+    <div className="absolute top-60 right-24 transform blur-sm -translate-y-1/2 z-[-10]">
       <Image 
         src="/assets/crystal-2.png" 
         alt="Crystal Design Element" 
@@ -359,7 +359,7 @@ export default function Officers() {
         className="opacity-100" 
       />
     </div>
-    <div className="absolute top-44 right-96 rotate-90 blur-sm transform -translate-y-1/2">
+    <div className="absolute top-44 right-96 rotate-90 blur-sm transform -translate-y-1/2 z-[-10]">
       <Image 
         src="/assets/crystal-2.png" 
         alt="Crystal Design Element" 
@@ -368,7 +368,7 @@ export default function Officers() {
         className="opacity-100" 
       />
     </div>
-    <div className="absolute blur-sm right-0 -translate-y-72 -rotate-12 transform">
+    <div className="absolute blur-sm right-0 -translate-y-72 -rotate-12 transform z-[-10]">
       <Image 
         src="/assets/web.png" 
         alt="Crystal Design Element" 
