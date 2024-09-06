@@ -11,13 +11,14 @@ interface PeopleProps {
       linkedin?: string;
       instagram?: string;
       website?: string; 
-      [key: string]: string | undefined; // If you want to support additional links
+      [key: string]: string | undefined;
     };
   }
 
+  
   const People: React.FC<PeopleProps> = ({ name, role, imageUrl, socialLinks }) => {
   return (
-    <div className="flex items-center space-x-6 py-4">
+    <div className="flex flex-col sm:flex-row items-center space-x-6 py-4">
       <div className="flex-shrink-0">
         <Image 
           src={imageUrl} 
