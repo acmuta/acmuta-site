@@ -38,7 +38,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center mx-auto justify-center gap-8">
             <div className="w-80 h-52">
               <Image
-                src="/assets/adobe-logo.svg"
+                src="/assets/adobe-logo.png"
                 alt="Adobe"
                 className="w-full h-full object-contain"
                 width={200}
@@ -47,7 +47,7 @@ export default function Home() {
             </div>
             <div className="w-80 h-52">
               <Image
-                src="/assets/blackrock-logo.svg"
+                src="/assets/blackrock-logo.png"
                 alt="Black Rock"
                 className="w-full h-full object-contain"
                 width={200}
