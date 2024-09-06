@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { BsLinkedin } from "react-icons/bs";
 import { FiInstagram } from "react-icons/fi";
 import { FaGlobeAmericas } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 interface PeopleProps {
     name: string;
@@ -34,20 +35,26 @@ interface PeopleProps {
         <h4 className="text-sm mb-2 text-green-100">{role}</h4>
         <div className="flex space-x-4">
           {socialLinks?.linkedin && (
-            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-100 text-lg">
+            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300 text-lg">
               <BsLinkedin />
             </a>
           )}
           {socialLinks?.instagram && (
-            <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:text-rose-100 text-lg">
+            <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:text-rose-300 text-lg">
               <FiInstagram />
             </a>
           )}
+          {socialLinks?.github && (
+            <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-neutral-400 text-lg">
+              <FaGithub />
+            </a>
+          )}
           {socialLinks?.website && (
-            <a href={socialLinks.website} target="_blank" rel="noopener noreferrer" className="text-white hover:text-indigo-100 text-lg">
+            <a href={socialLinks.website} target="_blank" rel="noopener noreferrer" className="text-white hover:text-indigo-300 text-lg">
               <FaGlobeAmericas />
             </a>
           )}
+          
         </div>
       </div>
     </div>

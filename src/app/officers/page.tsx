@@ -1,4 +1,5 @@
 import Department from '../../components/Department';
+import Image from 'next/image';
 
 export default function Officers() {
   const departments = [
@@ -11,9 +12,9 @@ export default function Officers() {
           role: 'president',
           imageUrl: '/images/devrat.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/devratpatel/',
+            instagram: 'https://www.instagram.com/devratpatel',
+            github: 'https://github.com/DevratPatel',
           },
         },
         {
@@ -21,9 +22,9 @@ export default function Officers() {
           role: 'vice president',
           imageUrl: '/images/yash.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/yash-rao-9082bb246',
+            instagram: 'https://www.instagram.com/yash.r.rao',
+            github: 'https://github.com/tecno5',
           },
         },
         {
@@ -31,9 +32,9 @@ export default function Officers() {
           role: 'treasurer',
           imageUrl: '/images/mohammad.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/m-khurram',
+            instagram: 'https://www.instagram.com/ultimatem.90',
+            github: 'https://github.com/MuhammadHunainKhurram',
           },
         },
         {
@@ -41,9 +42,9 @@ export default function Officers() {
           role: 'events coordinator',
           imageUrl: '/images/jeremiah.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/jeremiahpitts',
+            instagram: 'https://www.instagram.com/jpfit321',
+            github: 'https://github.com/xchar08',
           },
         },
         {
@@ -51,9 +52,9 @@ export default function Officers() {
           role: 'events planner',
           imageUrl: '/images/vrindha.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: '',
+            instagram: '',
+            github: '',
           },
         },
         {
@@ -61,9 +62,9 @@ export default function Officers() {
           role: 'student advisor',
           imageUrl: '/images/bobby.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: '',
+            instagram: '',
+            github: '',
           },
         },
       ],
@@ -77,8 +78,9 @@ export default function Officers() {
           role: 'director',
           imageUrl: '/images/atiq.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/talhatahmid',
-            instagram: 'https://www.instagram.com/talha.thmd',
+            linkedin: 'https://www.linkedin.com/in/atiqurx',
+            instagram: 'https://www.instagram.com/atiqur__',
+            github: 'https://github.com/atiqurx',
             website: 'https://www.atiqurx.com',
           },
         },
@@ -87,9 +89,9 @@ export default function Officers() {
           role: 'director',
           imageUrl: '/images/kevin.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/talhatahmid',
-            instagram: 'https://www.instagram.com/talha.thmd',
-            website: 'https://www.talhathmd.com',
+            linkedin: 'https://linkedin.com/in/kevinrouz',
+            instagram: 'https://www.instagram.com/kevinrouz',
+            github: 'https://github.com/kevinrouz',
           },
         },
         {
@@ -99,6 +101,7 @@ export default function Officers() {
           socialLinks: {
             linkedin: 'https://linkedin.com/in/talhatahmid',
             instagram: 'https://www.instagram.com/talha.thmd',
+            github: 'https://github.com/talhathmd',
             website: 'https://www.talhathmd.com',
           },
         },
@@ -107,9 +110,9 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/rashidul.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/rashidulas/',
+            instagram: 'https://www.instagram.com/rashidul___',
+            github: 'https://github.com/rashidulas',
           },
         },
         {
@@ -117,9 +120,9 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/prajit.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/prajit-viswanadha/',
+            instagram: '',
+            github: 'https://github.com/V-prajit',
           },
         },
         {
@@ -127,9 +130,9 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/shashank.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/shashankyaji/',
+            instagram: 'https://www.instagram.com/yajishashank',
+            github: 'https://github.com/SSKYAJI',
           },
         },
         {
@@ -137,9 +140,9 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/shloka.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/shloka-bhatt/',
+            instagram: 'https://www.instagram.com/shhhhhlokaa',
+            github: 'https://github.com/shloka2212',
           },
         },
       ],
@@ -153,19 +156,19 @@ export default function Officers() {
           role: 'director',
           imageUrl: '/images/felix.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/talhatahmid',
-            instagram: 'https://www.instagram.com/talha.thmd',
-            website: 'https://www.talhathmd.com',
+            linkedin: 'https://www.linkedin.com/in/felix-cherian',
+            instagram: 'https://www.instagram.com/felix_cherian',
+            github: 'https://github.com/Flexinos717',
           },
         },
         {
           name: 'jaideep singh',
           role: 'officer',
-          imageUrl: '/images/jaideep.png',
+          imageUrl: '/images/noheadshot.webp',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/talhatahmid',
-            instagram: 'https://www.instagram.com/talha.thmd',
-            website: 'https://www.talhathmd.com',
+            linkedin: '',
+            instagram: '',
+            github: '',
           },
         },
         {
@@ -173,9 +176,9 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/tista.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/talhatahmid',
-            instagram: 'https://www.instagram.com/talha.thmd',
-            website: 'https://www.talhathmd.com',
+            linkedin: 'https://www.linkedin.com/in/tistamanandhar19/',
+            instagram: 'https://www.instagram.com/_tistaa',
+            github: 'https://github.com/txm19',
           },
         },
         {
@@ -183,9 +186,9 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/ishu.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/talhatahmid',
-            instagram: 'https://www.instagram.com/talha.thmd',
-            website: 'https://www.talhathmd.com',
+            linkedin: 'https://www.linkedin.com/in/ishu-pokhrel',
+            instagram: 'https://www.instagram.com/ishuthexplorer',
+            github: '',
           },
         },
         {
@@ -193,9 +196,9 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/dominic.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/talhatahmid',
-            instagram: 'https://www.instagram.com/talha.thmd',
-            website: 'https://www.talhathmd.com',
+            linkedin: '',
+            instagram: '',
+            github: '',
           },
         },
       ],
@@ -209,19 +212,19 @@ export default function Officers() {
           role: 'director',
           imageUrl: '/images/trevor.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: '',
+            instagram: '',
+            github: '',
           },
         },
         {
-          name: 'linh',
+          name: 'linh nguyen',
           role: 'director',
           imageUrl: '/images/linh.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/lninnn',
+            instagram: 'https://www.instagram.com/_lninn_',
+            github: 'https://github.com/lninnn',
           },
         },
         {
@@ -229,19 +232,19 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/shloka.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/shloka-bhatt/',
+            instagram: 'https://www.instagram.com/shhhhhlokaa',
+            github: 'https://github.com/shloka2212',
           },
         },
         {
           name: 'sheena buwemi',
           role: 'officer',
-          imageUrl: '/images/sheena.png',
+          imageUrl: '/images/noheadshot.webp',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: '',
+            instagram: '',
+            github: '',
           },
         },
         {
@@ -249,9 +252,9 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/meghana.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: '',
+            instagram: '',
+            github: '',
           },
         },
         {
@@ -259,9 +262,9 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/aryan.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/meghana-chevva/',
+            instagram: 'https://www.instagram.com/Meghana_anahgem',
+            github: 'https://github.com/meggitt',
           },
         },
       ],
@@ -275,29 +278,29 @@ export default function Officers() {
           role: 'director',
           imageUrl: '/images/paul.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/paul-hunter-santana/',
+            instagram: 'https://www.instagram.com/smhpaul_',
+            github: 'https://github.com/PostHScript',
           },
         },
         {
           name: 'will maberry',
-          role: 'director',
+          role: 'officer',
           imageUrl: '/images/will.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/will-maberry/',
+            instagram: 'https://www.instagram.com/maberrywill',
+            github: 'https://github.com/dinosaur-oatmeal',
           },
         },
         {
           name: 'tista manandhar',
-          role: 'director',
+          role: 'officer',
           imageUrl: '/images/tista.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: 'https://www.linkedin.com/in/tistamanandhar19/',
+            instagram: 'https://www.instagram.com/_tistaa',
+            github: 'https://github.com/txm19',
           },
         },
       ],
@@ -311,9 +314,9 @@ export default function Officers() {
           role: 'director',
           imageUrl: '/images/bobby.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/replace',
-            instagram: 'https://www.instagram.com/replace',
-            website: 'https://www.replace.com',
+            linkedin: '',
+            instagram: '',
+            github: '',
           },
         },
       ],
@@ -323,9 +326,9 @@ export default function Officers() {
 
   return (
     <div className="py-10 px-5">
-      <header className="text-start mb-28 m-20 ml-20">
-        <h1 className="text-4xl font-bold mb-4">meet the team</h1>
-        <p className="text-lg text-gray-200">get to know the amazing people behind our work!</p>
+      <header className="text-start mb-28 m-20 ml-40">
+        <h1 className="text-5xl font-bold mb-4">meet the team</h1>
+        <p className="text-xl text-gray-200">get to know the amazing people behind our work!</p>
       </header>
 
       <div className="space-y-12 ml-20">
@@ -338,6 +341,42 @@ export default function Officers() {
           />
         ))}
       </div>
+      <div className="absolute top-96 right-72 rotate-90 blur-sm transform -translate-y-1/2">
+      <Image 
+        src="/assets/crystal-1.png" 
+        alt="Crystal Design Element" 
+        width={400} 
+        height={400} 
+        className="opacity-100" 
+      />
+    </div>
+    <div className="absolute top-60 right-24 transform blur-sm -translate-y-1/2">
+      <Image 
+        src="/assets/crystal-2.png" 
+        alt="Crystal Design Element" 
+        width={300} 
+        height={300} 
+        className="opacity-100" 
+      />
+    </div>
+    <div className="absolute top-44 right-96 rotate-90 blur-sm transform -translate-y-1/2">
+      <Image 
+        src="/assets/crystal-2.png" 
+        alt="Crystal Design Element" 
+        width={200} 
+        height={200} 
+        className="opacity-100" 
+      />
+    </div>
+    <div className="absolute blur-sm right-0 -translate-y-72 -rotate-12 transform">
+      <Image 
+        src="/assets/web.png" 
+        alt="Crystal Design Element" 
+        width={600} 
+        height={600} 
+        className="opacity-100" 
+      />
+    </div>
     </div>
   );
 }
