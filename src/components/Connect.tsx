@@ -1,9 +1,9 @@
 // app/components/Connect.tsx
-'use client';
+"use client";
 
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser"; // using emailjs to send mail
-import { FaLinkedin, FaInstagram, FaDiscord, FaEnvelope } from 'react-icons/fa'; // import icons
+import { FaLinkedin, FaInstagram, FaDiscord, FaEnvelope } from "react-icons/fa"; // import icons
 import { motion } from "framer-motion";
 import { slideIn } from "../../utils/motion";
 
@@ -72,25 +72,37 @@ const Connect = () => {
         variants={slideIn("left", "tween", 0.2, 0.5)} // Slide in from the left
         initial="hidden"
         animate="show"
-        className="backdrop-blur-sm bg-white/10  border-2 border-white/70  rounded-[30px] p-12 flex flex-col items-start text-white w-full md:w-1/3 flex-1"
+        className="backdrop-blur-md bg-white/10  border-2 border-white/70  rounded-[30px] p-12 flex flex-col items-start text-white w-full md:w-1/3 flex-1"
       >
         <h3 className="text-2xl font-bold mb-8">connect with us!</h3>
         <ul className="space-y-6">
           <li className="flex items-center gap-4 text-xl">
             <FaLinkedin className="h-11 w-11" />
-            <a href="https://www.linkedin.com/company/acmuta/mycompany/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.linkedin.com/company/acmuta/mycompany/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               LinkedIn
             </a>
           </li>
           <li className="flex items-center gap-4 text-xl">
             <FaInstagram className="h-11 w-11" />
-            <a href="https://www.instagram.com/acmuta/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.instagram.com/acmuta/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Instagram
             </a>
           </li>
           <li className="flex items-center gap-4 text-xl">
             <FaDiscord className="h-11 w-11" />
-            <a href="https://discord.gg/MdyAfWhM" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://discord.gg/MdyAfWhM"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Discord
             </a>
           </li>
