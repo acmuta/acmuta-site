@@ -99,7 +99,7 @@ export default function Officers() {
           role: 'officer',
           imageUrl: '/images/talhatahmid.png',
           socialLinks: {
-            linkedin: 'https://linkedin.com/in/talhatahmid',
+            linkedin: 'https://linkedin.com/in/talhathmd',
             instagram: 'https://www.instagram.com/talha.thmd',
             github: 'https://github.com/talhathmd',
             website: 'https://www.talhathmd.com',
@@ -164,7 +164,7 @@ export default function Officers() {
         {
           name: 'jaideep singh',
           role: 'officer',
-          imageUrl: '/images/noheadshot.webp',
+          imageUrl: '/images/jaideep.png',
           socialLinks: {
             linkedin: '',
             instagram: '',
