@@ -6,11 +6,9 @@ import {
   faInstagram,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-
 const Footer = () => {
   return (
-    // TODO: update all the links
-    <footer className="bg-white/10 text-white py-10 border-t-4 border-white/70">
+    <footer className=" backdrop-blur-md relative z-50 bg-white/10 text-white py-10 border-t-4 border-white/70">
       <div className="max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 px-6 md:px-12">
         {/* Logo Section */}
         <div className="flex flex-col items-center md:items-start">
