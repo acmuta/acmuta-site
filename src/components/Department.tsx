@@ -21,7 +21,7 @@ interface DepartmentProps {
 
 const Department: React.FC<DepartmentProps> = ({ name, logoUrl, people }) => {
   return (
-    <section className="mb-12">
+    <section className="items-center mb-12">
       <div className="flex items-center space-x-4 mb-6">
         <Image 
           src={logoUrl} 
@@ -33,7 +33,7 @@ const Department: React.FC<DepartmentProps> = ({ name, logoUrl, people }) => {
         <h2 className="text-3xl font-bold">{name}</h2>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-5">
+      <div className="grid ml-20 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {people.map((person, index) => (
           <People key={index} {...person} />
         ))}
