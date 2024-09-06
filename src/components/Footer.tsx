@@ -58,7 +58,7 @@ const Footer = () => {
 
         {/* Social Links Section */}
         <div className="flex flex-col items-center md:items-start">
-          <h2 className="text-lg font-bold mb-3">Connect with Us</h2>
+          <h2 className="text-lg font-bold mb-3">connect with us</h2>
           <div className="flex space-x-4">
             <a
               href="#"

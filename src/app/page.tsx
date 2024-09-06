@@ -30,9 +30,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className=" z-20 w-[85%] md:w-6/12 h-auto md:h-72 my-12 bg-white/10 rounded-[30px] md:rounded-tr-[0px] md:rounded-br-[0px] border-r-2 md:border-r-[0px] md: border-l-2 border-t-2 border-b-2 border-white/40 mx-auto md:mx-[0px] md:ml-auto p-12 flex flex-col items-center md:items-start justify-center space-y-4">
-          <h1 className="text-3xl md:text-4xl font-bold">
-            Sponsors and Partners
+        <div className="z-20 backdrop-blur-md w-[85%] md:w-8/12 h-auto md:min-h-[40rem] my-12 bg-white/10 rounded-[30px] md:rounded-tr-[0px] md:rounded-br-[0px] border-r-2 md:border-r-[0px] md:border-l-2 border-t-2 border-b-2 border-white/40 mx-auto md:mx-[0px] md:ml-auto p-12 flex flex-col items-center md:items-start  space-y-4 mb-32 mt-32">
+          <h1 className="text-3xl md:text-4xl font-bold p-6">
+            sponsors and partners
           </h1>
         </div>
       </main>

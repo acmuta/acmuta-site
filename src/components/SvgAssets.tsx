@@ -42,11 +42,11 @@ const svgAssets = [
   {
     src: "/assets/spacestation.svg",
     alt: "Space Station",
-    top: "110vh",
+    top: "161vh",
     left: "80vw",
     width: 310,
     height: 310,
-    z: 0,
+    z: 30,
   },
 ];
 const SvgAssets: React.FC = () => {
