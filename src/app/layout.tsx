@@ -15,9 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-[radial-gradient(3350px_4000px_at_4%_50%,_var(--tw-gradient-stops))] from-[#14a2d5] from-0% via-[#0a6aa5] via-25%  to-[#011e38] to-100%">
+      <body className="bg-[radial-gradient(3350px_4000px_at_4%_50%,_var(--tw-gradient-stops))] from-[#14a2d5] from-0% via-[#0a6aa5] via-25%  to-[#011e38] to-100% flex flex-col min-h-screen">
         <Navbar />
-        <main>{children}</main>
+        <div className="flex-grow flex flex-col">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

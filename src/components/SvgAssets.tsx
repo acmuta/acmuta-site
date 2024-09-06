@@ -11,7 +11,6 @@ const svgAssets = [
     height: 280,
     z: 0,
   },
-
   {
     src: "/assets/ufo.svg",
     alt: "UFO",
@@ -28,7 +27,7 @@ const svgAssets = [
     left: "30vw",
     width: 300,
     height: 300,
-    z: 11,
+    z: 0,
   },
   {
     src: "/assets/flame.svg",
@@ -46,17 +45,22 @@ const svgAssets = [
     left: "80vw",
     width: 310,
     height: 310,
-    z: 30,
+    z: 0,
   },
 ];
+
 const SvgAssets: React.FC = () => {
   return (
-    <>
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {svgAssets.map((asset, index) => (
         <div
           key={index}
-          className="absolute z-0"
-          style={{ top: asset.top, left: asset.left, zIndex: asset.z }}
+          className="absolute"
+          style={{ 
+            top: asset.top, 
+            left: asset.left, 
+            zIndex: Math.min(asset.z, 0)
+          }}
         >
           <Image
             src={asset.src}
@@ -66,7 +70,7 @@ const SvgAssets: React.FC = () => {
           />
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
