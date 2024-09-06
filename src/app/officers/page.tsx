@@ -163,7 +163,7 @@ export default function Officers() {
         {
           name: 'jaideep singh',
           role: 'officer',
-          imageUrl: '/images/jaideep.png',
+          imageUrl: '/images/noheadshot.webp',
           socialLinks: {
             linkedin: '',
             instagram: '',
@@ -239,7 +239,7 @@ export default function Officers() {
         {
           name: 'sheena buwemi',
           role: 'officer',
-          imageUrl: '/images/sheena.png',
+          imageUrl: '/images/noheadshot.webp',
           socialLinks: {
             linkedin: '',
             instagram: '',
