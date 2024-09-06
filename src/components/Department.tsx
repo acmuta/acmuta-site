@@ -30,7 +30,7 @@ const Department: React.FC<DepartmentProps> = ({ name, logoUrl, people }) => {
           height={50} 
           className="object-contain"
         />
-        <h2 className="text-3xl font-bold">{name}</h2>
+        <h2 className="text-4xl font-bold">{name}</h2>
       </div>
 
       <div className="grid ml-20 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
