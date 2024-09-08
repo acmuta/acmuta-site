@@ -1,11 +1,10 @@
-// app/components/Connect.tsx
 "use client";
 
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser"; // using emailjs to send mail
 import { FaLinkedin, FaInstagram, FaDiscord, FaEnvelope } from "react-icons/fa"; // import icons
 import { motion } from "framer-motion";
-import { slideIn } from "../../utils/motion";
+import { slideIn } from "@/utils/motion";
 
 const Connect = () => {
   const formRef = useRef<HTMLFormElement>(null);
