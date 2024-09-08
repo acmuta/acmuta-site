@@ -149,7 +149,7 @@ export default function Officers() {
     },
     {
       name: 'marketing',
-      logoUrl: '/assets/acm-hackuta-logo.svg',
+      logoUrl: '/assets/acm-marketing-logo.png',
       people: [
         {
           name: 'felix cherian',
@@ -271,7 +271,7 @@ export default function Officers() {
     },
     {
       name: 'outreach',
-      logoUrl: '/assets/acm-research-logo.svg',
+      logoUrl: '/assets/acm-outreach-logo.png',
       people: [
         {
           name: 'paul santana',
