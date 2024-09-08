@@ -102,13 +102,14 @@ export default function Home() {
             />
           </div>
 
-          <div className=" backdrop-blur-md w-[90%] md:w-8/12 h-auto md:min-h-[40rem] bg-white/10 rounded-[30px] md:rounded-tr-[0px] md:rounded-br-[0px] border-r-2 md:border-r-[0px] border-l-2 border-t-2 border-b-2 border-white/40 mx-auto md:mx-[0px] md:ml-auto p-12 flex flex-col items-center md:items-start space-y-4 mb-32 ">
-            <h1 className="text-3xl md:text-4xl font-bold p-6">
+          <div className="backdrop-blur-md w-[90%] md:w-8/12 h-auto md:min-h-[40rem] bg-white/10 rounded-[30px] md:rounded-tr-[0px] md:rounded-br-[0px] border-r-2 md:border-r-[0px] border-l-2 border-t-2 border-b-2 border-white/40 mx-auto md:mx-0 md:ml-auto p-6 md:p-12 flex flex-col items-center md:items-start space-y-6 md:space-y-4 mb-16 md:mb-32">
+            <h1 className="text-3xl md:text-5xl font-bold p-4 md:p-6 text-center md:text-left">
               in collaboration with
             </h1>
 
-            <div className="flex flex-wrap items-center mx-auto justify-center gap-8">
-              <div className="w-80 h-52">
+            {/* First row of logos */}
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 mx-auto">
+              <div className="w-40 h-32 md:w-80 md:h-52">
                 <Image
                   src="/assets/adobe-logo.png"
                   alt="Adobe"
@@ -117,7 +118,7 @@ export default function Home() {
                   height={200}
                 />
               </div>
-              <div className="w-80 h-52">
+              <div className="w-40 h-32 md:w-80 md:h-52">
                 <Image
                   src="/assets/blackrock-logo.png"
                   alt="Black Rock"
@@ -128,8 +129,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex mx-auto justify-center -mt-8">
-              <div className="w-86 h-54">
+            {/* Second row of logos */}
+            <div className="flex justify-center mx-auto -mt-4 md:-mt-8">
+              <div className="w-52 h-36 md:w-96 md:h-64">
                 <Image
                   src="/assets/lockheed-martin-logo.png"
                   alt="Lockheed Martin"
