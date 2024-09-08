@@ -1,17 +1,17 @@
-import Image from 'next/image';
-import People from './People';
+import Image from "next/image";
+import People from "./People";
 
 interface PeopleProps {
-    name: string;
-    role: string;
-    imageUrl: string;
-    socialLinks: {
-      linkedin?: string;
-      instagram?: string;
-      website?: string;
-      [key: string]: string | undefined;
-    };
-  }
+  name: string;
+  role: string;
+  imageUrl: string;
+  socialLinks: {
+    linkedin?: string;
+    instagram?: string;
+    website?: string;
+    [key: string]: string | undefined;
+  };
+}
 
 interface DepartmentProps {
   name: string;
@@ -23,11 +23,11 @@ const Department: React.FC<DepartmentProps> = ({ name, logoUrl, people }) => {
   return (
     <section className="items-center mb-12">
       <div className="flex items-center space-x-4 mb-6">
-        <Image 
-          src={logoUrl} 
-          alt={`${name} logo`} 
-          width={50} 
-          height={50} 
+        <Image
+          src={logoUrl}
+          alt={`${name} logo`}
+          width={50}
+          height={50}
           className="object-contain"
         />
         <h2 className="text-4xl font-bold">{name}</h2>
@@ -40,6 +40,6 @@ const Department: React.FC<DepartmentProps> = ({ name, logoUrl, people }) => {
       </div>
     </section>
   );
-}
+};
 
 export default Department;
