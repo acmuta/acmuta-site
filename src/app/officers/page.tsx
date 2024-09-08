@@ -323,7 +323,6 @@ export default function Officers() {
       ],
     },
   ];
-
   return (
     <div className="py-10 px-5">
       <header className="text-start mb-28 m-20 ml-40">
