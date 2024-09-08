@@ -1,5 +1,6 @@
 import Department from "@/components/officers/Department";
 import Image from "next/image";
+import departments from "@/data/officers-data";
 
 export default function Officers() {
   const departments = [
