@@ -9,7 +9,7 @@ const AcmCreateCard = () => {
       <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
         <img
           src="/assets/acm-create-team.JPG"
-          alt="New Image"
+          alt="ACM Create Team"
           className="object-cover rounded-xl"
         />
       </div>
