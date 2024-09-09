@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import type { WorkShopLink } from '../../../lib/types';
+import type { WorkShopLink } from '@/../lib/types.d.ts';
 import Image from 'next/image';
 const GitHubIcon = <Image src="/assets/events/GHLogo.png" alt="Github" width={40} height={40} />;
 

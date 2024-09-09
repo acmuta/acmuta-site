@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { IconMap } from './WorkshopIcons';
-import type { PastWorkshop } from '../../../lib/types';
+import type { PastWorkshop } from '@/../lib/types.d.ts';
 
 const workshops: PastWorkshop[] = [
   {

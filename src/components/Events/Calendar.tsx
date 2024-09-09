@@ -4,7 +4,7 @@ import { byDate } from '@/app/api/events/byDate/route';
 
 type Props = {
   month: number;
-  year: number;
+  year: number; 
 };
 
 const monthNames = [

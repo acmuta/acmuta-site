@@ -21,6 +21,7 @@
     "@syncfusion/ej2-react-schedule": "^26.2.12",
     "@syncfusion/ej2-react-splitbuttons": "^26.2.10",
     "framer-motion": "^11.3.31",
+    "googleapis": "^144.0.0",
     "moment-timezone": "^0.5.45",
     "next": "14.2.7",
     "react": "^18",
