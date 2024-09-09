@@ -21,7 +21,11 @@ const Navbar = () => {
     <nav className="backdrop-blur-md bg-white/10 border-gray-200 sticky top-0 z-50">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="/assets/acm-logo.svg" className="h-8" alt="ACM UTA Logo" />
+          <img
+            src="/assets/acm-logos/acm-logo.svg"
+            className="h-8"
+            alt="ACM UTA Logo"
+          />
           <span className="self-center text-2xl font-extrabold whitespace-nowrap">
             acmuta
           </span>

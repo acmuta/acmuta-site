@@ -13,7 +13,7 @@ const Footer = () => {
         {/* Logo Section */}
         <div className="flex flex-col items-center md:items-start">
           <img
-            src="/assets/acm-logo.svg"
+            src="/assets/acm-logos/acm-logo.svg"
             alt="ACM UTA Logo"
             className="h-20 mb-4"
           />

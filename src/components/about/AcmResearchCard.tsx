@@ -2,11 +2,11 @@ import React from "react";
 
 const AcmResearchCard = () => {
   return (
-    <div className="w-[85%] md:w-6/12 h-auto md:h-72 my-12 backdrop-blur-md bg-white/10 rounded-[30px] md:rounded-tr-[0px] md:rounded-br-[0px] border-r-2 md:border-r-[0px] md: border-l-2 border-t-2 border-b-2 border-white/40 mx-auto md:mx-[0px] md:ml-auto p-12 flex flex-col items-center md:items-start justify-center space-y-4">
+    <div className="w-[90%] md:w-[70%] h-auto md:h-72 my-12 backdrop-blur-md bg-white/10 rounded-[30px] md:rounded-tr-[0px] md:rounded-br-[0px] border-r-2 md:border-r-[0px] md: border-l-2 border-t-2 border-b-2 border-white/40 mx-auto md:mx-[0px] md:ml-auto p-12 flex flex-col items-center md:items-start justify-center space-y-4">
       {/*  Logo  */}
       <div className="w-full flex items-center justify-center md:justify-start space-x-4">
         <img
-          src="/assets/acm-research-logo.svg"
+          src="/assets/acm-logos/acm-research-logo.svg"
           alt="ACM UTA Research Logo"
           className="h-16 md:h-20"
         />

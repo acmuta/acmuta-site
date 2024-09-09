@@ -6,42 +6,54 @@ const AcmDivisions = () => {
       <div className="text-center mb-8">
         <h2 className="text-5xl font-bold mb-4">Divisions</h2>
       </div>
-      <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto ">
+      <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
         <div className="flex items-center space-x-4 mx-auto">
           <img
-            src="/assets/acm-create-logo.svg"
+            src="/assets/acm-logos/acm-create-logo.svg"
             alt="ACM Create"
             className="h-16"
           />
-          <span className="text-white font-bold text-3xl mx-auto">
-            ACM Create.
-          </span>
+          <span className="text-white font-bold text-3xl">ACM Create.</span>
         </div>
         <div className="flex items-center space-x-4 mx-auto">
           <img
-            src="/assets/acm-educate-logo.svg"
+            src="/assets/acm-logos/acm-educate-logo.svg"
             alt="ACM Educate"
             className="h-16"
           />
           <span className="text-white font-bold text-3xl">ACM Educate.</span>
         </div>
-
         <div className="flex items-center space-x-4 mx-auto">
           <img
-            src="/assets/acm-research-logo.svg"
+            src="/assets/acm-logos/acm-research-logo.svg"
             alt="ACM Research"
             className="h-16"
           />
           <span className="text-white font-bold text-3xl">ACM Research.</span>
         </div>
-
         <div className="flex items-center space-x-4 mx-auto">
           <img
-            src="/assets/acm-hackuta-logo.svg"
+            src="/assets/acm-logos/acm-hackuta-logo.svg"
             alt="ACM HackUTA"
             className="h-16"
           />
           <span className="text-white font-bold text-3xl">ACM HackUTA.</span>
+        </div>
+        <div className="flex items-center space-x-4 mx-auto">
+          <img
+            src="/assets/acm-logos/acm-marketing-logo.png"
+            alt="ACM Marketing"
+            className="h-16"
+          />
+          <span className="text-white font-bold text-3xl">ACM Marketing.</span>
+        </div>
+        <div className="flex items-center space-x-4 mx-auto">
+          <img
+            src="/assets/acm-logos/acm-outreach-logo.png"
+            alt="ACM Outreach"
+            className="h-16"
+          />
+          <span className="text-white font-bold text-3xl">ACM Outreach.</span>
         </div>
       </div>
     </div>
