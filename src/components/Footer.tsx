@@ -24,12 +24,12 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3">sections</h2>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="hover:text-white">
+              <a href="/about" className="hover:text-white">
                 about
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <a href="/officers" className="hover:text-white">
                 officers
               </a>
             </li>
@@ -61,7 +61,7 @@ const Footer = () => {
           <h2 className="text-lg font-bold mb-3">connect with us</h2>
           <div className="flex space-x-4">
             <a
-              href="#"
+              href="https://github.com/acmuta"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white"
@@ -69,7 +69,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={faGithub} className="h-6 w-6" />
             </a>
             <a
-              href="#"
+              href="https://discord.gg/WFng29qkR5"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white"
@@ -77,7 +77,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={faDiscord} className="h-6 w-6" />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/acmuta/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white"
@@ -85,7 +85,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={faInstagram} className="h-6 w-6" />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/company/acmuta/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white"
