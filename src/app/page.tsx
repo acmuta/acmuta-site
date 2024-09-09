@@ -10,7 +10,7 @@ export default function Home() {
             {/* UFO asset */}
             <div className="absolute -top-[8rem] md:-top-[10rem] left-1/2 transform -translate-x-1/2">
               <Image
-                src="/assets/ufo-spotlight.svg"
+                src="/assets/objects/ufo-spotlight.svg"
                 alt="UFO"
                 width={280}
                 height={280}
@@ -43,7 +43,7 @@ export default function Home() {
             {/* Rocket asset */}
             <div className="absolute top-[82%] md:top-80 w-[300px] h-[300px] md:w-[420px] md:h-[420px] left-[60%] transform -translate-x-[50%] md:-translate-x-[30%] z-50">
               <Image
-                src="/assets/rocket-flame.svg"
+                src="/assets/objects/rocket-flame.svg"
                 alt="Rocket"
                 layout="fill"
               />
@@ -53,7 +53,7 @@ export default function Home() {
           {/* crystal 2 */}
           <div className="absolute top-[10%] md:top-[-15%] w-[400px] h-[400px] md:w-[680px] md:h-[680px] left-[80%] transform -translate-x-[70%] md:-translate-x-[40%] z-10">
             <Image
-              src="/assets/crystal-2.png"
+              src="/assets/objects/crystal-2.png"
               alt="Crystal 2"
               layout="fill"
               className="object-contain rotate-[64deg] scale-x-[-1] blur-none md:blur-[3px]"
@@ -63,7 +63,7 @@ export default function Home() {
           {/* crystal 2 */}
           <div className="absolute top-[20%] md:top-[10%] w-[280px] h-[280px] md:w-[350px] md:h-[350px] left-[90%] transform -translate-x-[40%] md:-translate-x-[12%] z-10">
             <Image
-              src="/assets/crystal-2.png"
+              src="/assets/objects/crystal-2.png"
               alt="Crystal 2"
               layout="fill"
               className="object-contain rotate-[38deg] scale-x-[-1] blur-[2px] md:blur-[3px]"
@@ -73,7 +73,7 @@ export default function Home() {
           {/* crystal 1 */}
           <div className="absolute top-[35%] md:top-[30%] w-[380px] h-[380px] md:w-[650px] md:h-[650px] left-[50%] transform -translate-x-[10%] md:-translate-x-[-50%] z-10">
             <Image
-              src="/assets/crystal-1.png"
+              src="/assets/objects/crystal-1.png"
               alt="Crystal 1"
               layout="fill"
               className="object-contain scale-x-[-1] rotate-[1deg] blur-[2px] md:blur-sm"
@@ -85,7 +85,7 @@ export default function Home() {
           {/* crystal 2 */}
           <div className="absolute top-[8%] md:top-[-8%] w-[480px] h-[480px] md:w-[650px] md:h-[650px] left-[10%] transform -translate-x-[20%] md:-translate-x-[50%] ">
             <Image
-              src="/assets/crystal-2.png"
+              src="/assets/objects/crystal-2.png"
               alt="Space Station"
               layout="fill"
               className="object-contain rotate-[64deg] scale-x-[-1] blur-none md:blur-[2px]"
@@ -95,7 +95,7 @@ export default function Home() {
           {/* crystal 1 */}
           <div className="absolute top-[28%] md:top-[25%] w-[580px] h-[580px] md:w-[650px] md:h-[650px] left-[10%] transform -translate-x-[50%] md:-translate-x-[70%] ">
             <Image
-              src="/assets/crystal-1.png"
+              src="/assets/objects/crystal-1.png"
               alt="Space Station"
               layout="fill"
               className="object-contain blur-[2px] md:blur-sm"
@@ -111,7 +111,7 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 mx-auto">
               <div className="w-40 h-32 md:w-80 md:h-52">
                 <Image
-                  src="/assets/adobe-logo.png"
+                  src="/assets/partners/adobe-logo.png"
                   alt="Adobe"
                   className="w-full h-full object-contain"
                   width={200}
@@ -120,7 +120,7 @@ export default function Home() {
               </div>
               <div className="w-40 h-32 md:w-80 md:h-52">
                 <Image
-                  src="/assets/blackrock-logo.png"
+                  src="/assets/partners/blackrock-logo.png"
                   alt="Black Rock"
                   className="w-full h-full object-contain"
                   width={200}
@@ -133,7 +133,7 @@ export default function Home() {
             <div className="flex justify-center mx-auto -mt-4 md:-mt-8">
               <div className="w-52 h-36 md:w-96 md:h-64">
                 <Image
-                  src="/assets/lockheed-martin-logo.png"
+                  src="/assets/partners/lockheed-martin-logo.png"
                   alt="Lockheed Martin"
                   className="w-full h-full object-contain"
                   width={320}
@@ -146,7 +146,7 @@ export default function Home() {
           {/* Space Station asset */}
           <div className="absolute top-[80%] md:top-[70%] w-[280px] h-[280px] md:w-[350px] md:h-[350px] left-[80%] transform -translate-x-[50%] md:-translate-x-[10%]">
             <Image
-              src="/assets/space-station.svg"
+              src="/assets/objects/space-station.svg"
               alt="Space Station"
               layout="fill"
               className="object-contain"

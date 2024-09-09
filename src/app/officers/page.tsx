@@ -24,7 +24,7 @@ export default function Officers() {
       </div>
       <div className="absolute top-[500px] lg:top-96 right-0 lg:right-72 rotate-90 blur-sm transform -translate-y-1/2 z-[-10]">
         <Image
-          src="/assets/crystal-1.png"
+          src="/assets/objects/crystal-1.png"
           alt="Crystal Design Element"
           width={400}
           height={400}
@@ -33,7 +33,7 @@ export default function Officers() {
       </div>
       <div className="absolute top-72 lg:top-60 right-10 lg:right-24 transform blur-sm -translate-y-1/2 z-[-10]">
         <Image
-          src="/assets/crystal-2.png"
+          src="/assets/objects/crystal-2.png"
           alt="Crystal Design Element"
           width={300}
           height={300}
@@ -42,7 +42,7 @@ export default function Officers() {
       </div>
       <div className="absolute top-[700px] lg:top-44 -right-10 lg:right-96 rotate-90 blur-sm transform -translate-y-1/2 z-[-10] overflow-hidden">
         <Image
-          src="/assets/crystal-2.png"
+          src="/assets/objects/crystal-2.png"
           alt="Crystal Design Element"
           width={200}
           height={200}
@@ -61,7 +61,7 @@ export default function Officers() {
 
       <div className="absolute top-[1300px] lg:top-[1500px] -right-32 lg:right-32 rotate-90 blur-sm transform -translate-y-1/2 z-[-10]">
         <Image
-          src="/assets/rocket-flame.svg"
+          src="/assets/objects/web.png"
           alt="Crystal Design Element"
           width={600}
           height={600}
