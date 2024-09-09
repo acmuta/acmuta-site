@@ -24,7 +24,7 @@ export default function Officers() {
       </div>
       <div className="absolute top-96 right-72 rotate-90 blur-sm transform -translate-y-1/2 z-[-10]">
         <Image
-          src="/assets/crystal-1.png"
+          src="/assets/objects/crystal-1.png"
           alt="Crystal Design Element"
           width={400}
           height={400}
@@ -33,7 +33,7 @@ export default function Officers() {
       </div>
       <div className="absolute top-60 right-24 transform blur-sm -translate-y-1/2 z-[-10]">
         <Image
-          src="/assets/crystal-2.png"
+          src="/assets/objects/crystal-2.png"
           alt="Crystal Design Element"
           width={300}
           height={300}
@@ -42,7 +42,7 @@ export default function Officers() {
       </div>
       <div className="absolute top-44 right-96 rotate-90 blur-sm transform -translate-y-1/2 z-[-10]">
         <Image
-          src="/assets/crystal-2.png"
+          src="/assets/objects/crystal-2.png"
           alt="Crystal Design Element"
           width={200}
           height={200}
@@ -51,7 +51,7 @@ export default function Officers() {
       </div>
       <div className="absolute blur-sm right-0 -translate-y-72 -rotate-12 transform z-[-10]">
         <Image
-          src="/assets/web.png"
+          src="/assets/objects/web.png"
           alt="Crystal Design Element"
           width={600}
           height={600}

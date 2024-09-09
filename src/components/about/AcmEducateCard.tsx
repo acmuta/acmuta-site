@@ -6,7 +6,7 @@ const AcmEducateCard = () => {
       {/* ACM Educate Group Photo */}
       <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
         <img
-          src="/assets/acm-educate-team.JPG"
+          src="/assets/team-photos/acm-educate-team.JPG"
           alt="ACM Educate Team"
           className="object-cover rounded-xl"
         />
@@ -16,7 +16,7 @@ const AcmEducateCard = () => {
         {/* ACM Educate Logo */}
         <div className="w-[80%] flex items-center space-x-4 mb-4 items-end ml-0 md:ml-auto">
           <img
-            src="/assets/acm-educate-logo.svg"
+            src="/assets/acm-logos/acm-educate-logo.svg"
             alt="ACM UTA Educate Logo"
             className="h-16 md:h-20 items-end"
           />

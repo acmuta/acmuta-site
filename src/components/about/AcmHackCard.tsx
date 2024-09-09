@@ -7,7 +7,7 @@ const AcmHackCard = () => {
       {/*  Logo and "acm educate." */}
       <div className="w-full flex items-center justify-center md:justify-end space-x-4">
         <img
-          src="/assets/acm-hackuta-logo.svg"
+          src="/assets/acm-logos/acm-hackuta-logo.svg"
           alt="ACM HackUTA Logo"
           className="h-16 md:h-20"
         />

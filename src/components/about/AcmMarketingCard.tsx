@@ -7,7 +7,7 @@ const AcmMarketingCard = () => {
       {/* ACM Marketing Group Photo */}
       <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
         <img
-          src="/assets/acm-marketing-team.JPG"
+          src="/assets/team-photos/acm-marketing-team.JPG"
           alt="ACM Marketing Team"
           className="object-cover rounded-xl"
         />
@@ -17,7 +17,7 @@ const AcmMarketingCard = () => {
         {/* ACM Marketing Logo */}
         <div className="w-full flex items-center justify-start space-x-4">
           <img
-            src="/assets/acm-marketing-logo.png"
+            src="/assets/acm-logos/acm-marketing-logo.png"
             alt="ACM UTA Marketing Logo"
             className="h-16 md:h-16"
           />

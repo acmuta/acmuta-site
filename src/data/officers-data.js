@@ -1,7 +1,7 @@
 const departments = [
   {
     name: "executive directors",
-    logoUrl: "/assets/acm-logo.svg",
+    logoUrl: "/assets/acm-logos/acm-logo.svg",
     people: [
       {
         name: "devrat patel",
@@ -67,7 +67,7 @@ const departments = [
   },
   {
     name: "create",
-    logoUrl: "/assets/acm-create-logo.svg",
+    logoUrl: "/assets/acm-logos/acm-create-logo.svg",
     people: [
       {
         name: "atiqur rahman",
@@ -145,7 +145,7 @@ const departments = [
   },
   {
     name: "marketing",
-    logoUrl: "/assets/acm-hackuta-logo.svg",
+    logoUrl: "/assets/acm-logos/acm-hackuta-logo.svg",
     people: [
       {
         name: "felix cherian",
@@ -201,7 +201,7 @@ const departments = [
   },
   {
     name: "educate",
-    logoUrl: "/assets/acm-educate-logo.svg",
+    logoUrl: "/assets/acm-logos/acm-educate-logo.svg",
     people: [
       {
         name: "trevor",
@@ -267,7 +267,7 @@ const departments = [
   },
   {
     name: "outreach",
-    logoUrl: "/assets/acm-research-logo.svg",
+    logoUrl: "/assets/acm-logos/acm-research-logo.svg",
     people: [
       {
         name: "paul santana",
@@ -303,7 +303,7 @@ const departments = [
   },
   {
     name: "research",
-    logoUrl: "/assets/acm-research-logo.svg",
+    logoUrl: "/assets/acm-logos/acm-research-logo.svg",
     people: [
       {
         name: "bobby flennoy",

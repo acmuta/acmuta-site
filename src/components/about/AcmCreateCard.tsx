@@ -8,7 +8,7 @@ const AcmCreateCard = () => {
       {/* ACM Create Group Photo */}
       <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
         <img
-          src="/assets/acm-create-team.JPG"
+          src="/assets/team-photos/acm-create-team.JPG"
           alt="ACM Create Team"
           className="object-cover rounded-xl"
         />
@@ -18,7 +18,7 @@ const AcmCreateCard = () => {
         {/* ACM Create Logo */}
         <div className="w-full flex items-center justify-start space-x-4">
           <img
-            src="/assets/acm-create-logo.svg"
+            src="/assets/acm-logos/acm-create-logo.svg"
             alt="ACM UTA Create Logo"
             className="h-16 md:h-16"
           />

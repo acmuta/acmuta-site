@@ -6,7 +6,7 @@ const AcmOutreachCard = () => {
       {/* ACM Outreach Group Photo */}
       <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
         <img
-          src="/assets/acm-outreach-team.JPG"
+          src="/assets/team-photos/acm-outreach-team.JPG"
           alt="ACM Outreach Team"
           className="object-cover rounded-xl"
         />
@@ -16,7 +16,7 @@ const AcmOutreachCard = () => {
         {/* ACM Outreach Logo */}
         <div className="w-[80%] flex items-center space-x-4 mb-4 items-end ml-0 md:ml-auto">
           <img
-            src="/assets/acm-outreach-logo.png"
+            src="/assets/acm-logos/acm-outreach-logo.png"
             alt="ACM UTA Outreach Logo"
             className="h-16 md:h-20 items-end"
           />

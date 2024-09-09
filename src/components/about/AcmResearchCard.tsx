@@ -6,7 +6,7 @@ const AcmResearchCard = () => {
       {/*  Logo  */}
       <div className="w-full flex items-center justify-center md:justify-start space-x-4">
         <img
-          src="/assets/acm-research-logo.svg"
+          src="/assets/acm-logos/acm-research-logo.svg"
           alt="ACM UTA Research Logo"
           className="h-16 md:h-20"
         />

@@ -10,7 +10,7 @@ export const AboutAcmCard = () => {
           <div className="w-full md:w-1/2 lg:w-1/2">
             <div className="flex flex-col items-center mb-6">
               <img
-                src="/assets/acm-logo-white.png"
+                src="/assets/acm-logos/acm-logo-white.png"
                 alt="ACM UTA Logo"
                 className="h-16 mb-4 md:h-24"
               />
@@ -30,7 +30,7 @@ export const AboutAcmCard = () => {
           {/* ACM Group Photo */}
           <div className="w-full md:w-1/2 lg:w-1/2 flex justify-center my-4 md:my-0 overflow-hidden p-0 md:p-8">
             <Image
-              src="/assets/acm-team.JPG"
+              src="/assets/team-photos/acm-team.JPG"
               alt="Side Image"
               width={500}
               height={500}
