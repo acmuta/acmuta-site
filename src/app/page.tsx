@@ -26,7 +26,7 @@ export default function Home() {
               </div>
 
               <p className="text-lg md:text-xl leading-relaxed font-medium">
-              UTA's largest computer science organization—uniting students through technology.
+              UTA&apos;s largest computer science organization—uniting students through technology.
               Join our inclusive community to learn, collaborate,
               create, and grow, no matter your background or experience.
               </p>
