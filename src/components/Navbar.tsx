@@ -27,7 +27,7 @@ const Navbar = () => {
             alt="ACM UTA Logo"
           />
           <span className="self-center text-2xl font-extrabold whitespace-nowrap">
-            acmuta
+            acm uta
           </span>
         </a>
         <button
@@ -65,12 +65,15 @@ const Navbar = () => {
               <li key={index}>
                 <a
                   href={item.link}
-                  className={`block text-white rounded px-2 ${
+                  className={`block text-white rounded px-2 transition-transform duration-300 ease-in-out hover:shadow-inner hover:translate-y-1 hover:-translate-x-1 ${
                     item.name === "apply"
                       ? "md:border md:border-white/60 md:rounded-2xl md:px-2 py-0"
                       : ""
-                  } lg:hover:bg-transparent sm:hover:bg-white/10 md:text-white-700`}
+                  } lg:hover:bg-transparent sm:hover:bg-white/10 md:text-white-700 border border-transparent hover:border-white/60 hover:rounded-2xl`}
                   aria-current={item.name === "Home" ? "page" : undefined}
+                  style={{ boxShadow: 'inset 0 0 0 rgba(0, 0, 0, 0)' }}
+                  onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'inset 0 2px 4px rgba(0, 0, 0, 0.6)'}
+                  onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'inset 0 0 0 rgba(0, 0, 0, 0)'}
                 >
                   {item.name}
                 </a>
