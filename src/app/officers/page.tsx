@@ -24,7 +24,7 @@ export default function Officers() {
         ))}
       </div>
       {/*Large crystal middle*/}
-      <div className="absolute top-[500px] lg:top-96 right-0 lg:right-72 rotate-90 blur-sm transform -translate-y-1/2 z-[-10]">
+      <div className="absolute top-[500px] lg:top-96 right-0 lg:right-72 rotate-90 blur-sm transform -translate-y-1/2 z-[-10] animate-pulse">
         <Image
           src="/assets/objects/crystal-1.png"
           alt="Crystal Design Element"
@@ -34,7 +34,7 @@ export default function Officers() {
         />
       </div>
       {/*small crystal left*/}
-      <div className="absolute top-72 lg:top-60 right-10 lg:right-24 transform blur-sm -translate-y-1/2 z-[-10]">
+      <div className="absolute top-72 lg:top-60 right-10 lg:right-24 transform blur-sm -translate-y-1/2 z-[-10] animate-pulse">
         <Image
           src="/assets/objects/crystal-2.png"
           alt="Crystal Design Element"
@@ -44,7 +44,7 @@ export default function Officers() {
         />
       </div>
       {/*small crystal right*/}
-      <div className="absolute top-[700px] lg:top-44 -right-10 lg:right-96 rotate-90 blur-sm transform -translate-y-1/2 z-[-10] overflow-hidden">
+      <div className="absolute top-[700px] lg:top-44 -right-10 lg:right-96 rotate-90 blur-sm transform -translate-y-1/2 z-[-10] overflow-hidden animate-pulse">
         <Image
           src="/assets/objects/crystal-2.png"
           alt="Crystal Design Element"
