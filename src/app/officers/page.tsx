@@ -61,7 +61,7 @@ export default function Officers() {
 
       <div className="absolute top-[1300px] lg:top-[1500px] -right-32 lg:right-32 rotate-90 blur-sm transform -translate-y-1/2 z-[-10]">
         <Image
-          src="/assets/objects/web.png"
+          src="/assets/rocket-flame.svg"
           alt="Crystal Design Element"
           width={600}
           height={600}
