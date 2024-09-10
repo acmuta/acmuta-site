@@ -16,14 +16,16 @@ export const AboutAcmCard = () => {
               />
             </div>
             <p className="text-lg md:text-xl leading-relaxed mb-6 font-medium">
-              The Association for Computing Machinery (ACM) is the world’s
-              largest computer science/engineering focused organization.
+            The Association for Computing Machinery (ACM) is the world's largest
+            and most influential organization for computing professionals.
+            Our UTA chapter extends this legacy, providing a platform for students
+            of all majors and skill levels to immerse themselves in technology.
             </p>
             <p className="text-lg md:text-xl leading-relaxed font-medium">
-              The ACM chapter at UTA welcomes students of all backgrounds,
-              majors, interests, and skill levels to join our community and
-              share in our love for technology. ACM is currently comprised of
-              four committees, each serving a different topic and mission.
+            Through six dedicated committees, we offer resources, networking opportunities,
+            and hands-on experiences in areas like research, software development, and project management.
+            Whether you're building your first app or leading a team project,
+            ACM at UTA gives you the tools and community to grow and connect with fellow tech enthusiasts.
             </p>
           </div>
 
