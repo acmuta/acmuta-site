@@ -50,7 +50,7 @@ export default function Officers() {
           className="opacity-100"
         />
       </div>
-      <div className="absolute blur-sm -left-20 -bottom-60 transform -translate-y-1/2 -rotate-12 z-[-10] max-h-screen overflow-hidden">
+      <div className="absolute blur-sm -right-20 -bottom-[550px] transform -translate-y-1/2 -rotate-12 z-[-10] max-h-screen overflow-hidden">
       <Image
         src="/assets/objects/web.png"
         alt="Web Element"
@@ -72,6 +72,24 @@ export default function Officers() {
       <div className="absolute bottom-[2800px] md:bottom-[1100px] lg:bottom-[1100px] -left-44 lg:-left-44 blur-sm transform -translate-y-1/2 z-[-10]">
         <Image
           src="/assets/objects/crystal-1.png"
+          alt="Crystal Design Element"
+          width={400}
+          height={400}
+          className="opacity-100"
+        />
+      </div>
+      <div className="absolute bottom-[1850px] md:bottom-[500px] lg:bottom-[300px] left-52 lg:left-60 -rotate-180 blur-sm transform -translate-y-1/2 z-[-10]">
+        <Image
+          src="/assets/objects/crystal-2.png"
+          alt="Crystal Design Element"
+          width={400}
+          height={400}
+          className="opacity-100"
+        />
+      </div>
+      <div className="absolute bottom-[2500px] md:bottom-[900px] lg:bottom-[950px] -right-44 lg:-right-44 blur-sm transform -translate-y-1/2 z-[-10]">
+        <Image
+          src="/assets/objects/crystal-2.png"
           alt="Crystal Design Element"
           width={400}
           height={400}
