@@ -53,3 +53,70 @@ body {
     text-wrap: balance;
   }
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2.5%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/*Stagger the crystal animations*/
+.animate-float:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.animate-float:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.animate-float:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.animate-float:nth-child(4) {
+  animation-delay: 0.1s;
+}
+
+.animate-float:nth-child(5) {
+  animation-delay: 0s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translateX(-50%) rotate(3deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(-3deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(3deg);
+  }
+}
+
+
+.animate-rotate {
+  animation: rotate 5s ease-in-out infinite;
+}
+
+.animate-float:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.animate-float:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+#rocket{
+  transform: translate(0,0);
+  transition: transform 0.05s;
+}
