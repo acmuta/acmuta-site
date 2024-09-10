@@ -145,7 +145,7 @@ const departments = [
   },
   {
     name: "marketing",
-    logoUrl: "/assets/acm-logos/acm-hackuta-logo.svg",
+    logoUrl: "/assets/acm-logos/acm-marketing-logo.png",
     people: [
       {
         name: "felix cherian",
@@ -267,7 +267,7 @@ const departments = [
   },
   {
     name: "outreach",
-    logoUrl: "/assets/acm-logos/acm-research-logo.svg",
+    logoUrl: "/assets/acm-logos/acm-outreach-logo.png",
     people: [
       {
         name: "paul santana",
