@@ -1,3 +1,4 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,10 +26,9 @@ export default function Home() {
               </div>
 
               <p className="text-lg md:text-xl leading-relaxed font-medium">
-                The ACM chapter at UTA welcomes students of all backgrounds,
-                majors, interests, and skill levels to join our community and
-                share in our love for technology. ACM is currently comprised of
-                four committees, each serving a different topic and mission.
+              UTA's largest computer science organization—uniting students through technology.
+              Join our inclusive community to learn, collaborate,
+              create, and grow, no matter your background or experience.
               </p>
 
               <div className="w-full flex justify-center mt-8">
@@ -120,8 +120,8 @@ export default function Home() {
               </div>
               <div className="w-40 h-32 md:w-80 md:h-52">
                 <Image
-                  src="/assets/partners/blackrock-logo.png"
-                  alt="Black Rock"
+                  src="/assets/partners/blackstone-logo.png"
+                  alt="Black Stone"
                   className="w-full h-full object-contain"
                   width={200}
                   height={200}

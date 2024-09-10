@@ -1,3 +1,4 @@
+'use client';
 import { AboutAcmCard } from "@/components/about/AboutAcmCard";
 import AcmCreateCard from "@/components/about/AcmCreateCard";
 import AcmDivisions from "@/components/about/AcmDivisions";
