@@ -1,7 +1,7 @@
 const departments = [
   {
     name: "executive directors",
-    logoUrl: "/assets/acm-logos/acm-execs-logo.png",
+    logoUrl: "/assets/acm-logos/acm-logo.svg",
     people: [
       {
         name: "devrat patel",
