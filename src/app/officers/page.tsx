@@ -5,7 +5,7 @@ import departments from "@/data/officers-data";
 
 export default function Officers() {
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative overflow-hidden">
       <header className="text-start mb-28 m-8 lg:m-20 lg:ml-40">
         <h1 className="text-4xl lg:text-5xl font-bold mb-4">meet the team</h1>
         <p className="text-lg lg:text-xl text-gray-200">
