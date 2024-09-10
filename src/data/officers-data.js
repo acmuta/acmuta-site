@@ -141,6 +141,17 @@ const departments = [
           github: "https://github.com/shloka2212",
         },
       },
+      {
+        name: "meghana chevva",
+        role: "officer",
+        imageUrl: "/images/meghana.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/meghana-chevva/",
+          instagram: "https://www.instagram.com/Meghana_anahgem",
+          github: "https://github.com/meggitt",
+          website: "https://www.meghanachevva.com",
+        },
+      },
     ],
   },
   {
@@ -248,9 +259,10 @@ const departments = [
         role: "officer",
         imageUrl: "/images/meghana.png",
         socialLinks: {
-          linkedin: "",
-          instagram: "",
-          github: "",
+          linkedin: "https://www.linkedin.com/in/meghana-chevva/",
+          instagram: "https://www.instagram.com/Meghana_anahgem",
+          github: "https://github.com/meggitt",
+          website: "https://www.meghanachevva.com",
         },
       },
       {
@@ -258,9 +270,9 @@ const departments = [
         role: "officer",
         imageUrl: "/images/aryan.png",
         socialLinks: {
-          linkedin: "https://www.linkedin.com/in/meghana-chevva/",
-          instagram: "https://www.instagram.com/Meghana_anahgem",
-          github: "https://github.com/meggitt",
+          linkedin: "",
+          instagram: "",
+          github: "",
         },
       },
     ],
