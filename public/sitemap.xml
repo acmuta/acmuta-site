@@ -1,0 +1,18 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <url>
+        <loc>https://acmuta.com/</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://acmuta.com/about</loc>
+        <priority>0.6</priority>
+    </url>
+        <url>
+        <loc>https://acmuta.com/officers</loc>
+        <priority>0.2</priority>
+    </url>
+    <url>
+        <loc>https://acmuta.com/connect</loc>
+        <priority>0.2</priority>
+    </url>
+</urlset>

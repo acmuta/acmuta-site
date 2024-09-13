@@ -3,55 +3,121 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+   --foreground-rgb: 0, 0, 0;
+   --background-start-rgb: 214, 219, 220;
+   --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+   :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 0, 0, 0;
+      --background-end-rgb: 0, 0, 0;
+   }
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('/fonts/gilroy/Gilroy-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
+   font-family: "Gilroy";
+   src: url("/fonts/gilroy/Gilroy-Medium.ttf") format("truetype");
+   font-weight: 500;
+   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('/fonts/gilroy/Gilroy-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
+   font-family: "Gilroy";
+   src: url("/fonts/gilroy/Gilroy-Bold.ttf") format("truetype");
+   font-weight: 700;
+   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('/fonts/gilroy/Gilroy-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
+   font-family: "Gilroy";
+   src: url("/fonts/gilroy/Gilroy-ExtraBold.ttf") format("truetype");
+   font-weight: 800;
+   font-style: normal;
 }
 
 body {
-  font-family: 'Gilroy', sans-serif;
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+   font-family: "Gilroy", sans-serif;
+   color: rgb(var(--foreground-rgb));
+   background: linear-gradient(
+         to bottom,
+         transparent,
+         rgb(var(--background-end-rgb))
+      )
+      rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+   .text-balance {
+      text-wrap: balance;
+   }
+}
+
+@keyframes float {
+   0% {
+      transform: translateY(0);
+   }
+   50% {
+      transform: translateY(2.5%);
+   }
+   100% {
+      transform: translateY(0);
+   }
+}
+
+.animate-float {
+   animation: float 3s ease-in-out infinite;
+}
+
+/*Stagger the crystal animations*/
+.animate-float:nth-child(1) {
+   animation-delay: 0s;
+}
+
+.animate-float:nth-child(2) {
+   animation-delay: 0.3s;
+}
+
+.animate-float:nth-child(3) {
+   animation-delay: 0.2s;
+}
+
+.animate-float:nth-child(4) {
+   animation-delay: 0.1s;
+}
+
+.animate-float:nth-child(5) {
+   animation-delay: 0s;
+}
+
+@keyframes rotate {
+   0% {
+      transform: translateX(-50%) rotate(3deg);
+   }
+   50% {
+      transform: translateX(-50%) rotate(-3deg);
+   }
+   100% {
+      transform: translateX(-50%) rotate(3deg);
+   }
+}
+
+.animate-rotate {
+   animation: rotate 5s ease-in-out infinite;
+}
+
+.animate-float:nth-child(1) {
+   animation-delay: 0s;
+}
+
+.animate-float:nth-child(2) {
+   animation-delay: 0.25s;
+}
+
+#rocket {
+   transform: translate(0, 0);
+   transition: transform 0.05s;
 }
 
 @import "../../node_modules/@syncfusion/ej2-base/styles/material.css";

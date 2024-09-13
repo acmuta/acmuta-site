@@ -19,19 +19,19 @@ interface PeopleProps {
   
   const People: React.FC<PeopleProps> = ({ name, role, imageUrl, socialLinks }) => {
   return (
-    <div className="flex flex-col sm:flex-row items-center space-x-6 py-4">
+    <div className="flex items-center space-x-4 py-4">
       <div className="flex-shrink-0">
         <Image 
           src={imageUrl} 
           alt={`${name}'s picture`} 
           width={100} 
           height={100} 
-          className="rounded-full"
+          className="rounded-full object-cover"
         />
       </div>
 
-      <div>
-        <h2 className="text-xl font-semibold">{name}</h2>
+      <div className='flex-grow'>
+        <h2 className="text-lg lg:text-xl font-semibold">{name}</h2>
         <h4 className="text-sm mb-2 text-green-100">{role}</h4>
         <div className="flex space-x-4">
           {socialLinks?.linkedin && (
