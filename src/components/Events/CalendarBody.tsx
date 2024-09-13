@@ -22,7 +22,7 @@ export default function CalendarBody({ year, month, events }: Props) {
       {daysOfWeek.map((day) => (
         <div
           key={day}
-          className="text-center text-xs font-semibold uppercase text-gray-300 md:text-sm"
+          className="text-center text-xs font-semibold uppercase text-white md:text-sm"
         >
           {day}
         </div>
@@ -33,7 +33,7 @@ export default function CalendarBody({ year, month, events }: Props) {
       {daysInMonth.map((day) => (
         <div
           key={day}
-          className="relative rounded-lg bg-white p-2 text-center text-gray-800 shadow transition-all hover:bg-gray-200 md:h-24"
+          className="relative rounded-lg bg-white/20 p-2 text-center text-white shadow transition-all hover:bg-gray-200 md:h-24"
         >
           <p className="absolute right-2 top-2 text-xs font-bold md:text-sm">{day}</p>
           <div className="mt-4">
