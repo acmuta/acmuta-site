@@ -30,7 +30,7 @@ export default function Events({ searchParams }: { searchParams: Params }) {
           </div>
           <UpcomingEvents />
         </div>
-        {/* <PastEvents /> */}
+        <PastEvents />
       </div>
       <div className="mx-40 flex flex-col justify-between pt-16">
         <div className="relative">
