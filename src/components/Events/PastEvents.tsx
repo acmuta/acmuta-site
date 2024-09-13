@@ -6,9 +6,9 @@ type PastEvent = {
 };
 
 const events: PastEvent[] = [
-  { name: 'ACM General Meering', image: '/assets/events/GeneralMeeting.png' },
-  { name: 'Projects/Research Social', image: '/assets/events/ProjSocial.jpeg' },
-  { name: 'Women’s History Month: STEM Panel', image: '/assets/events/WHM.jpeg' },
+  { name: 'ACM Fall Kickoff 2024', image: '/assets/team-photos/acm-team.JPG' },
+  // { name: 'Projects/Research Social', image: '/assets/events/ProjSocial.jpeg' },
+  // { name: 'Women’s History Month: STEM Panel', image: '/assets/events/WHM.jpeg' },
 ];
 export default function PastEvents() {
   return (
