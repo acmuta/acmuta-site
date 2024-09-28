@@ -43,7 +43,6 @@ export async function GET() {
         eventData = {
           ...eventData,
           authorName: event.actor.login,
-          authorUrl: event.actor.html_url,
         };
       } else if (event.type === "PullRequestEvent") {
         eventData = {
