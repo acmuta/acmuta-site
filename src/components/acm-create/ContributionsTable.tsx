@@ -8,6 +8,7 @@ interface GitHubEvent {
   createdDate: string;
   authorName: string;
   authorUrl: string;
+  authorImg?: string;
   title?: string;
   state?: string;
   pullRequestTitle?: string;
@@ -49,19 +50,19 @@ const ContributionsTable: React.FC = () => {
   const renderEventDescription = (event: GitHubEvent) => {
     switch (event.type) {
       case "PushEvent":
-        return `pushed a commit to `;
+        return ` pushed a commit to `;
       case "PullRequestEvent":
-        return `opened a pull request "${event.title}" in `;
+        return ` opened a pull request "${event.title}" in `;
       case "IssuesEvent":
-        return `opened an issue "${event.title}" in `;
+        return ` opened an issue "${event.title}" in `;
       case "ForkEvent":
-        return `forked the repository `;
+        return ` forked the repository `;
       case "PullRequestReviewEvent":
-        return `reviewed pull request (${event.reviewState}) in `;
+        return ` reviewed pull request (${event.reviewState}) in `;
       case "PullRequestReviewCommentEvent":
-        return `commented on pull request in `;
+        return ` commented on pull request in `;
       default:
-        return `did something in ${event.repoName}`;
+        return ` did something in ${event.repoName}`;
     }
   };
 
@@ -80,23 +81,30 @@ const ContributionsTable: React.FC = () => {
             {events.map((event, index) => (
               <tr key={index} className="border-t">
                 <td className="px-4 py-2">
-                  <a
-                    href={`https://github.com/${event.authorName}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-bold hover:underline"
-                  >
-                    @{event.authorName}
-                  </a>{" "}
-                  {renderEventDescription(event)}
-                  <a
-                    href={`https://github.com/${event.repoName}`}
-                    className="font-bold hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {event.repoName}
-                  </a>
+                  <div className="flex items-center space-x-2">
+                    <img
+                      src={event.authorImg}
+                      alt={event.authorName}
+                      className="w-8 h-8 rounded-full"
+                    />
+                    <a
+                      href={`https://github.com/${event.authorName}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-bold hover:underline"
+                    >
+                      @{event.authorName}
+                    </a>{" "}
+                    {renderEventDescription(event)}{" "}
+                    <a
+                      href={`https://github.com/${event.repoName}`}
+                      className="font-bold hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {event.repoName}
+                    </a>
+                  </div>{" "}
                 </td>
                 <td className="px-4 py-2">
                   {formatTimeAgo(event.createdDate)}

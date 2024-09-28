@@ -36,6 +36,7 @@ export async function GET() {
         repoName: event.repo.name,
         repoUrl: event.repo.html_url,
         createdDate: event.created_at,
+        authorImg: event.actor.avatar_url,
       };
 
       // Handling different event types
