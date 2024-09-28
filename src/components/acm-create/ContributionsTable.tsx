@@ -49,17 +49,17 @@ const ContributionsTable: React.FC = () => {
   const renderEventDescription = (event: GitHubEvent) => {
     switch (event.type) {
       case "PushEvent":
-        return `pushed a commit to ${event.repoName}`;
+        return `pushed a commit to `;
       case "PullRequestEvent":
-        return `opened a pull request "${event.title}" in ${event.repoName}`;
+        return `opened a pull request "${event.title}" in `;
       case "IssuesEvent":
-        return `opened an issue "${event.title}" in ${event.repoName}`;
+        return `opened an issue "${event.title}" in `;
       case "ForkEvent":
-        return `forked the repository ${event.repoName} to ${event.forkedRepoName}`;
+        return `forked the repository `;
       case "PullRequestReviewEvent":
-        return `reviewed pull request (${event.reviewState}) in ${event.repoName}`;
+        return `reviewed pull request (${event.reviewState}) in `;
       case "PullRequestReviewCommentEvent":
-        return `commented on pull request in ${event.repoName}`;
+        return `commented on pull request in `;
       default:
         return `did something in ${event.repoName}`;
     }
@@ -81,12 +81,22 @@ const ContributionsTable: React.FC = () => {
               <tr key={index} className="border-t">
                 <td className="px-4 py-2">
                   <a
-                    href={event.authorUrl}
-                    className="font-medium hover:underline"
+                    href={`https://github.com/${event.authorName}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-bold hover:underline"
                   >
                     @{event.authorName}
                   </a>{" "}
                   {renderEventDescription(event)}
+                  <a
+                    href={`https://github.com/${event.repoName}`}
+                    className="font-bold hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {event.repoName}
+                  </a>
                 </td>
                 <td className="px-4 py-2">
                   {formatTimeAgo(event.createdDate)}

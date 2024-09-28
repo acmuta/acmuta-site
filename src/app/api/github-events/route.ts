@@ -34,7 +34,7 @@ export async function GET() {
       let eventData: any = {
         type: event.type,
         repoName: event.repo.name,
-        repoUrl: event.repo.url,
+        repoUrl: event.repo.html_url,
         createdDate: event.created_at,
       };
 
@@ -43,6 +43,7 @@ export async function GET() {
         eventData = {
           ...eventData,
           authorName: event.actor.login,
+          authorUrl: event.actor.url,
         };
       } else if (event.type === "PullRequestEvent") {
         eventData = {
@@ -78,6 +79,7 @@ export async function GET() {
           authorUrl: event.actor.html_url,
         };
       } else if (event.type === "PullRequestReviewCommentEvent") {
+        // Handling PullRequestReviewCommentEvent
         eventData = {
           ...eventData,
           commentBody: event.payload.comment.body,
@@ -109,8 +111,8 @@ export async function GET() {
       ).values()
     );
 
-    // Take the latest 20 unique events
-    const latestEvents = uniqueEvents.slice(0, 20);
+    // Take the latest 15 unique events
+    const latestEvents = uniqueEvents.slice(0, 15);
 
     return NextResponse.json(latestEvents);
   } catch (error) {
