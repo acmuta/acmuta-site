@@ -145,16 +145,6 @@ const Connect = () => {
               className="bg-white/10 py-4 px-6 placeholder:text-white/70 text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
-          <label className="flex flex-col">
-            <textarea
-              rows={7}
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder="message:"
-              className="bg-white/10 py-4 px-6 placeholder:text-white/70 text-white rounded-lg outline-none border-none font-medium"
-            />
-          </label>
 
           <button
             type="submit"
