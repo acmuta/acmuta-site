@@ -1,6 +1,5 @@
 import Link from "next/link";
 import CalendarBody from "./CalendarBody";
-import { byDate } from "@/app/api/events/byDate/route";
 
 type Props = {
   month: number;
@@ -34,8 +33,21 @@ function changeMonth(
   return { month: month - 1, year };
 }
 
+async function fetchEvents(month: number, year: number) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''; // Define your base URL here
+  const url = new URL(`/api/events?month=${month}&year=${year}`, baseUrl);
+  const res = await fetch(url.toString(), {
+    cache: "no-store", // Ensure fresh data
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch events");
+  }
+
+  return res.json();
+}
+
 async function Calendar({ month, year }: Props) {
-  const events = await byDate(month, year);
+  const events = await fetchEvents(month, year);
   const nextParams = changeMonth("inc", { month, year });
   const prevParams = changeMonth("dec", { month, year });
 
