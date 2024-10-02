@@ -8,7 +8,8 @@ const endpoint = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}
 export async function GET() {
   // Fetch and parse data
   const response = await fetch(
-    `${endpoint}?key=${process.env.CALENDAR_API_KEY}`
+    `${endpoint}?key=${process.env.CALENDAR_API_KEY}`,
+    { cache: "no-store" }
   );
   const data = await response.json();
 
