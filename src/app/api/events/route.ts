@@ -1,6 +1,7 @@
 import type { Event } from "@/lib/types.d.ts";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
 
 const calendarId = process.env.GOOGLE_CALENDAR_ID;
 const endpoint = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`;
