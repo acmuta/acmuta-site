@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import CalendarBody from "./CalendarBody";
+import { useEffect, useState } from "react";
+import type { Event } from "@/lib/types";
 
 type Props = {
   month: number;
@@ -7,24 +11,11 @@ type Props = {
 };
 
 const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "January", "February", "March", "April", "May", "June", 
+  "July", "August", "September", "October", "November", "December",
 ];
 
-function changeMonth(
-  amt: "inc" | "dec",
-  { month, year }: { month: number; year: number }
-) {
+function changeMonth(amt: "inc" | "dec", { month, year }: { month: number; year: number }) {
   if (amt === "inc") {
     if (month === 11) return { month: 0, year: year + 1 };
     return { month: month + 1, year };
@@ -33,23 +24,44 @@ function changeMonth(
   return { month: month - 1, year };
 }
 
-async function fetchEvents(month: number, year: number) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''; // Define your base URL here
-  const url = new URL(`/api/events?month=${month}&year=${year}`, baseUrl);
-  const res = await fetch(url.toString(), {
-    cache: "no-store", // Ensure fresh data
-  });
-  if (!res.ok) {
-    throw new Error("Failed to fetch events");
-  }
+const Calendar = ({ month, year }: Props) => {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  useEffect(() => {
+    const fetchEvents = async (month: number, year: number) => {
+      const url = `/api/events?month=${month}&year=${year}`; // Use a relative URL
+      const res = await fetch(url, {
+        cache: "no-store", // Ensure fresh data
+      });
+      
+      if (!res.ok) {
+        throw new Error("Failed to fetch events");
+      }
 
-  return res.json();
-}
+      return res.json();
+    };
 
-async function Calendar({ month, year }: Props) {
-  const events = await fetchEvents(month, year);
+    const getEvents = async () => {
+      try {
+        const events = await fetchEvents(month, year);
+        setEvents(events);
+      } catch (err) {
+        setError("Failed to fetch events");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getEvents();
+  }, [month, year]);
+
   const nextParams = changeMonth("inc", { month, year });
   const prevParams = changeMonth("dec", { month, year });
+
+  if (loading) return <p className="text-white">Loading...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <div className="w-full rounded-3xl border border-[#ffffff82] bg-gradient-to-tr from-[#ffffff1f] from-[3.07%] to-[#ffffff08] to-[96.39%] p-5 shadow-md backdrop-blur-xl">
@@ -75,6 +87,7 @@ async function Calendar({ month, year }: Props) {
       <CalendarBody month={month} year={year} events={events} />
     </div>
   );
-}
+};
 
 export default Calendar;
+
