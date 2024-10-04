@@ -34,6 +34,11 @@ const Footer = () => {
               </a>
             </li>
             <li>
+              <a href="/connect" className="hover:text-white">
+                connect
+              </a>
+            </li>
+            <li>
               <a href="#" className="hover:text-white">
                 events
               </a>
