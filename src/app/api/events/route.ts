@@ -17,7 +17,7 @@ export async function GET(req: Request) {
   const CALENDAR_API_KEY = process.env.CALENDAR_API_KEY;
 
   // Construct the URL to fetch events
-  const url = `https://www.googleapis.com/calendar/v3/calendars/${GOOGLE_CALENDAR_ID}/events?key=${CALENDAR_API_KEY}`;
+  const url = `https://www.googleapis.com/calendar/v3/calendars/${GOOGLE_CALENDAR_ID}/events?key=${CALENDAR_API_KEY}&timestamp=${Date.now()}`;
 
   try {
     // Make a request to the Google Calendar API
