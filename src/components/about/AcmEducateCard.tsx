@@ -33,9 +33,11 @@ const AcmEducateCard = () => {
 
         {/* Button */}
         <div className="w-full flex justify-start md:justify-end my-4">
-          <button className="font-bold border border-white/60 rounded-2xl px-3 py-1">
+          <div className="w-full flex justify-center">
+            <button className="font-bold border border-white/60 rounded-2xl px-3 py-1 mr-4">
             learn more
-          </button>
+            </button>
+          </div>
         </div>
       </div>
     </div>
