@@ -102,7 +102,7 @@ const Footer = () => {
       </div>
 
       <div className="mt-8  pt-4 text-center text-sm text-white font-medium">
-        © ACM at UTA 2024
+        © ACM at UTA 2025
       </div>
     </footer>
   );
