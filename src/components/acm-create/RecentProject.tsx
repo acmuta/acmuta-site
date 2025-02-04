@@ -37,7 +37,7 @@ const RecentProject = () => {
 
             <Link href="https://www.mavgrades.com/">
               <button className="font-bold border border-white/60 rounded-2xl px-3 py-1">
-                Website
+                website
               </button>
             </Link>
           </div>
@@ -49,7 +49,7 @@ const RecentProject = () => {
         {/* Photo */}
         <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
           <img
-            src="/assets/___/__.JPG"
+            src="/assets/projects/acm.png"
             alt="Uta Roommate"
             className="object-cover rounded-xl"
           />
@@ -78,7 +78,7 @@ const RecentProject = () => {
               target="_blank"
             >
               <button className="font-bold border border-white/60 rounded-2xl px-3 py-1">
-                Github
+                github
               </button>
             </Link>
           </div>
@@ -90,8 +90,8 @@ const RecentProject = () => {
         {/* Photo */}
         <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
           <img
-            src="/assets/projects/.JPG"
-            alt="ACM Create Team"
+            src="/assets/projects/acm.png"
+            alt="Mav Grades"
             className="object-cover rounded-xl"
           />
         </div>
@@ -112,7 +112,7 @@ const RecentProject = () => {
 
           {/* Button */}
           <div className="w-full flex justify-center my-4">
-            <Link href="https://github.com/acmuta/mavgrades" target="_blank">
+            <Link href="#" target="_blank">
               <button className="font-bold border border-white/60 rounded-2xl px-3 py-1 mr-4">
                 github
               </button>

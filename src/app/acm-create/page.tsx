@@ -10,7 +10,7 @@ const page = () => {
           <h2 className="text-5xl font-bold mb-4">Projects Details</h2>
         </div>
         <RecentProject />
-        <ContributionsTable />
+        {/* <ContributionsTable /> */}
       </div>
     </div>
   );
