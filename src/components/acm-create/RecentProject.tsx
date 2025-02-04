@@ -50,7 +50,7 @@ const RecentProject = () => {
         <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
           <img
             src="/assets/___/__.JPG"
-            alt="ACM Educate Team"
+            alt="Uta Roommate"
             className="object-cover rounded-xl"
           />
         </div>
@@ -65,17 +65,22 @@ const RecentProject = () => {
 
           {/* Description */}
           <p className="text-lg md:text-xl leading-relaxed text-left md:text-right w-full my-4">
-            UTA Roommate is a student-focused platform designed to help UTA
-            students find compatible roommates for housing. Instead of randomly
-            selecting a roommate, students can match with others based on shared
+            A student-focused platform designed to help UTA students find
+            compatible roommates for housing. Instead of randomly selecting a
+            roommate, students can match with others based on shared
             preferences, lifestyle habits, and budget.
           </p>
 
           {/* Button */}
           <div className="w-full flex justify-start md:justify-end my-4">
-            <button className="font-bold border border-white/60 rounded-2xl px-3 py-1">
-              Github
-            </button>
+            <Link
+              href="https://github.com/acmuta/uta-roommates"
+              target="_blank"
+            >
+              <button className="font-bold border border-white/60 rounded-2xl px-3 py-1">
+                Github
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -85,7 +90,7 @@ const RecentProject = () => {
         {/* Photo */}
         <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
           <img
-            src="/assets/projects/mavgrade.JPG"
+            src="/assets/projects/.JPG"
             alt="ACM Create Team"
             className="object-cover rounded-xl"
           />
@@ -93,14 +98,16 @@ const RecentProject = () => {
 
         <div className="w-full md:w-1/2 p-2 md:p-6">
           <div className="w-full flex items-center justify-start space-x-4">
-            <h2 className="text-4xl md:text-5xl font-bold">UTA</h2>
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Maverick Marketplace
+            </h2>
           </div>
 
           {/* Description */}
           <p className="text-lg md:text-xl text-left leading-relaxed w-full my-4">
-            Discover grade distributions for UTA courses and professors,
-            empowering students to make well-informed class choices, featuring
-            up-to-date and accurate grade data for all courses taught at UTA.
+            A dedicated buying and selling platform exclusively for UTA
+            students. It allows students to sell items they no longer need and
+            find affordable deals on useful products within the UTA community.
           </p>
 
           {/* Button */}
@@ -111,11 +118,11 @@ const RecentProject = () => {
               </button>
             </Link>
 
-            <Link href="https://www.mavgrades.com/">
+            {/* <Link href="https://www.mavgrades.com/">
               <button className="font-bold border border-white/60 rounded-2xl px-3 py-1">
                 Website
               </button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
