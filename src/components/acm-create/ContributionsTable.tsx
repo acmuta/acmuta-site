@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface GitHubEvent {
   type: string;
@@ -50,74 +51,85 @@ const ContributionsTable: React.FC = () => {
   const renderEventDescription = (event: GitHubEvent) => {
     switch (event.type) {
       case "PushEvent":
-        return ` pushed a commit to `;
+        return `pushed a commit to`;
       case "PullRequestEvent":
-        return ` opened a pull request "${event.title}" in `;
+        return `opened a pull request "${event.title}" in`;
       case "IssuesEvent":
-        return ` opened an issue "${event.title}" in `;
+        return `opened an issue "${event.title}" in`;
       case "ForkEvent":
-        return ` forked the repository `;
+        return `forked the repository`;
       case "PullRequestReviewEvent":
-        return ` reviewed pull request (${event.reviewState}) in `;
+        return `reviewed pull request (${event.reviewState}) in`;
       case "PullRequestReviewCommentEvent":
-        return ` commented on pull request in `;
+        return `commented on pull request in`;
       default:
-        return ` did something in ${event.repoName}`;
+        return `did something in ${event.repoName}`;
     }
   };
 
   return (
-    <div className="container mx-auto mb-8 p-8">
-      <h1 className="text-2xl font-bold my-4">recent contributions</h1>
+    <div className="container mx-auto p-4 md:p-8">
+      <h1 className="text-2xl font-bold my-4 text-center">
+        recent contributions
+      </h1>
       {loading ? (
-        <p>Loading...</p>
+        <p className="text-center">Loading...</p>
       ) : events.length === 0 ? (
-        <p>No recent events found.</p>
+        <p className="text-center">No recent events found.</p>
       ) : (
-        <table className="min-w-full border border-gray-300">
-          <thead></thead>
-          <tbody>
-            {events
-              .filter((event) =>
-                ["PushEvent", "PullRequestEvent", "IssuesEvent", "ForkEvent", "PullRequestReviewEvent", "PullRequestReviewCommentEvent"].includes(event.type)
-              )
-              .map((event, index) => (
-                <tr key={index} className="border-t">
-                  <td className="px-4 py-2">
-                    <div className="flex items-center space-x-1">
-                      <img
-                        src={event.authorImg}
-                        alt={event.authorName}
-                        className="w-8 h-8 rounded-full"
-                      />
-                      <span>
-                        <a
-                          href={`https://github.com/${event.authorName}`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="font-bold hover:underline"
-                        >
-                          @{event.authorName}
-                        </a>
-                      </span>
-                      <span>{renderEventDescription(event)}</span>
-                      <span>
-                        <a
-                          href={`https://github.com/${event.repoName}`}
-                          className="font-bold hover:underline"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {event.repoName}
-                        </a>
-                      </span>
-                    </div>
-                  </td>
-                  <td className="px-4 py-2">{formatTimeAgo(event.createdDate)}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <div className="space-y-4">
+          {events
+            .filter((event) =>
+              [
+                "PushEvent",
+                "PullRequestEvent",
+                "IssuesEvent",
+                "ForkEvent",
+                "PullRequestReviewEvent",
+                "PullRequestReviewCommentEvent",
+              ].includes(event.type)
+            )
+            .map((event, index) => (
+              <div
+                key={index}
+                className="mx-auto w-full sm:w-4/5 md:w-3/4 lg:w-[65%]"
+              >
+                <div className="rounded-xl bg-white/10 backdrop-blur-md border border-white/40 p-4 flex items-center justify-between">
+                  {event.authorImg && (
+                    <Image
+                      src={event.authorImg}
+                      alt={event.authorName}
+                      width={40}
+                      height={40}
+                      className="rounded-full flex-shrink-0"
+                    />
+                  )}
+                  <div className="mx-4 flex-1 text-center whitespace-nowrap overflow-hidden text-ellipsis">
+                    <a
+                      href={`https://github.com/${event.authorName}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-bold hover:underline"
+                    >
+                      @{event.authorName}
+                    </a>{" "}
+                    {renderEventDescription(event)}{" "}
+                    <a
+                      href={`https://github.com/${event.repoName}`}
+                      className="font-bold hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {event.repoName}
+                    </a>
+                  </div>
+                  <div className="text-sm text-gray-300 whitespace-nowrap">
+                    {formatTimeAgo(event.createdDate)}
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
       )}
     </div>
   );

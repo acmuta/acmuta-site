@@ -112,8 +112,8 @@ export async function GET() {
       ).values()
     );
 
-    // Take the latest 30 unique events
-    const latestEvents = uniqueEvents.slice(0, 30);
+    // Take the latest 15 unique events
+    const latestEvents = uniqueEvents.slice(0, 15);
 
     return NextResponse.json(latestEvents);
   } catch (error) {
