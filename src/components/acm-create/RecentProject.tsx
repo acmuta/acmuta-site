@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const RecentProject = () => {
   return (
@@ -7,10 +8,11 @@ const RecentProject = () => {
       {/* MAVGRADE */}
       <div className="w-[90%] md:w-[70%] h-auto my-12 backdrop-blur-md bg-white/10 rounded-[30px] md:rounded-tr-[0px] md:rounded-br-[0px] border-r-2 md:border-r-[0px] border-l-2 border-t-2 border-b-2 border-white/40 mx-auto md:mx-[0px] md:ml-auto p-4 md:p-12 flex flex-col md:flex-row md:space-x-6 items-center md:items-start justify-center space-y-4 md:space-y-0">
         {/* Photo */}
-        <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
-          <img
+        <div className="relative w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4 aspect-video">
+          <Image
             src="/assets/projects/mavgrade.JPG"
             alt="MavGrades"
+            fill
             className="object-cover rounded-xl"
           />
         </div>
@@ -47,11 +49,12 @@ const RecentProject = () => {
       {/* UTA Roommate */}
       <div className="w-[90%] md:w-[70%] h-auto my-12 backdrop-blur-md bg-white/10 rounded-[30px] md:rounded-tl-[0px] md:rounded-bl-[0px] border-l-2 md:border-l-[0px] border-r-2 border-t-2 border-b-2 border-white/40 mx-auto md:mx-[0px] md:mr-auto p-4 md:p-12 flex flex-col md:flex-row-reverse items-center md:items-end justify-center space-y-4 md:space-y-0 md:space-x-6">
         {/* Photo */}
-        <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
-          <img
-            src="/assets/projects/acm.png"
+        <div className="relative w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4 aspect-video">
+          <Image
+            src="/assets/acm-logos/acm-logo.svg"
             alt="Uta Roommate"
-            className="object-cover rounded-xl"
+            fill
+            className="object-contain rounded-xl"
           />
         </div>
 
@@ -85,14 +88,15 @@ const RecentProject = () => {
         </div>
       </div>
 
-      {/* MAVGRADE */}
+      {/* MAVERICK MARKETPLACE */}
       <div className="w-[90%] md:w-[70%] h-auto my-12 backdrop-blur-md bg-white/10 rounded-[30px] md:rounded-tr-[0px] md:rounded-br-[0px] border-r-2 md:border-r-[0px] border-l-2 border-t-2 border-b-2 border-white/40 mx-auto md:mx-[0px] md:ml-auto p-4 md:p-12 flex flex-col md:flex-row md:space-x-6 items-center md:items-start justify-center space-y-4 md:space-y-0">
         {/* Photo */}
-        <div className="w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4">
-          <img
-            src="/assets/projects/acm.png"
-            alt="Mav Grades"
-            className="object-cover rounded-xl"
+        <div className="relative w-full md:w-1/2 mb-4 md:mb-0 mt-2 md:mt-4 aspect-video">
+          <Image
+            src="/assets/acm-logos/acm-logo.svg"
+            alt="Maverick Marketplace"
+            fill
+            className="object-contain rounded-xl"
           />
         </div>
 
