@@ -32,7 +32,7 @@ const AcmEducateCard = () => {
         </p>
 
         {/* Button */}
-        <div className="w-full flex justify-start md:justify-end my-4">
+        <div className="w-full flex justify-center my-4">
           <button className="font-bold border border-white/60 rounded-2xl px-3 py-1">
             learn more
           </button>
