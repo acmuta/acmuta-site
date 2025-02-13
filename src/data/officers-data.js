@@ -43,7 +43,7 @@ const departments = [
           github: "https://github.com/xchar08",
         },
       },
-      {
+      /*{
         name: "vrindha koppisetty",
         role: "events planner",
         imageUrl: "/images/vrindha.png",
@@ -52,7 +52,7 @@ const departments = [
           instagram: "",
           github: "",
         },
-      },
+      },*/
       {
         name: "bobby flennoy",
         role: "student advisor",
@@ -63,6 +63,16 @@ const departments = [
           github: "",
         },
       },
+      {
+        name: "Aastha Khatri",
+        role: "Events Planner",
+        imageUrl: "/images/aastha.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/aastha-k-b69a5a248/",
+          instagram: "https://www.instagram.com/aasthaa.xd",
+          github: "https://github.com/aasthaaaaaaa",
+        }
+      }
     ],
   },
   {
@@ -121,7 +131,7 @@ const departments = [
           github: "https://github.com/V-prajit",
         },
       },
-      {
+      /*{
         name: "shashank yaji",
         role: "officer",
         imageUrl: "/images/shashank.png",
@@ -130,8 +140,8 @@ const departments = [
           instagram: "https://www.instagram.com/yajishashank",
           github: "https://github.com/SSKYAJI",
         },
-      },
-      {
+      },*/
+      /*{
         name: "shloka bhatt",
         role: "officer",
         imageUrl: "/images/shloka.png",
@@ -140,8 +150,8 @@ const departments = [
           instagram: "https://www.instagram.com/shhhhhlokaa",
           github: "https://github.com/shloka2212",
         },
-      },
-      {
+      },*/
+      /*{
         name: "meghana chevva",
         role: "officer",
         imageUrl: "/images/meghana.png",
@@ -150,6 +160,26 @@ const departments = [
           instagram: "https://www.instagram.com/Meghana_anahgem",
           github: "https://github.com/meggitt",
           website: "https://www.meghanachevva.com",
+        },
+      },*/
+      {
+        name: "Jomi Okuwobi",
+        role: "officer",
+        imageUrl: "/images/jomi.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/jomiloju-okuwobi/",
+          instagram: "https://www.instagram.com/_jomi.o",
+          github: "https://github.com/oJomiloju",
+        },
+      },
+      {
+        name: "Rabib Husain",
+        role: "officer",
+        imageUrl: "/images/noheadshot.webp",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/rabib-husain/",
+          instagram: "https://www.instagram.com/rabib_husain",
+          github: "https://github.com/Rabib001",
         },
       },
     ],
@@ -168,7 +198,7 @@ const departments = [
           github: "https://github.com/Flexinos717",
         },
       },
-      {
+      /*{
         name: "jaideep singh",
         role: "officer",
         imageUrl: "/images/jaideep.png",
@@ -177,8 +207,8 @@ const departments = [
           instagram: "https://www.instagram.com/jaixsandhu",
           github: "https://github.com/jaidoescode",
         },
-      },
-      {
+      },*/
+      /*{
         name: "tista manandhar",
         role: "officer",
         imageUrl: "/images/tista.png",
@@ -187,8 +217,8 @@ const departments = [
           instagram: "https://www.instagram.com/_tistaa",
           github: "https://github.com/txm19",
         },
-      },
-      {
+      },*/
+      /*{
         name: "ishu pokhrel",
         role: "officer",
         imageUrl: "/images/ishu.png",
@@ -197,7 +227,7 @@ const departments = [
           instagram: "https://www.instagram.com/ishuthexplorer",
           github: "",
         },
-      },
+      },*/
       {
         name: "dominic lamana",
         role: "officer",
@@ -206,6 +236,36 @@ const departments = [
           linkedin: "",
           instagram: "",
           github: "",
+        },
+      },
+      {
+        name: "Nnanna Ejim",
+        role: "officer",
+        imageUrl: "/images/nnanna.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/nnanna-ejim/",
+          instagram: "https://www.instagram.com/n_ejvm",
+          github: "https://github.com/NEjim2001",
+        },
+      },
+      {
+        name: "Sarah Naifa",
+        role: "officer",
+        imageUrl: "/images/sarah.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/sarah-naifa",
+          instagram: "https://www.instagram.com/xonaifu",
+          github: "",
+        },
+      },
+      {
+        name: "Zeynep Uslu",
+        role: "officer",
+        imageUrl: "/images/zeynep.png",
+        socialLinks: {
+          linkedin: "",
+          instagram: "https://www.instagram.com/zeyeyuslu",
+          github: "https://github.com/zeyneplu",
         },
       },
     ],
@@ -302,7 +362,7 @@ const departments = [
         },
       },
       {
-        name: "tista manandhar",
+        name: "Tista Manandhar",
         role: "officer",
         imageUrl: "/images/tista.png",
         socialLinks: {
@@ -311,13 +371,44 @@ const departments = [
           github: "https://github.com/txm19",
         },
       },
+      {
+        name: "Jacob Mathew",
+        role: "officer",
+        imageUrl: "/images/jacob.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/jacob-mathew-794987306/",
+          instagram: "https://www.instagram.com/jacobi.math",
+          github: "https://github.com/Jallae16",
+        }
+      },
+      {
+        name: "Vincent Dang",
+        role: "officer",
+        imageUrl: "/images/vincent.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/vdanguta/",
+          instagram: "https://www.instagram.com/vincentdangg",
+          github: "https://github.com/vdang1120",
+        }
+      },
+      {
+        name: "Peter Tran",
+        role: "officer",
+        imageUrl: "/images/peter.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/peter-phi-tran/",
+          instagram: "https://www.instagram.com/petertrxnn",
+          github: "https://github.com/Peter-Phi-Tran",
+        }
+      },
+      
     ],
   },
   {
     name: "research",
     logoUrl: "/assets/acm-logos/acm-research-logo.svg",
     people: [
-      {
+      /*{
         name: "bobby flennoy",
         role: "director",
         imageUrl: "/images/bobby.png",
@@ -326,8 +417,69 @@ const departments = [
           instagram: "",
           github: "",
         },
+      },*/
+      {
+        name: "Mariah Gardner",
+        role: "director",
+        imageUrl: "/images/noheadshot.webp",
+        socialLinks: {
+          linkedin: "",
+          instagram: "",
+          github: "https://github.com/mxgardner",
+        },
       },
-    ],
+      {
+        name: "Rohita Konjeti",
+        role: "director",
+        imageUrl: "/images/rohita.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/rohita-k/",
+          instagram: "",
+          github: "https://github.com/mapleS12",
+        },
+      },
+      {
+        name: "Manuel Arellano Jr",
+        role: "director",
+        imageUrl: "/images/manuel.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/manuel-arellano-jr/",
+          instagram: "https://www.instagram.com/cartierrmanny",
+          github: "https://github.com/Manuel-Arellano-Jr",
+        },
+      },
+      {
+        name: "Aryan Vyas",
+        role: "director",
+        imageUrl: "/images/aryan.png",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/aryanvyas05/",
+          instagram: "https://www.instagram.com/aryanvyyass",
+          github: "https://github.com/aryanvyas05",
+        },
+      },      
+      {
+        name: "Ali Jifi-Bahlool",
+        role: "director",
+        imageUrl: "/images/noheadshot.webp",
+        socialLinks: {
+          linkedin: "https://www.linkedin.com/in/ali-jifi-bahlool/",
+          instagram: "https://www.instagram.com/_ali.s.j",
+          github: "https://github.com/ali-jifi",
+        },
+      },
+      {
+        name: "Tsion Woldeselassie",
+        role: "director",
+        imageUrl: "/images/tsion.png",
+        socialLinks: {
+          linkedin: "",
+          instagram: "",
+          github: "https://github.com/Tsion-Woldeselassie",
+        },
+      },
+
+          ],
   },
 ];
 
