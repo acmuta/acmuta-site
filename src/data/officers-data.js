@@ -39,7 +39,6 @@ const departments = [
         imageUrl: "/images/jeremiah.png",
         socialLinks: {
           linkedin: "https://www.linkedin.com/in/jeremiahpitts",
-          instagram: "https://www.instagram.com/jpfit321",
           github: "https://github.com/xchar08",
         },
       },
