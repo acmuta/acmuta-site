@@ -1,65 +1,23 @@
 export interface Sponsor {
   id: string;
-  tier: 'platinum' | 'gold' | 'silver' | 'general';
   name: string;
+  /** Logo URL; empty string = use text name only */
   logo: string;
-  site: string;
-  description?: string;
+  /** Display tier label */
+  tier: string;
+  url: string;
 }
 
-export const sponsors: Sponsor[] = [
-  // Platinum Sponsors
-  {
-    id: 'microsoft',
-    tier: 'platinum',
-    name: 'Microsoft',
-    logo: '/assets/companies/microsoft.png',
-    site: 'https://microsoft.com',
-    description: 'Leading technology company supporting student innovation'
-  },
-  {
-    id: 'google',
-    tier: 'platinum',
-    name: 'Google',
-    logo: '/assets/companies/blackstone.png',
-    site: 'https://google.com',
-    description: 'Empowering the next generation of developers'
-  },
-  
-  // Gold Sponsors
-  {
-    id: 'amazon',
-    tier: 'gold',
-    name: 'Amazon',
-    logo: '/assets/companies/perplexity.png',
-    site: 'https://amazon.com',
-    description: 'Innovation in cloud computing and e-commerce'
-  },
-  {
-    id: 'lockheed',
-    tier: 'gold',
-    name: 'Lockheed Martin',
-    logo: '/assets/companies/lockheed.png',
-    site: 'https://lockheedmartin.com',
-    description: 'Building the future of aerospace and defense technology'
-  },
-  {
-    id: 'paycom',
-    tier: 'gold',
-    name: 'Paycom',
-    logo: '/assets/companies/paycom.png',
-    site: 'https://paycom.com',
-    description: 'Think different with innovative technology'
-  },
-
-  
-  // General Sponsors
-  {
-    id: 'jobright',
-    tier: 'general',
-    name: 'Jobright',
-    logo: '/assets/companies/jobright.svg',
-    site: 'https://jobright.ai',
-    description: 'Where the world builds software'
-  },
+export const sponsorsData: Sponsor[] = [
+  { id: "lockheed",  name: "Lockheed Martin",   logo: "/assets/companies/lockheed.png",  tier: "Platinum", url: "https://lockheedmartin.com" },
+  { id: "paycom",    name: "Paycom",             logo: "/assets/companies/paycom.png",    tier: "Platinum", url: "https://paycom.com" },
+  { id: "microsoft", name: "Microsoft",          logo: "/assets/companies/microsoft.png", tier: "Gold",     url: "https://microsoft.com" },
+  { id: "google",    name: "Google",             logo: "",                                tier: "Gold",     url: "https://google.com" },
+  { id: "amazon",    name: "Amazon",             logo: "",                                tier: "Gold",     url: "https://amazon.com" },
+  { id: "ti",        name: "Texas Instruments",  logo: "",                                tier: "Silver",   url: "https://ti.com" },
+  { id: "capone",    name: "Capital One",        logo: "",                                tier: "Silver",   url: "https://capitalone.com" },
+  { id: "jobright",  name: "Jobright",           logo: "/assets/companies/jobright.svg",  tier: "Silver",   url: "https://jobright.ai" },
 ];
+
+// Legacy compat export — removed when pages are rewritten in Stage D/E.
+export const sponsors = sponsorsData;

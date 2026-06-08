@@ -1,74 +1,89 @@
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Download } from 'lucide-react';
-import { gallery } from '@/data/gallery';
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Reveal } from "@/components/Reveal";
+import { Ph } from "@/components/Placeholder";
+import { PageLoading } from "@/components/Loading";
+import { Arrow } from "@/components/icons";
+import { getAlbum, type PhotoAlbum } from "@/lib/api";
 
 const Album = () => {
   const { albumId } = useParams<{ albumId: string }>();
-  const album = gallery.find(a => a.id === albumId);
+  // undefined = loading, null = not found
+  const [album, setAlbum] = useState<PhotoAlbum | null | undefined>(undefined);
+
+  useEffect(() => {
+    if (!albumId) { setAlbum(null); return; }
+    getAlbum(albumId).then(setAlbum);
+  }, [albumId]);
+
+  if (album === undefined) return <PageLoading />;
 
   if (!album) {
     return (
-      <div className="min-h-screen pt-20 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Album Not Found</h1>
-          <Link to="/gallery" className="btn-primary">Back to Gallery</Link>
-        </div>
+      <div style={{ minHeight: "60vh", display: "grid", placeItems: "center" }}>
+        <p style={{ color: "var(--text-dim)" }}>Album not found.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pt-20">
-      <section className="section-padding bg-gradient-to-b from-bg-dark via-bg-dark/95 to-bg-dark">
-        <div className="container mx-auto px-6">
-          <div className="mb-8">
-            <Link to="/gallery" className="btn-secondary inline-flex items-center mb-6">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Gallery
+    <div>
+      <section className="page-top">
+        <div className="wrap">
+          <Reveal>
+            <Link
+              to="/gallery"
+              className="mono"
+              style={{
+                color: "var(--text-faint)",
+                display: "inline-flex",
+                gap: 8,
+                marginBottom: 24,
+              }}
+            >
+              ← ALL ALBUMS
             </Link>
-            
-            <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-4">
-                {album.title}
-              </h1>
-              {album.date && (
-                <div className="flex items-center justify-center text-white/60 mb-4">
-                  <Calendar className="h-5 w-5 mr-2" />
-                  {new Date(album.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </div>
-              )}
-              {album.description && (
-                <p className="text-xl text-white/80 max-w-3xl mx-auto">
-                  {album.description}
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {album.photos.map((photo, index) => (
-              <div key={index} className="glass-card overflow-hidden group hover:scale-105 transition-transform duration-300">
-                <div 
-                  className="aspect-square bg-gradient-to-br from-primary to-accent"
-                  style={{
-                    backgroundImage: `url(${photo})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
+            <div className="sec-head row">
+              <div>
+                <span
+                  className="tag mono"
+                  style={{ marginBottom: 16, display: "inline-flex" }}
                 >
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <button className="glass-card p-3 hover:bg-white/20">
-                      <Download className="h-5 w-5 text-accent" />
-                    </button>
-                  </div>
-                </div>
+                  <span className="node" />
+                  {new Date(album.album_date).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}{" "}
+                  · {album.count} PHOTOS
+                </span>
+                <h1
+                  className="page-h1"
+                  style={{ fontSize: "clamp(2.6rem,9vw,6.5rem)" }}
+                >
+                  {album.title}
+                </h1>
               </div>
+              <a
+                href={album.google_photos_url}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-ghost"
+              >
+                View on Google Photos <Arrow />
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section" style={{ paddingTop: "clamp(28px,4vw,48px)" }}>
+        <div className="wrap">
+          <Reveal className="album-grid" stagger gap={28}>
+            {Array.from({ length: 14 }, (_, i) => (
+              <Ph key={i} label="photo" />
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>
