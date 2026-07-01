@@ -9,9 +9,9 @@ export interface Officer {
   tier: OfficerTier;
   /** Photo URL; empty string = use placeholder */
   photo: string;
-  /** Instagram handle (no @) — optional */
+  /** Instagram handle (no @) - optional */
   instagram?: string;
-  /** LinkedIn profile slug or full URL — optional */
+  /** LinkedIn profile slug or full URL - optional */
   linkedin?: string;
 }
 
@@ -402,6 +402,46 @@ export const alumniData: Alumni[] = [
   },
 ];
 
-// Legacy compat exports — removed when Officers page is rewritten in Stage D/E.
+// ─────────────────────────────────────────────────────────────────────────────
+// Hall of Fame
+// Manually curated list of exceptional past and present ACM officers.
+// To add someone: copy an entry below and fill in their details.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface HallOfFameMember {
+  id: string;
+  name: string;
+  /** Role(s) they are most known for */
+  role: string;
+  /** One-line description of their impact */
+  impact: string;
+  /** Year or year range (e.g. "2024–25") */
+  years: string;
+  photo: string;
+  linkedin?: string;
+}
+
+export const hallOfFameData: HallOfFameMember[] = [
+  {
+    id: "hof-muhammad",
+    name: "Muhammad Khurram",
+    role: "President",
+    impact: "Led ACM at UTA through its largest growth period, rebuilding the organization's leadership structure, launching HackUTA, and scaling membership to 1,700+ students.",
+    years: "2024–25",
+    photo: "/assets/officerpics/muhammad.png",
+    linkedin: "https://www.linkedin.com/in/m-khurram/",
+  },
+  {
+    id: "hof-yash",
+    name: "Yash Rao",
+    role: "Student Advisor",
+    impact: "Instrumental in establishing the mentorship and advising culture at ACM, guiding dozens of officers through their roles and helping build long-term organizational health.",
+    years: "2024–25",
+    photo: "/assets/officerpics/yash.jpeg",
+    linkedin: "https://www.linkedin.com/in/yash-rao-9082bb246",
+  },
+];
+
+// Legacy compat exports - removed when Officers page is rewritten in Stage D/E.
 export const officers = officersData;
 export const alumni = alumniData;

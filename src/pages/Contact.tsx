@@ -1,18 +1,22 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Arrow } from "@/components/icons";
 
-function useToast() {
-  const [msg, setMsg] = useState("");
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const fire = (m: string) => {
-    setMsg(m);
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setMsg(""), 2600);
-  };
-  const node = <div className={`toast${msg ? " show" : ""}`}>{msg || " "}</div>;
-  return [fire, node] as const;
-}
+const REASONS = [
+  { value: "question",    label: "General question" },
+  { value: "sponsorship", label: "Sponsorship inquiry" },
+  { value: "partnership", label: "Partnership / collaboration" },
+  { value: "complaint",   label: "Complaint or concern" },
+  { value: "other",       label: "Something else" },
+];
+
+const SUBJECT_MAP: Record<string, string> = {
+  question:    "General Question - ACM at UTA",
+  sponsorship: "Sponsorship Inquiry - ACM at UTA",
+  partnership: "Partnership Inquiry - ACM at UTA",
+  complaint:   "Concern - ACM at UTA",
+  other:       "Message - ACM at UTA",
+};
 
 const APPLIES = [
   {
@@ -33,13 +37,18 @@ const APPLIES = [
 ];
 
 const Contact = () => {
-  const [fire, toast] = useToast();
-  const [sent, setSent] = useState(false);
+  const [name, setName]     = useState("");
+  const [email, setEmail]   = useState("");
+  const [reason, setReason] = useState("question");
+  const [msg, setMsg]       = useState("");
 
-  const submit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    fire("Message sent (demo). We'll be in touch");
+    const subject = encodeURIComponent(SUBJECT_MAP[reason] ?? "Message - ACM at UTA");
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\n${msg}`
+    );
+    window.location.href = `mailto:acm.uta@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -72,8 +81,8 @@ const Contact = () => {
             </span>
             <div className="contact-line">
               <span className="cl-k">Discord</span>
-              <a className="cl-v" href="https://discord.gg/acmuta" target="_blank" rel="noreferrer">
-                discord.gg/acmuta
+              <a className="cl-v" href="https://discord.gg/yXggXURBVQ" target="_blank" rel="noreferrer">
+                discord.gg/yXggXURBVQ
               </a>
             </div>
             <div className="contact-line">
@@ -118,36 +127,72 @@ const Contact = () => {
                   </div>
                 </div>
               ))}
-              <p style={{ color: "var(--text-faint)", fontSize: "0.85rem", marginTop: 18 }}>
-                Applications open in a Google Form each semester. You sign in with
-                your Mavs email to apply.
-              </p>
             </div>
           </Reveal>
 
           {/* Right: form */}
           <Reveal>
             <div className="involve-card">
-              <h4 style={{ marginBottom: 18 }}>Send a message</h4>
-              <form onSubmit={submit}>
+              <h4 style={{ marginBottom: 6 }}>Send a message</h4>
+              <p style={{ color: "var(--text-dim)", fontSize: "0.85rem", marginBottom: 20 }}>
+                Fills in your email app - just hit send from there.
+              </p>
+              <form onSubmit={handleSubmit}>
                 <div className="field">
                   <label>Name</label>
-                  <input required placeholder="Your name" />
+                  <input
+                    required
+                    placeholder="Your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
                 </div>
                 <div className="field">
-                  <label>Mavs email</label>
-                  <input required type="email" placeholder="you@mavs.uta.edu" />
+                  <label>Your email</label>
+                  <input
+                    required
+                    type="email"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
                 <div className="field">
-                  <label>What's up?</label>
-                  <textarea required placeholder="Tell us what you're thinking…" />
+                  <label>Reason for reaching out</label>
+                  <select
+                    value={reason}
+                    onChange={(e) => setReason(e.target.value)}
+                    style={{
+                      background: "var(--bg-1)",
+                      color: "var(--text)",
+                      border: "1px solid var(--line-2)",
+                      borderRadius: "var(--r)",
+                      padding: "10px 12px",
+                      fontSize: "0.95rem",
+                      width: "100%",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {REASONS.map((r) => (
+                      <option key={r.value} value={r.value}>{r.label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="field">
+                  <label>Message</label>
+                  <textarea
+                    required
+                    placeholder="Tell us what you're thinking…"
+                    value={msg}
+                    onChange={(e) => setMsg(e.target.value)}
+                  />
                 </div>
                 <button
                   className="btn btn-primary"
                   type="submit"
                   style={{ width: "100%", justifyContent: "center" }}
                 >
-                  {sent ? "Sent ✓" : "Send message"} <Arrow s={13} />
+                  Open in email app <Arrow s={13} />
                 </button>
               </form>
               <p
@@ -158,14 +203,15 @@ const Contact = () => {
                   textAlign: "center",
                 }}
               >
-                Not wired to a backend yet — Supabase coming soon.
+                Or email us directly at{" "}
+                <a href="mailto:acm.uta@gmail.com" style={{ color: "var(--accent)" }}>
+                  acm.uta@gmail.com
+                </a>
               </p>
             </div>
           </Reveal>
         </div>
       </section>
-
-      {toast}
     </div>
   );
 };

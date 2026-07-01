@@ -1,6 +1,29 @@
 import type { Committee } from "@/lib/api";
 
+const LOGO_MAP: Record<string, string> = {
+  create: "/assets/logo/create.png",
+  research: "/assets/logo/research.png",
+  educate: "/assets/logo/educate.png",
+  marketing: "/assets/logo/marketing.png",
+  outreach: "/assets/logo/outreach.png",
+  community: "/assets/logo/community.png",
+};
+
 export function CommitteeMark({ id, size = 24 }: { id: string; size?: number }) {
+  const logo = LOGO_MAP[id];
+  if (logo) {
+    return (
+      <img
+        src={logo}
+        alt={`${id} committee logo`}
+        width={size}
+        height={size}
+        style={{ objectFit: "contain" }}
+        loading="lazy"
+      />
+    );
+  }
+
   const A = "var(--accent)";
   const D = "var(--text-dim)";
   const E = "var(--text-faint)";

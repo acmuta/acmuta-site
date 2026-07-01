@@ -49,5 +49,5 @@ export const newsData: NewsItem[] = [
   },
 ];
 
-// Legacy compat export — removed when pages are rewritten in Stage D/E.
+// Legacy compat export - removed when pages are rewritten in Stage D/E.
 export const news = newsData;

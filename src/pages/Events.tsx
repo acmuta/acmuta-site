@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Reveal } from "@/components/Reveal";
 import { PageLoading } from "@/components/Loading";
 import { Arrow } from "@/components/icons";
@@ -9,18 +9,93 @@ import {
   type Committee,
 } from "@/lib/api";
 
-// ─── Toast ────────────────────────────────────────────────────────────────────
+// ─── Calendar helpers ─────────────────────────────────────────────────────────
 
-function useToast() {
-  const [msg, setMsg] = useState("");
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const fire = (m: string) => {
-    setMsg(m);
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setMsg(""), 2600);
-  };
-  const node = <div className={`toast${msg ? " show" : ""}`}>{msg || " "}</div>;
-  return [fire, node] as const;
+function toIcalDate(iso: string): string {
+  return new Date(iso).toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+}
+
+function googleCalendarUrl(e: EventItem): string {
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: e.title,
+    dates: `${toIcalDate(e.start_time)}/${toIcalDate(e.end_time)}`,
+  });
+  if (e.description) params.set("details", e.description);
+  if (e.location) params.set("location", e.location);
+  return `https://calendar.google.com/calendar/render?${params}`;
+}
+
+function downloadIcs(e: EventItem): void {
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//ACM at UTA//Events//EN",
+    "BEGIN:VEVENT",
+    `DTSTART:${toIcalDate(e.start_time)}`,
+    `DTEND:${toIcalDate(e.end_time)}`,
+    `SUMMARY:${e.title}`,
+    ...(e.description ? [`DESCRIPTION:${e.description.replace(/\n/g, "\\n")}`] : []),
+    ...(e.location ? [`LOCATION:${e.location}`] : []),
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+  const blob = new Blob([lines], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${e.title.replace(/[^a-z0-9]+/gi, "_")}.ics`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ─── Calendar picker modal ────────────────────────────────────────────────────
+
+function CalPicker({ e, onClose }: { e: EventItem; onClose: () => void }) {
+  useEffect(() => {
+    const handler = (ev: KeyboardEvent) => { if (ev.key === "Escape") onClose(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
+
+  return (
+    <div className="calpick-backdrop" onClick={onClose}>
+      <div className="calpick" onClick={(ev) => ev.stopPropagation()}>
+        <button className="calpick-x" onClick={onClose} aria-label="Close">✕</button>
+        <p className="calpick-eye mono">ADD TO CALENDAR</p>
+        <h3 className="calpick-title">{e.title}</h3>
+        <p className="calpick-when mono">
+          {new Date(e.start_time).toLocaleDateString("en-US", {
+            weekday: "short", month: "short", day: "numeric",
+          })}
+          {" · "}
+          {fmtTime(e.start_time)} – {fmtTime(e.end_time)}
+        </p>
+        {e.location && <p className="calpick-loc">{e.location}</p>}
+        <div className="calpick-btns">
+          <a
+            href={googleCalendarUrl(e)}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-primary"
+            style={{ justifyContent: "center" }}
+            onClick={onClose}
+          >
+            Google Calendar <Arrow s={13} />
+          </a>
+          <button
+            className="btn btn-ghost"
+            style={{ justifyContent: "center" }}
+            onClick={() => { downloadIcs(e); onClose(); }}
+          >
+            Apple / iCal <Arrow s={13} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -42,7 +117,7 @@ function EventRow({
 }: {
   e: EventItem;
   committees: Committee[];
-  onAdd: (title: string) => void;
+  onAdd: (event: EventItem) => void;
 }) {
   const [open, setOpen] = useState(false);
   const d = new Date(e.start_time);
@@ -87,12 +162,9 @@ function EventRow({
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
             <button
               className="btn btn-primary"
-              onClick={(ev) => {
-                ev.stopPropagation();
-                onAdd(e.title);
-              }}
+              onClick={(ev) => { ev.stopPropagation(); onAdd(e); }}
             >
-              Add to my calendar <Arrow s={13} />
+              Add to calendar <Arrow s={13} />
             </button>
             {e.google_photos_url && (
               <a
@@ -121,7 +193,7 @@ function MiniCalendar({
 }: {
   events: EventItem[];
   committees: Committee[];
-  onAdd: (title: string) => void;
+  onAdd: (event: EventItem) => void;
 }) {
   const months = [...new Set(events.map((e) => e.start_time.slice(0, 7)))].sort();
   const [mi, setMi] = useState(() => {
@@ -148,6 +220,9 @@ function MiniCalendar({
     });
 
   const label = first.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+  // suppress unused warning — kept for future committee badge display
+  void committees;
 
   return (
     <div>
@@ -183,7 +258,7 @@ function MiniCalendar({
                     className="cal-ev"
                     key={e.id}
                     title={e.title}
-                    onClick={() => onAdd(e.title)}
+                    onClick={() => onAdd(e)}
                   >
                     {e.title}
                   </span>
@@ -203,7 +278,7 @@ const Events = () => {
   const [committees, setCommittees] = useState<Committee[]>([]);
   const [view, setView] = useState<"list" | "calendar">("list");
   const [when, setWhen] = useState<"upcoming" | "past">("upcoming");
-  const [fire, toast] = useToast();
+  const [calTarget, setCalTarget] = useState<EventItem | null>(null);
 
   useEffect(() => {
     getEvents().then(setEvents);
@@ -219,8 +294,6 @@ const Events = () => {
   const upcoming = sorted.filter((e) => new Date(e.start_time) >= now);
   const past = sorted.filter((e) => new Date(e.start_time) < now).reverse();
   const shown = when === "upcoming" ? upcoming : past;
-
-  const add = (title: string) => fire(`Added "${title}" to your calendar (demo)`);
 
   return (
     <div>
@@ -278,21 +351,23 @@ const Events = () => {
           {view === "list" ? (
             <div className="ev-list">
               {shown.map((e) => (
-                <EventRow key={e.id} e={e} committees={committees} onAdd={add} />
+                <EventRow key={e.id} e={e} committees={committees} onAdd={setCalTarget} />
               ))}
               {shown.length === 0 && (
                 <p style={{ color: "var(--text-dim)", padding: "30px 0" }}>
-                  Nothing here yet. Check back soon.
+                  No events happening right now - check back soon!
                 </p>
               )}
             </div>
           ) : (
-            <MiniCalendar events={events} committees={committees} onAdd={add} />
+            <MiniCalendar events={events} committees={committees} onAdd={setCalTarget} />
           )}
         </div>
       </section>
 
-      {toast}
+      {calTarget && (
+        <CalPicker e={calTarget} onClose={() => setCalTarget(null)} />
+      )}
     </div>
   );
 };

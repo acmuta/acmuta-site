@@ -19,5 +19,5 @@ export const sponsorsData: Sponsor[] = [
   { id: "jobright",  name: "Jobright",           logo: "/assets/companies/jobright.svg",  tier: "Silver",   url: "https://jobright.ai" },
 ];
 
-// Legacy compat export — removed when pages are rewritten in Stage D/E.
+// Legacy compat export - removed when pages are rewritten in Stage D/E.
 export const sponsors = sponsorsData;

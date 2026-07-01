@@ -30,8 +30,8 @@ const GROUPS = [
 function CommitteeRow({ c, index }: { c: Committee; index: number }) {
   return (
     <Link to={`/${c.slug}`} className="cmt-row">
-      <div className="cmt-logo ph" data-ph="" style={{ borderRadius: 3 }}>
-        <CommitteeLogo committee={c} size={26} />
+      <div className="cmt-logo" style={{ borderRadius: 3 }}>
+        <CommitteeLogo committee={c} size={40} />
       </div>
       <div>
         <div className="cmt-idx mono">

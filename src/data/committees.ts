@@ -37,7 +37,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Membership is by application. Teams form at the start of each semester. Apply with your Mavs email.",
-    logo: "",
+    logo: "/assets/logo/create.png",
   },
   {
     id: "research",
@@ -56,7 +56,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Membership is by application. Teams are small on purpose. Apply with your Mavs email.",
-    logo: "",
+    logo: "/assets/logo/research.png",
   },
   {
     id: "educate",
@@ -75,7 +75,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Open to all, no application needed. Sign up for the mentor/mentee program at the start of the semester.",
-    logo: "",
+    logo: "/assets/logo/educate.png",
   },
   {
     id: "marketing",
@@ -94,7 +94,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Staff committee with officer and director roles. Get involved by showing up and pitching in.",
-    logo: "",
+    logo: "/assets/logo/marketing.png",
   },
   {
     id: "outreach",
@@ -113,7 +113,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Staff committee with officer and director roles. Comfortable with email and people? Come talk to us.",
-    logo: "",
+    logo: "/assets/logo/outreach.png",
   },
   {
     id: "community",
@@ -132,9 +132,9 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Staff committee with officer and director roles. The easiest place to start. Just hang out.",
-    logo: "",
+    logo: "/assets/logo/community.png",
   },
 ];
 
-// Legacy compat export — removed when pages are rewritten in Stage D/E.
+// Legacy compat export - removed when pages are rewritten in Stage D/E.
 export const committees = committeesData;

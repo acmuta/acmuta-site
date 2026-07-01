@@ -1,21 +1,36 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Arrow } from "@/components/icons";
 import { Reveal } from "@/components/Reveal";
 
+function useTheme() {
+  const [theme, setTheme] = useState(
+    () => document.documentElement.getAttribute("data-theme") || "light"
+  );
+  useEffect(() => {
+    const handler = () =>
+      setTheme(document.documentElement.getAttribute("data-theme") || "light");
+    window.addEventListener("themechange", handler);
+    return () => window.removeEventListener("themechange", handler);
+  }, []);
+  return theme;
+}
+
 function AcmMark({ size = 26 }: { size?: number }) {
+  const theme = useTheme();
+  const logo = theme === "dark"
+    ? "/assets/logo/acmlogo-white.png"
+    : "/assets/logo/acmlogo-black.png";
   return (
     <Link to="/" className="acm-mark" aria-label="ACM at UTA home">
-      <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <circle cx="6" cy="16" r="3" style={{ fill: "rgb(0, 100, 177)" }} />
-        <circle cx="26" cy="7" r="2.4" fill="currentColor" />
-        <circle cx="26" cy="25" r="2.4" fill="currentColor" />
-        <path
-          d="M6 16L26 7M6 16L26 25"
-          stroke="currentColor"
-          strokeWidth="1.3"
-          opacity="0.6"
-        />
-      </svg>
+      <img
+        src={logo}
+        alt=""
+        width={size}
+        height={size}
+        style={{ objectFit: "contain" }}
+        aria-hidden="true"
+      />
       <span className="acm-word">
         ACM<span style={{ color: "var(--text-faint)" }}>·</span>UTA
       </span>
@@ -72,7 +87,7 @@ export function Footer() {
           </div>
           <div className="ftr-col">
             <span className="mono ftr-h">Connect</span>
-            <a href="https://discord.gg/acmuta" target="_blank" rel="noreferrer">
+            <a href="https://discord.gg/yXggXURBVQ" target="_blank" rel="noreferrer">
               Discord <Arrow s={12} />
             </a>
             <a href="https://instagram.com/acmuta" target="_blank" rel="noreferrer">

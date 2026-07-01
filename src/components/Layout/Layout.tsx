@@ -1,13 +1,9 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-export function Layout({ children }: LayoutProps) {
+export function Layout() {
   const location = useLocation();
 
   // Scroll to top on route change
@@ -19,7 +15,7 @@ export function Layout({ children }: LayoutProps) {
     <div className="min-h-screen">
       <Header />
       <main className="route-view" key={location.pathname}>
-        {children}
+        <Outlet />
       </main>
       <Footer />
     </div>

@@ -57,7 +57,7 @@ const About = () => {
                 doors in.
               </p>
             </div>
-            <Ph className="ab-photo" label="group / room shot" />
+            <Ph className="ab-photo" label="group / room shot" src="/assets/homepage/crowd.jpg" alt="ACM members gathered at a general body meeting" />
           </Reveal>
 
           <Reveal className="ab-block rev">
@@ -77,7 +77,7 @@ const About = () => {
                 experience. If you're curious about tech, you belong here.
               </p>
             </div>
-            <Ph className="ab-photo" label="workshop / hands-on" />
+            <Ph className="ab-photo" label="workshop / hands-on" src="/assets/homepage/createmeeting.jpg" alt="Members working together on a project" />
           </Reveal>
 
           <Reveal className="ab-block">
@@ -105,7 +105,7 @@ const About = () => {
                 </Link>
               </div>
             </div>
-            <Ph className="ab-photo" label="event / crowd" />
+            <Ph className="ab-photo" label="event / crowd" src="/assets/homepage/hackathon.JPG" alt="A packed room of students at HackUTA" />
           </Reveal>
 
           <Reveal className="ab-block rev" style={{ borderBottom: "none" }}>

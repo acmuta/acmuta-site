@@ -11,7 +11,7 @@ export function ProjectCard({ p, feat }: ProjectCardProps) {
   return (
     <article className={`proj-card${feat ? " feat" : ""}`}>
       <div className="proj-img">
-        <Ph label={p.title} />
+        <Ph label={p.title} src={p.image} alt={p.title} />
       </div>
       <div className="proj-meta mono">
         <span className="proj-cmt">{p.committee}</span>

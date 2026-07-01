@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
 import { Ph } from "@/components/Placeholder";
 import { PageLoading } from "@/components/Loading";
-import { IgIcon, LiIcon } from "@/components/icons";
+import { IgIcon, LiIcon, Arrow } from "@/components/icons";
 import {
   getOfficers,
   getAlumni,
+  getHallOfFame,
   type Officer,
   type Alumni,
+  type HallOfFameMember,
 } from "@/lib/api";
 
 const COMMITTEE_ORDER = [
@@ -51,7 +53,7 @@ function OfficerCard({ o }: { o: Officer }) {
   return (
     <div className="off-card">
       <div className="off-photo">
-        <Ph label={o.name} />
+        <Ph label={o.name} src={o.photo} alt={o.name} />
       </div>
       <div className="off-info">
         <div className="off-name">{o.name}</div>
@@ -62,13 +64,43 @@ function OfficerCard({ o }: { o: Officer }) {
   );
 }
 
+function HofCard({ m }: { m: HallOfFameMember }) {
+  return (
+    <div className="hof-card">
+      <div className="hof-photo">
+        <Ph label={m.name} src={m.photo} alt={m.name} />
+      </div>
+      <div className="hof-body">
+        <div>
+          <div className="hof-name">{m.name}</div>
+          <div className="hof-role">{m.role}</div>
+          <div className="hof-years mono">{m.years}</div>
+        </div>
+        <p className="hof-impact">{m.impact}</p>
+        {m.linkedin && (
+          <a
+            href={m.linkedin.startsWith("http") ? m.linkedin : `https://linkedin.com/in/${m.linkedin}`}
+            target="_blank"
+            rel="noreferrer"
+            className="hof-linkedin"
+          >
+            <LiIcon s={14} /> LinkedIn <Arrow s={11} />
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
 const Officers = () => {
   const [officers, setOfficers] = useState<Officer[] | null>(null);
   const [alumni, setAlumni] = useState<Alumni[]>([]);
+  const [hallOfFame, setHallOfFame] = useState<HallOfFameMember[]>([]);
 
   useEffect(() => {
     getOfficers().then(setOfficers);
     getAlumni().then(setAlumni);
+    getHallOfFame().then(setHallOfFame);
   }, []);
 
   if (!officers) return <PageLoading />;
@@ -101,10 +133,10 @@ const Officers = () => {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: "clamp(28px,4vw,48px)" }}>
+      <section className="section" style={{ paddingTop: "clamp(40px,6vw,64px)" }}>
         <div className="wrap">
           {/* Leadership */}
-          <div className="cmt-group-h" style={{ marginBottom: 30 }}>
+          <div className="cmt-group-h" style={{ marginBottom: 36 }}>
             <h3>Leadership</h3>
             <span className="mono gmeta">EXECUTIVE BOARD</span>
           </div>
@@ -116,8 +148,8 @@ const Officers = () => {
 
           {/* Per-committee */}
           {byCmt.map((g) => (
-            <div key={g.name} style={{ marginTop: "clamp(48px,7vw,80px)" }}>
-              <div className="cmt-group-h" style={{ marginBottom: 30 }}>
+            <div key={g.name} style={{ marginTop: "clamp(56px,8vw,88px)" }}>
+              <div className="cmt-group-h" style={{ marginBottom: 36 }}>
                 <h3>{g.name}</h3>
                 <Link
                   to={`/${g.name.toLowerCase()}`}
@@ -138,7 +170,7 @@ const Officers = () => {
           {/* Alumni */}
           {alumni.length > 0 && (
             <div style={{ marginTop: "clamp(56px,8vw,96px)" }}>
-              <div className="cmt-group-h" style={{ marginBottom: 30 }}>
+              <div className="cmt-group-h" style={{ marginBottom: 36 }}>
                 <h3>Alumni</h3>
                 <span className="mono gmeta">WHERE THEY LANDED</span>
               </div>
@@ -146,7 +178,7 @@ const Officers = () => {
                 {alumni.map((a) => (
                   <div className="off-card" key={a.id}>
                     <div className="off-photo">
-                      <Ph label={a.name} />
+                      <Ph label={a.name} src={a.photo} alt={a.name} />
                     </div>
                     <div>
                       <div className="off-name">{a.name}</div>
@@ -154,6 +186,36 @@ const Officers = () => {
                       <div className="off-cmt">{a.role}</div>
                     </div>
                   </div>
+                ))}
+              </Reveal>
+            </div>
+          )}
+
+          {/* Hall of Fame */}
+          {hallOfFame.length > 0 && (
+            <div className="hof-section">
+              <Reveal>
+                <div className="hof-eyebrow">
+                  <span className="hof-star">★</span>
+                  <span className="tag mono" style={{ display: "inline-flex" }}>
+                    <span className="node" />
+                    ACM HALL OF FAME
+                  </span>
+                </div>
+                <h2
+                  className="sec-title"
+                  style={{ fontSize: "clamp(2rem,5vw,3.5rem)", marginBottom: 8 }}
+                >
+                  Those who shaped <span className="amp">the org.</span>
+                </h2>
+                <p style={{ color: "var(--text-dim)", maxWidth: "52ch", fontSize: "1rem" }}>
+                  A curated recognition of exceptional officers whose contributions left
+                  a lasting mark on ACM at UTA - past and present.
+                </p>
+              </Reveal>
+              <Reveal className="hof-grid" stagger gap={60}>
+                {hallOfFame.map((m) => (
+                  <HofCard key={m.id} m={m} />
                 ))}
               </Reveal>
             </div>

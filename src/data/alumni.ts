@@ -26,5 +26,5 @@ export const alumniData: Alumni[] = [
   },
 ];
 
-// Legacy compat export — removed when Officers page is rewritten in Stage D/E.
+// Legacy compat export - removed when Officers page is rewritten in Stage D/E.
 export const alumni = alumniData;

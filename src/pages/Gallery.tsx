@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
-import { Ph } from "@/components/Placeholder";
 import { PageLoading } from "@/components/Loading";
+import { Arrow } from "@/components/icons";
 import { getAlbums, type PhotoAlbum } from "@/lib/api";
 
 const Gallery = () => {
@@ -27,8 +26,8 @@ const Gallery = () => {
               Proof of <span className="amp">life.</span>
             </h1>
             <p className="page-intro">
-              Every event, photographed. Click an album to look through the night.
-              Full sets live on Google Photos.
+              Every event, photographed. Click an album to open the full set on
+              Google Photos.
             </p>
           </Reveal>
         </div>
@@ -36,23 +35,26 @@ const Gallery = () => {
 
       <section className="section" style={{ paddingTop: "clamp(28px,4vw,48px)" }}>
         <div className="wrap">
-          <Reveal className="gal-grid" stagger gap={45}>
+          <Reveal className="gal-grid" stagger gap={35}>
             {albums.map((a) => (
-              <Link to={`/gallery/${a.id}`} className="gal-card" key={a.id}>
-                <div className="gal-cover">
-                  <Ph label={a.title} />
-                  <span className="cnt">{a.count} PHOTOS</span>
-                </div>
-                <div className="gal-meta">
-                  <span className="gal-name">{a.title}</span>
-                  <span className="gal-date mono">
-                    {new Date(a.album_date).toLocaleDateString("en-US", {
-                      month: "short",
-                      year: "numeric",
-                    })}
-                  </span>
-                </div>
-              </Link>
+              <a
+                href={a.google_photos_url}
+                target="_blank"
+                rel="noreferrer"
+                className="gal-card"
+                key={a.id}
+              >
+                <span className="gal-date mono">
+                  {new Date(a.album_date).toLocaleDateString("en-US", {
+                    month: "short",
+                    year: "numeric",
+                  }).toUpperCase()}
+                </span>
+                <span className="gal-name">{a.title}</span>
+                <span className="gal-cta">
+                  View on Google Photos <Arrow s={12} />
+                </span>
+              </a>
             ))}
           </Reveal>
         </div>

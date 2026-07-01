@@ -28,6 +28,27 @@ export function Plus({ s = 14 }: { s?: number }) {
   );
 }
 
+export function Bell({ s = 18 }: { s?: number }) {
+  return (
+    <svg width={s} height={s} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M18 9a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.73 21a2 2 0 0 1-3.46 0"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function IgIcon({ s = 16 }: { s?: number }) {
   return (
     <svg width={s} height={s} viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -56,6 +77,179 @@ export function LiIcon({ s = 16 }: { s?: number }) {
         strokeLinejoin="round"
       />
     </svg>
+  );
+}
+
+/** Shared 1.6px-stroke icon style used for admin nav + action icons. */
+function NavIcon({ s = 18, children }: { s?: number; children: React.ReactNode }) {
+  return (
+    <svg
+      width={s}
+      height={s}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {children}
+    </svg>
+  );
+}
+
+export function DashIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <rect x="3" y="3" width="7" height="9" rx="1" />
+      <rect x="14" y="3" width="7" height="5" rx="1" />
+      <rect x="14" y="12" width="7" height="9" rx="1" />
+      <rect x="3" y="16" width="7" height="5" rx="1" />
+    </NavIcon>
+  );
+}
+
+export function CalIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <rect x="3" y="4.5" width="18" height="16" rx="2" />
+      <path d="M3 9h18M8 2.5v4M16 2.5v4" />
+    </NavIcon>
+  );
+}
+
+export function DocIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <path d="M6 2.5h8l4 4v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1Z" />
+      <path d="M13 2.5V7h4M8.5 12h7M8.5 16h7" />
+    </NavIcon>
+  );
+}
+
+export function UsersIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3.5 20a5.5 5.5 0 0 1 11 0" />
+      <path d="M16 5.2a3.2 3.2 0 0 1 0 6M17.5 20a5.5 5.5 0 0 0-3-4.9" />
+    </NavIcon>
+  );
+}
+
+export function TeamIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <circle cx="7" cy="7" r="2.6" />
+      <circle cx="17" cy="7" r="2.6" />
+      <circle cx="12" cy="16.5" r="2.8" />
+      <path d="M9.3 8.8 11 13.8M14.7 8.8 13 13.8" />
+    </NavIcon>
+  );
+}
+
+export function LinkIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <path d="M9.5 14.5 14.5 9.5M8 11l-2.5 2.5a3.2 3.2 0 0 0 4.5 4.5L12 16M16 13l2.5-2.5a3.2 3.2 0 0 0-4.5-4.5L12 8" />
+    </NavIcon>
+  );
+}
+
+export function TableIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 9.5h18M3 15h18M9 4v16" />
+    </NavIcon>
+  );
+}
+
+export function AuditIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <path d="M3.5 12a8.5 8.5 0 1 1 2.6 6.1" />
+      <path d="M3.5 18.5V13H9M12 8v4.5l3 1.8" />
+    </NavIcon>
+  );
+}
+
+export function BackIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <path d="m15 6-6 6 6 6" />
+    </NavIcon>
+  );
+}
+
+export function SearchIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="m20 20-4.6-4.6" />
+    </NavIcon>
+  );
+}
+
+export function XIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <path d="M6 6l12 12M18 6 6 18" />
+    </NavIcon>
+  );
+}
+
+export function CheckIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <path d="m4 12 5 5L20 6" />
+    </NavIcon>
+  );
+}
+
+export function ChevronIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <path d="m9 6 6 6-6 6" />
+    </NavIcon>
+  );
+}
+
+export function QrIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <path d="M14 14h3v3M20 14v.01M14 20v.01M20 20v.01M17 17v3" />
+    </NavIcon>
+  );
+}
+
+export function EditIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <path d="M4 20h4L19 9l-4-4L4 16v4Z" />
+      <path d="m14 6 4 4" />
+    </NavIcon>
+  );
+}
+
+export function HackIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+    </NavIcon>
+  );
+}
+
+export function NewsIcon({ s = 18 }: { s?: number }) {
+  return (
+    <NavIcon s={s}>
+      <path d="M4 4h16v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4Z" />
+      <path d="M8 8h8M8 12h8M8 16h4" />
+    </NavIcon>
   );
 }
 

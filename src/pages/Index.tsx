@@ -250,7 +250,7 @@ const Index = () => {
                 SIX COMMITTEES
               </span>
               <h2 className="sec-title">
-                Pick where <span className="dim">you fit.</span>
+                Pick where <span className="amp">you fit.</span>
               </h2>
             </Reveal>
             <Reveal>
@@ -263,12 +263,11 @@ const Index = () => {
             {committees.map((c, i) => (
               <Link key={c.id} to={`/${c.slug}`} className="cmt-row">
                 <div
-                  className="cmt-logo ph"
-                  data-ph=""
+                  className="cmt-logo"
                   title={`${c.name} logo`}
                   style={{ borderRadius: 3 }}
                 >
-                  <CommitteeLogo committee={c} size={26} />
+                  <CommitteeLogo committee={c} size={40} />
                 </div>
                 <div>
                   <div className="cmt-idx mono">
@@ -310,7 +309,7 @@ const Index = () => {
                 LATEST
               </span>
               <h2 className="sec-title">
-                What's <span className="dim">happening.</span>
+                What's <span className="amp">happening.</span>
               </h2>
             </Reveal>
           </div>
@@ -351,20 +350,20 @@ const Index = () => {
         </div>
         <div className="strip-track">
           {[
-            "Fall Kickoff",
-            "Demo Night",
-            "HackUTA '25",
-            "Workshop",
-            "Game Night",
-            "Industry Night",
-            "Fall Kickoff",
-            "Demo Night",
-            "HackUTA '25",
-            "Workshop",
-            "Game Night",
-            "Industry Night",
-          ].map((label, i) => (
-            <Ph key={i} className="strip-item" label={label} />
+            { label: "Fall Kickoff", src: "/assets/events/fallkickoff2025.JPG" },
+            { label: "Demo Night", src: "/assets/homepage/award.jpg" },
+            { label: "HackUTA '25", src: "/assets/events/hackuta2025.jpg" },
+            { label: "Workshop", src: "/assets/homepage/researchthink.jpg" },
+            { label: "Game Night", src: "/assets/homepage/selfie.jpg" },
+            { label: "Industry Night", src: "/assets/homepage/whatisperplexity.jpg" },
+            { label: "Fall Kickoff", src: "/assets/events/fallkickoff2025.JPG" },
+            { label: "Demo Night", src: "/assets/homepage/award.jpg" },
+            { label: "HackUTA '25", src: "/assets/events/hackuta2025.jpg" },
+            { label: "Workshop", src: "/assets/homepage/researchthink.jpg" },
+            { label: "Game Night", src: "/assets/homepage/selfie.jpg" },
+            { label: "Industry Night", src: "/assets/homepage/whatisperplexity.jpg" },
+          ].map(({ label, src }, i) => (
+            <Ph key={i} className="strip-item" label={label} src={src} alt={label} />
           ))}
         </div>
       </section>

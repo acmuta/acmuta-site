@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Environment — never commit real keys
+.env
+.env.local
+.env.*.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,6 +27,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.claude
-*.claude.claude/
 .claude/
+
+# Supabase CLI local state — project-specific, not for version control
+supabase/.temp/

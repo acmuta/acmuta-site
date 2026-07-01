@@ -19,7 +19,7 @@ export const projectsData: Project[] = [
   {
     id: "mavgrades",
     title: "MavGrades",
-    image: "",
+    image: "/assets/projects/mavgrades.png",
     summary:
       "Grade distribution data for every UTA course and professor, in a fast, searchable interface. Built by students, used by thousands every registration season.",
     websiteUrl: "https://mavgrades.com",
@@ -31,7 +31,7 @@ export const projectsData: Project[] = [
   {
     id: "discord-job-bot",
     title: "Discord Job Bot",
-    image: "",
+    image: "/assets/projects/discordjobbot.png",
     summary:
       "A bot that scrapes new-grad and internship postings and drops them straight into the ACM Discord, so members see openings the day they go live.",
     codeUrl: "https://github.com/acmuta",
@@ -42,7 +42,7 @@ export const projectsData: Project[] = [
   {
     id: "hackuta-site",
     title: "HackUTA Website",
-    image: "",
+    image: "/assets/projects/hackuta.png",
     summary:
       "The registration and info site for HackUTA, ACM's flagship hackathon. Handles applications, schedules, and sponsor placement for 500+ hackers.",
     websiteUrl: "https://hackuta.org",
@@ -54,7 +54,7 @@ export const projectsData: Project[] = [
   {
     id: "acm-site",
     title: "ACM Site",
-    image: "",
+    image: "/assets/projects/acmwebsite.png",
     summary:
       "This site. Open-source, built and maintained by the Create and Marketing committees as a living project members can actually contribute to.",
     websiteUrl: "https://acmuta.com",
@@ -87,5 +87,5 @@ export const projectsData: Project[] = [
   },
 ];
 
-// Legacy compat export — removed when Projects page is rewritten in Stage D/E.
+// Legacy compat export - removed when Projects page is rewritten in Stage D/E.
 export const projects = projectsData;
