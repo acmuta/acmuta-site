@@ -1,505 +1,373 @@
-'use client';
+import { useState, useEffect } from "react";
+import { Reveal } from "@/components/Reveal";
+import { PageLoading } from "@/components/Loading";
+import { Arrow } from "@/components/icons";
+import {
+  getEvents,
+  getCommittees,
+  type EventItem,
+  type Committee,
+} from "@/lib/api";
 
-import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Calendar as CalendarIcon, Clock, MapPin, Users, ExternalLink } from 'lucide-react';
+// ─── Calendar helpers ─────────────────────────────────────────────────────────
 
-gsap.registerPlugin(ScrollTrigger);
-
-const ORG_TIMEZONE = 'America/Chicago';
-
-type EventItem = {
-  id: string;
-  title: string;
-  date: string;     
-  time: string;          
-  location: string;
-  type: 'Workshop' | 'Meeting' | 'Panel' | 'Social' | 'Hackathon' | 'Guest Speaker';
-  committee: string;
-  description: string;
-  registerUrl?: string;  
-};
-
-function parseTimeRange(dateISO: string, timeRange: string) {
-  const [startStr, endStr] = timeRange.split('-').map(s => s.trim());
-  const to24h = (s: string) => {
-    const m = s.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
-    if (!m) return '00:00';
-    let [_, h, min, ap] = m;
-    let hh = parseInt(h, 10);
-    if (/PM/i.test(ap) && hh !== 12) hh += 12;
-    if (/AM/i.test(ap) && hh === 12) hh = 0;
-    return `${String(hh).padStart(2, '0')}:${min}`;
-  };
-  const s24 = to24h(startStr);
-  const e24 = to24h(endStr);
-  const start = new Date(`${dateISO}T${s24}:00`);
-  const end = new Date(`${dateISO}T${e24}:00`);
-  return { start, end };
+function toIcalDate(iso: string): string {
+  return new Date(iso).toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
 }
 
-function formatForGoogle(dt: Date) {
-  const pad = (n: number) => String(n).padStart(2, '0');
-  return `${dt.getFullYear()}${pad(dt.getMonth() + 1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
-}
-
-function toGoogleCalendarUrl(event: EventItem, timeZone = ORG_TIMEZONE) {
-  const { start, end } = parseTimeRange(event.date, event.time);
+function googleCalendarUrl(e: EventItem): string {
   const params = new URLSearchParams({
-    action: 'TEMPLATE',
-    text: event.title,
-    dates: `${formatForGoogle(start)}/${formatForGoogle(end)}`,
-    location: event.location,
-    details: event.description,
-    ctz: timeZone
+    action: "TEMPLATE",
+    text: e.title,
+    dates: `${toIcalDate(e.start_time)}/${toIcalDate(e.end_time)}`,
   });
-  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+  if (e.description) params.set("details", e.description);
+  if (e.location) params.set("location", e.location);
+  return `https://calendar.google.com/calendar/render?${params}`;
 }
 
-function escapeICS(text: string) {
-  return text.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
-}
-function formatICSDateUTC(d: Date) {
-  const y = d.getUTCFullYear();
-  const m = String(d.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(d.getUTCDate()).padStart(2, '0');
-  const h = String(d.getUTCHours()).padStart(2, '0');
-  const min = String(d.getUTCMinutes()).padStart(2, '0');
-  const s = String(d.getUTCSeconds()).padStart(2, '0');
-  return `${y}${m}${day}T${h}${min}${s}Z`;
-}
-function downloadICS(event: EventItem) {
-  const { start, end } = parseTimeRange(event.date, event.time);
-  const uid = `${event.id}@acmuta`;
-  const now = new Date();
-  const ics = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//ACM UTA//Events//EN',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    `UID:${uid}`,
-    `DTSTAMP:${formatICSDateUTC(now)}`,
-    `DTSTART:${formatICSDateUTC(start)}`,
-    `DTEND:${formatICSDateUTC(end)}`,
-    `SUMMARY:${escapeICS(event.title)}`,
-    `DESCRIPTION:${escapeICS(event.description)}`,
-    `LOCATION:${escapeICS(event.location)}`,
-    'END:VEVENT',
-    'END:VCALENDAR'
-  ].join('\r\n');
-
-  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+function downloadIcs(e: EventItem): void {
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//ACM at UTA//Events//EN",
+    "BEGIN:VEVENT",
+    `DTSTART:${toIcalDate(e.start_time)}`,
+    `DTEND:${toIcalDate(e.end_time)}`,
+    `SUMMARY:${e.title}`,
+    ...(e.description ? [`DESCRIPTION:${e.description.replace(/\n/g, "\\n")}`] : []),
+    ...(e.location ? [`LOCATION:${e.location}`] : []),
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+  const blob = new Blob([lines], { type: "text/calendar;charset=utf-8" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+  const a = document.createElement("a");
   a.href = url;
-  a.download = `${event.id}.ics`;
+  a.download = `${e.title.replace(/[^a-z0-9]+/gi, "_")}.ics`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
 
-const Events = () => {
-  const pageRef = useRef<HTMLDivElement>(null);
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
+// ─── Calendar picker modal ────────────────────────────────────────────────────
 
+function CalPicker({ e, onClose }: { e: EventItem; onClose: () => void }) {
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.events-hero',
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }
-      );
-
-      gsap.fromTo(
-        '.calendar-section',
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.calendar-section',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-          }
-        }
-      );
-
-      const cards = gsap.utils.toArray('.event-card');
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: '.events-list',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-          }
-        }
-      );
-    }, pageRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const upcomingEvents: EventItem[] = [
-    {
-      id: 'acm-gbm-2',
-      title: 'ACM Second General Body Meeting',
-      date: '2025-10-16',
-      time: '12:00 PM - 1:00 PM',
-      location: 'University Hall 11, UTA Campus',
-      type: 'Meeting',
-      committee: 'Operations',
-      description:
-        'Connect for updates, recent wins, ways to get involved, and grab pizza during the lunch-hour GBM.',
-      registerUrl: 'https://mavengage.uta.edu/event/11617113'
-    },
-    {
-      id: 'breaking-in-tech',
-      title: 'Breaking In: How Students Land their First Tech Roles',
-      date: '2025-10-22',
-      time: '12:00 PM - 1:00 PM',
-      location: 'SWSH 221, UTA Campus',
-      type: 'Guest Speaker',
-      committee: 'Educate',
-      description:
-        'Guest speaker session on strategies to land a first tech role, with practical guidance on recruiting and interviews.',
-      registerUrl: 'https://mavengage.uta.edu/event/11567327'
-    },
-    {
-      id: 'adobe-connect-express',
-      title: 'Adobe Connect: Adobe Express Workshop',
-      date: '2025-10-24',
-      time: '5:00 PM - 6:30 PM',
-      location: 'SEIR 294, UTA Campus',
-      type: 'Workshop',
-      committee: 'Educate',
-      description:
-        'Interactive workshop with Adobe Student Ambassadors on Adobe Express; quick design skills, social content tips, and possible free merch.',
-      registerUrl: 'https://mavengage.uta.edu/event/11737118'
-    },
-    {
-      id: 'halloween-bash',
-      title: 'Halloween Bash at the MAC',
-      date: '2025-10-26',
-      time: '5:00 PM - 8:00 PM',
-      location: 'MAC Upper Lounge, UTA Campus',
-      type: 'Social',
-      committee: 'Community',
-      description:
-        'Campus Halloween party in collaboration with 15+ engineering orgs; costumes and community vibes encouraged.',
-      registerUrl: '/register/halloween-bash'
-    }
-  ];
-
-  const getEventTypeColor = (type: string) => {
-    const colorMap: { [key: string]: string } = {
-      Workshop: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-      Meeting: 'bg-green-500/20 text-green-300 border-green-500/30',
-      Panel: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-      Social: 'bg-pink-500/20 text-pink-300 border-pink-500/30',
-      Hackathon: 'bg-orange-500/20 text-orange-300 border-orange-500/30'
-    };
-    return colorMap[type] || 'bg-accent/20 text-accent border-accent/30';
-  };
-
-  const formatDate = (dateString: string) =>
-    new Date(dateString).toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    const handler = (ev: KeyboardEvent) => { if (ev.key === "Escape") onClose(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
 
   return (
-    <div ref={pageRef} className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="events-hero section-padding">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient mb-8">
-            Events & Calendar
-          </h1>
-          <p className="text-xl md:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed">
-            Stay up-to-date with workshops, hackathons, social events, and more. Our calendar is
-            packed with opportunities to learn, network, and have fun!
-          </p>
+    <div className="calpick-backdrop" onClick={onClose}>
+      <div className="calpick" onClick={(ev) => ev.stopPropagation()}>
+        <button className="calpick-x" onClick={onClose} aria-label="Close">✕</button>
+        <p className="calpick-eye mono">ADD TO CALENDAR</p>
+        <h3 className="calpick-title">{e.title}</h3>
+        <p className="calpick-when mono">
+          {new Date(e.start_time).toLocaleDateString("en-US", {
+            weekday: "short", month: "short", day: "numeric",
+          })}
+          {" · "}
+          {fmtTime(e.start_time)} – {fmtTime(e.end_time)}
+        </p>
+        {e.location && <p className="calpick-loc">{e.location}</p>}
+        <div className="calpick-btns">
+          <a
+            href={googleCalendarUrl(e)}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-primary"
+            style={{ justifyContent: "center" }}
+            onClick={onClose}
+          >
+            Google Calendar <Arrow s={13} />
+          </a>
+          <button
+            className="btn btn-ghost"
+            style={{ justifyContent: "center" }}
+            onClick={() => { downloadIcs(e); onClose(); }}
+          >
+            Apple / iCal <Arrow s={13} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+const fmtTime = (iso: string) =>
+  new Date(iso).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+
+function committeeName(id: string | null, committees: Committee[]) {
+  if (!id) return "All of ACM";
+  return committees.find((c) => c.id === id)?.name ?? "ACM";
+}
+
+// ─── Event row (expandable) ───────────────────────────────────────────────────
+
+function EventRow({
+  e,
+  committees,
+  onAdd,
+}: {
+  e: EventItem;
+  committees: Committee[];
+  onAdd: (event: EventItem) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const d = new Date(e.start_time);
+
+  return (
+    <div
+      className={`ev-row${open ? " open" : ""}`}
+      onClick={() => setOpen(!open)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(k) => {
+        if (k.key === "Enter" || k.key === " ") {
+          k.preventDefault();
+          setOpen(!open);
+        }
+      }}
+      aria-expanded={open}
+    >
+      <div className="ev-date">
+        <div className="mo">
+          {d.toLocaleDateString("en-US", { month: "short" })}
+        </div>
+        <div className="dy tnum">{d.getDate()}</div>
+      </div>
+      <div className="ev-main">
+        <div className="ev-titlewrap">
+          <div className="ev-title">{e.title}</div>
+          <div className="ev-when mono">
+            {fmtTime(e.start_time)} – {fmtTime(e.end_time)}
+          </div>
+        </div>
+        <div className="ev-metarow">
+          <span className="ev-loc">{e.location}</span>
+          <span className="ev-badge mono">
+            {committeeName(e.committee_id, committees)}
+          </span>
+        </div>
+      </div>
+      <div className="ev-detail">
+        <div className="ev-detail-in">
+          <p>{e.description}</p>
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <button
+              className="btn btn-primary"
+              onClick={(ev) => { ev.stopPropagation(); onAdd(e); }}
+            >
+              Add to calendar <Arrow s={13} />
+            </button>
+            {e.google_photos_url && (
+              <a
+                className="btn btn-ghost"
+                href={e.google_photos_url}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(ev) => ev.stopPropagation()}
+              >
+                Photos <Arrow s={13} />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Mini calendar ────────────────────────────────────────────────────────────
+
+function MiniCalendar({
+  events,
+  committees,
+  onAdd,
+}: {
+  events: EventItem[];
+  committees: Committee[];
+  onAdd: (event: EventItem) => void;
+}) {
+  const months = [...new Set(events.map((e) => e.start_time.slice(0, 7)))].sort();
+  const [mi, setMi] = useState(() => {
+    const now = new Date().toISOString().slice(0, 7);
+    const idx = months.findIndex((m) => m >= now);
+    return idx >= 0 ? idx : 0;
+  });
+
+  const idx = Math.max(0, Math.min(mi, months.length - 1));
+  const ym = months[idx] ?? new Date().toISOString().slice(0, 7);
+  const [y, m] = ym.split("-").map(Number);
+  const first = new Date(y, m - 1, 1);
+  const startPad = first.getDay();
+  const days = new Date(y, m, 0).getDate();
+  const cells: (number | null)[] = [];
+  for (let i = 0; i < startPad; i++) cells.push(null);
+  for (let d = 1; d <= days; d++) cells.push(d);
+  while (cells.length % 7 !== 0) cells.push(null);
+
+  const evFor = (d: number) =>
+    events.filter((e) => {
+      const dt = new Date(e.start_time);
+      return dt.getFullYear() === y && dt.getMonth() === m - 1 && dt.getDate() === d;
+    });
+
+  const label = first.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+  // suppress unused warning — kept for future committee badge display
+  void committees;
+
+  return (
+    <div>
+      <div className="ev-toolbar" style={{ justifyContent: "space-between" }}>
+        <div className="seg">
+          <button onClick={() => setMi(Math.max(0, idx - 1))} disabled={idx === 0}>
+            ← Prev
+          </button>
+          <button
+            onClick={() => setMi(Math.min(months.length - 1, idx + 1))}
+            disabled={idx === months.length - 1}
+          >
+            Next →
+          </button>
+        </div>
+        <span style={{ fontWeight: 800, fontSize: "1.2rem", letterSpacing: "-0.02em" }}>
+          {label}
+        </span>
+      </div>
+      <div className="cal">
+        <div className="cal-head">
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+            <div key={d}>{d}</div>
+          ))}
+        </div>
+        <div className="cal-grid">
+          {cells.map((d, i) => (
+            <div className={`cal-cell${d ? "" : " muted"}`} key={i}>
+              {d && <span className="tnum">{d}</span>}
+              {d &&
+                evFor(d).map((e) => (
+                  <span
+                    className="cal-ev"
+                    key={e.id}
+                    title={e.title}
+                    onClick={() => onAdd(e)}
+                  >
+                    {e.title}
+                  </span>
+                ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
+const Events = () => {
+  const [events, setEvents] = useState<EventItem[] | null>(null);
+  const [committees, setCommittees] = useState<Committee[]>([]);
+  const [view, setView] = useState<"list" | "calendar">("list");
+  const [when, setWhen] = useState<"upcoming" | "past">("upcoming");
+  const [calTarget, setCalTarget] = useState<EventItem | null>(null);
+
+  useEffect(() => {
+    getEvents().then(setEvents);
+    getCommittees().then(setCommittees);
+  }, []);
+
+  if (!events) return <PageLoading />;
+
+  const now = new Date();
+  const sorted = [...events].sort(
+    (a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime()
+  );
+  const upcoming = sorted.filter((e) => new Date(e.start_time) >= now);
+  const past = sorted.filter((e) => new Date(e.start_time) < now).reverse();
+  const shown = when === "upcoming" ? upcoming : past;
+
+  return (
+    <div>
+      <section className="page-top">
+        <div className="wrap">
+          <Reveal>
+            <span className="tag mono page-eyebrow">
+              <span className="node" />
+              WHAT'S ON
+            </span>
+            <h1 className="page-h1">
+              Show <span className="amp">up.</span>
+            </h1>
+            <p className="page-intro">
+              Workshops, demos, socials, and the occasional all-nighter. Something
+              on the calendar most weeks, open to every member.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* Google Calendar Embed (styled, footer hidden) */}
-      <section className="calendar-section section-padding">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">Event Calendar</h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              View all our upcoming events. Add them to your calendar and never miss out.
-            </p>
-          </div>
-
-          <div className="relative mx-auto max-w-6xl">
-            {/* gradient frame behind */}
-            <div className="pointer-events-none absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-primary/60 via-accent/60 to-primary/60 blur-[6px] opacity-70" />
-            <div className="relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10">
-              {/* header */}
-              <div className="relative z-10 flex items-center justify-between px-5 py-4 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
-                </div>
-                <div className="text-sm text-white/70">ACM UTA Google Calendar</div>
-                <a
-                  href="https://calendar.google.com/calendar/embed?src=3641f8a99a85a1d90c95d3f216188f496ccfca9b84148f5e8cddc635dda248eb%40group.calendar.google.com&ctz=America%2FChicago"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-3 py-1.5 rounded-lg text-sm glass-card hover:bg-white/10 transition"
-                >
-                  Open in Google
-                </a>
-              </div>
-
-              {/* embed */}
-              <div className="p-4">
-                <div className="relative aspect-[16/10] rounded-xl overflow-hidden">
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(transparent_1px,rgba(255,255,255,0.02)_1px)] [background-size:18px_18px]" />
-                  <iframe
-                    title="ACM UTA Event Calendar"
-                    className="absolute inset-0 w-full h-full rounded-xl invert hue-rotate-180 contrast-100"
-                    style={{ border: 0 }}
-                    src={
-                      'https://calendar.google.com/calendar/embed' +
-                      '?src=3641f8a99a85a1d90c95d3f216188f496ccfca9b84148f5e8cddc635dda248eb%40group.calendar.google.com' +
-                      '&ctz=America%2FChicago' +
-                      '&mode=MONTH' +
-                      '&showTitle=0&showTabs=0&showPrint=0&showCalendars=0&showTz=0' +
-                      '&wkst=1&bgcolor=%230b1220'
-                    }
-                  />
-                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-bg-dark/95 rounded-b-xl shadow-[0_-6px_16px_rgba(0,0,0,0.35)]" />
-                </div>
-              </div>
+      <section className="section" style={{ paddingTop: "clamp(28px,4vw,48px)" }}>
+        <div className="wrap">
+          <div className="ev-toolbar" style={{ justifyContent: "space-between" }}>
+            <div className="seg">
+              <button
+                className={when === "upcoming" ? "on" : ""}
+                onClick={() => setWhen("upcoming")}
+              >
+                Upcoming
+              </button>
+              <button
+                className={when === "past" ? "on" : ""}
+                onClick={() => setWhen("past")}
+              >
+                Past
+              </button>
+            </div>
+            <div className="seg">
+              <button
+                className={view === "list" ? "on" : ""}
+                onClick={() => setView("list")}
+              >
+                List
+              </button>
+              <button
+                className={view === "calendar" ? "on" : ""}
+                onClick={() => setView("calendar")}
+              >
+                Calendar
+              </button>
             </div>
           </div>
+
+          {view === "list" ? (
+            <div className="ev-list">
+              {shown.map((e) => (
+                <EventRow key={e.id} e={e} committees={committees} onAdd={setCalTarget} />
+              ))}
+              {shown.length === 0 && (
+                <p style={{ color: "var(--text-dim)", padding: "30px 0" }}>
+                  No events happening right now - check back soon!
+                </p>
+              )}
+            </div>
+          ) : (
+            <MiniCalendar events={events} committees={committees} onAdd={setCalTarget} />
+          )}
         </div>
       </section>
 
-      {/* Upcoming Events List */}
-      <section className="section-padding">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
-              Upcoming Major Events
-            </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Get details about our upcoming events and mark your calendar!
-            </p>
-          </div>
-
-          <div className="events-list space-y-8 max-w-4xl mx-auto">
-            {upcomingEvents.map((event) => (
-              <div
-                key={event.id}
-                className="event-card glass-card p-8 hover:bg-white/10 transition-colors duration-300"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
-                  {/* Date */}
-                  <div className="lg:col-span-1">
-                    <div className="glass-card p-4 text-center">
-                      <div className="text-3xl font-bold text-accent mb-1">
-                        {new Date(event.date).getDate()}
-                      </div>
-                      <div className="text-white/70 text-sm font-medium">
-                        {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
-                      </div>
-                      <div className="text-white/60 text-sm">
-                        {new Date(event.date).getFullYear()}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="lg:col-span-2">
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="text-2xl font-bold text-white mb-2">{event.title}</h3>
-                        <div className="flex items-center space-x-4 text-white/70 mb-3">
-                          <span
-                            className={`px-3 py-1 rounded-full text-sm border ${getEventTypeColor(
-                              event.type
-                            )}`}
-                          >
-                            {event.type}
-                          </span>
-                          <span className="text-accent font-medium">{event.committee}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p className="text-white/80 leading-relaxed mb-4">{event.description}</p>
-
-                    <div className="space-y-2 text-white/70">
-                      <div className="flex items-center">
-                        <Clock className="h-4 w-4 mr-2 text-accent" />
-                        <span>{event.time}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <MapPin className="h-4 w-4 mr-2 text-accent" />
-                        <span>{event.location}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="lg:col-span-1 flex flex-col space-y-3 text-center relative">
-                    {/* Register */}
-                    <a
-                      href={event.registerUrl || '#'}
-                      target={event.registerUrl ? '_blank' : undefined}
-                      rel={event.registerUrl ? 'noreferrer' : undefined}
-                      className={`btn-primary w-full text-sm ${
-                        !event.registerUrl ? 'pointer-events-none opacity-60' : ''
-                      }`}
-                      aria-disabled={!event.registerUrl}
-                    >
-                      Register
-                    </a>
-
-                    {/* Add to Calendar menu */}
-                    <div className="relative">
-                      <button
-                        className="btn-secondary w-full text-sm"
-                        onClick={() => setOpenMenu(openMenu === event.id ? null : event.id)}
-                      >
-                        Add to Calendar
-                      </button>
-                      {openMenu === event.id && (
-                        <div
-                          className="absolute z-20 mt-2 w-full rounded-lg border border-white/10 bg-bg-dark/95 backdrop-blur p-2 space-y-1"
-                          onMouseLeave={() => setOpenMenu(null)}
-                        >
-                          <a
-                            className="block px-3 py-2 hover:bg-white/10 rounded text-left text-sm"
-                            href={toGoogleCalendarUrl(event)}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            Google Calendar
-                          </a>
-                          <button
-                            className="block w-full text-left px-3 py-2 hover:bg-white/10 rounded text-sm"
-                            onClick={() => {
-                              downloadICS(event);
-                              setOpenMenu(null);
-                            }}
-                          >
-                            Download .ics (Apple/Outlook)
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Event Types Info */}
-      <section className="section-padding">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">Types of Events</h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              We host a variety of events throughout the year to cater to different interests and
-              skill levels.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                type: 'Workshops',
-                description:
-                  'Hands-on learning sessions covering programming languages, frameworks, and tools.',
-                icon: '🛠️'
-              },
-              {
-                type: 'Hackathons',
-                description:
-                  'Competitive coding events where teams build projects in 24-48 hours.',
-                icon: '💻'
-              },
-              {
-                type: 'Guest Speakers',
-                description:
-                  'Industry professionals sharing insights about careers and technology trends.',
-                icon: '🎤'
-              },
-              {
-                type: 'Social Events',
-                description:
-                  'Game nights, movie screenings, and networking opportunities.',
-                icon: '🎮'
-              },
-              {
-                type: 'Career Fairs',
-                description:
-                  'Meet with recruiters and learn about internship and job opportunities.',
-                icon: '💼'
-              },
-              {
-                type: 'Study Groups',
-                description:
-                  'Collaborative learning sessions for classes and certification exams.',
-                icon: '📚'
-              }
-            ].map((eventType, index) => (
-              <div
-                key={index}
-                className="glass-card p-6 text-center hover:bg-white/10 transition-colors duration-300"
-              >
-                <div className="text-4xl mb-4">{eventType.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-3">{eventType.type}</h3>
-                <p className="text-white/70">{eventType.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter CTA */}
-      <section className="section-padding">
-        <div className="container mx-auto px-6 text-center">
-          <div className="glass-card p-12 max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-gradient mb-6">Never Miss an Event</h2>
-            <p className="text-xl text-white/80 mb-8">
-              Join our mailing list to receive event announcements, reminders, and exclusive
-              updates about ACM UTA activities.
-            </p>
-            <a
-              href="https://forms.gle/vvu4T9SKP5LnZtgs6"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary text-lg px-8 py-4 inline-flex items-center group"
-            >
-              Join Our Mailing List
-              <ExternalLink className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </a>
-          </div>
-        </div>
-      </section>
+      {calTarget && (
+        <CalPicker e={calTarget} onClose={() => setCalTarget(null)} />
+      )}
     </div>
   );
 };

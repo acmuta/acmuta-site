@@ -1,0 +1,32 @@
+# Supabase CLI config — fill in your project ref after running `supabase link`.
+# project_id is used locally only; it does not need to match the remote ref.
+project_id = "acmuta-site"
+
+[api]
+port = 54321
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+port = 54323
+
+[inbucket]
+port = 54324
+
+[storage]
+enabled = true
+
+[auth]
+enabled = true
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173"]
+jwt_expiry = 3600
+
+[auth.external.google]
+enabled = true
+client_id = "env(SUPABASE_AUTH_GOOGLE_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_GOOGLE_SECRET)"
+# Real values are set in the Supabase dashboard → Auth → Providers → Google
+# (these env vars are only read by the CLI/local stack; never commit them).

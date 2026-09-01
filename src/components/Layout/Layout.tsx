@@ -1,25 +1,23 @@
-import { useEffect } from 'react';
-import { Header } from './Header';
-import { Footer } from './Footer';
-import { InteractiveBackground } from '../InteractiveBackground';
+import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
+export function Layout() {
+  const location = useLocation();
 
-export const Layout = ({ children }: LayoutProps) => {
+  // Scroll to top on route change
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-  }, []);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-background relative">
-      <InteractiveBackground />
-      <div className="relative z-10">
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </div>
+    <div className="min-h-screen">
+      <Header />
+      <main className="route-view" key={location.pathname}>
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   );
-};
+}

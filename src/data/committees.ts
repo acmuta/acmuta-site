@@ -1,111 +1,140 @@
+export type CommitteeKind = "application" | "program" | "staff";
+
 export interface Committee {
   id: string;
   name: string;
   slug: string;
+  kind: CommitteeKind;
+  /** Short tag shown in the list row (e.g. "build / ship") */
+  tag: string;
+  /** One-sentence summary for the list row */
   summary: string;
+  /** Full paragraph shown on the committee detail page */
   description: string;
+  /** Bullet points for the "What members do" section */
+  doing: string[];
+  /** Paragraph for the "How to get involved" card */
+  involve: string;
+  /** URL to the committee's logo image; empty string = use CommitteeMark SVG */
   logo: string;
-  banner: string;
-  color: string;        
-  gradientFrom: string; 
-  gradientTo: string; 
 }
 
-export const committees: Committee[] = [
+export const committeesData: Committee[] = [
   {
     id: "create",
     name: "Create",
     slug: "create",
-    summary:
-      "Dedicated to developing industry-applicable skills and technological knowledge through semester-long projects.",
+    kind: "application",
+    tag: "build / ship",
+    summary: "Build real projects and ship products on small dev teams.",
     description:
-      "The Create committee focuses on hands-on project development, teaching students practical skills they'll use in their careers. We work on real-world applications, web development, mobile apps, and innovative tech solutions.",
+      "Create is where ACM builds things people actually use. Members join small product teams, pick up real tickets, and ship: web apps, tools, bots, whatever the team is building that semester. You learn the parts of software that class never covers: working in a repo with other people, reviewing each other's code, and getting something to done.",
+    doing: [
+      "Join a dev team and ship a real product over the semester",
+      "Work in a shared repo with code review and standups",
+      "Pair with experienced members on your first PRs",
+      "Demo what you built at the end-of-semester showcase",
+    ],
+    involve:
+      "Membership is by application. Teams form at the start of each semester. Apply with your Mavs email.",
     logo: "/assets/logo/create.png",
-    banner: "/assets/logo/create.png",
-    color: "#ff3d61",
-    gradientFrom: "#ff3d61",
-    gradientTo: "#8b1c1b",
-  },
-  {
-    id: "educate",
-    name: "Educate",
-    slug: "educate",
-    summary:
-      "Provides students with valuable skills and opportunities to develop themselves for the workforce.",
-    description:
-      "Our Educate committee organizes workshops, guest speakers, and training sessions to help students build professional skills. From technical tutorials to career development, we prepare students for success.",
-    logo: "/assets/logo/educate.png",
-    banner: "/assets/logo/educate.png",
-    color: "#34d399",
-    gradientFrom: "#34d399",
-    gradientTo: "#059669",
   },
   {
     id: "research",
     name: "Research",
     slug: "research",
-    summary:
-      "Fosters research skills and offers opportunities for innovative projects and future challenges.",
+    kind: "application",
+    tag: "papers / teams",
+    summary: "Read papers, run research teams, and dig into open CS problems.",
     description:
-      "The Research committee connects students with faculty research opportunities, organizes research presentations, and supports students in exploring cutting-edge technologies and academic pursuits.",
+      "Research pairs students with faculty and each other to dig into real CS research. Teams read papers together, reproduce results, and work toward something publishable. It's the on-ramp for anyone curious about grad school or just what's past the edge of the syllabus.",
+    doing: [
+      "Join a research team around a topic you're into",
+      "Read and break down papers in a weekly reading group",
+      "Reproduce results and run your own experiments",
+      "Work toward a poster, talk, or publication",
+    ],
+    involve:
+      "Membership is by application. Teams are small on purpose. Apply with your Mavs email.",
     logo: "/assets/logo/research.png",
-    banner: "/assets/logo/research.png",
-    color: "#9333ea",
-    gradientFrom: "#9333ea",
-    gradientTo: "#6b21a8",
+  },
+  {
+    id: "educate",
+    name: "Educate",
+    slug: "educate",
+    kind: "program",
+    tag: "workshops / mentorship",
+    summary: "Workshops, career development, and the mentor/mentee program.",
+    description:
+      "Educate runs the things that level you up: hands-on workshops, career and interview prep, and the mentor/mentee program that pairs newer students with people who've been through it. If you're new to all this, start here, and someone will have your back.",
+    doing: [
+      "Get matched with a mentor (or become one)",
+      "Hit workshops on Git, the terminal, data structures, and more",
+      "Sharpen your resume and run mock interviews",
+      "Track a learning path from first-year to internship-ready",
+    ],
+    involve:
+      "Open to all, no application needed. Sign up for the mentor/mentee program at the start of the semester.",
+    logo: "/assets/logo/educate.png",
   },
   {
     id: "marketing",
     name: "Marketing",
     slug: "marketing",
-    summary: "Drives ACM's brand through design, content, and social strategy.",
+    kind: "staff",
+    tag: "brand / content",
+    summary: "Brand, social, design, and content for the whole org.",
     description:
-      "Our Marketing committee handles all visual design, social-media presence, promotional materials, and brand strategy. We create engaging content that showcases ACM's activities and attracts new members.",
+      "Marketing owns how ACM looks and sounds. The team runs social, shoots and edits content at events, designs everything from flyers to this site, and keeps the brand sharp. If you like making things look good and getting them in front of people, this is your committee.",
+    doing: [
+      "Design flyers, slides, and social posts",
+      "Shoot photo and video at events and edit recaps",
+      "Run the Instagram, write the captions, build the brand",
+      "Keep the site and visual identity consistent",
+    ],
+    involve:
+      "Staff committee with officer and director roles. Get involved by showing up and pitching in.",
     logo: "/assets/logo/marketing.png",
-    banner: "/assets/logo/marketing.png",
-    color: "#fb7185",
-    gradientFrom: "#fb7185",
-    gradientTo: "#f43f5e",
   },
   {
     id: "outreach",
     name: "Outreach",
     slug: "outreach",
-    summary:
-      "Connects ACM with local schools & communities through tech-education events.",
+    kind: "staff",
+    tag: "sponsors / partners",
+    summary: "Sponsorships, industry relationships, and partnerships.",
     description:
-      "The Outreach committee builds relationships with local schools and community organisations, organising coding workshops for K-12 students and promoting computer-science education throughout the DFW area.",
+      "Outreach is the bridge between ACM and the outside world. The team lands sponsors, builds relationships with companies, and brings industry into the room: recruiters, tech talks, and the funding that makes everything else free for members.",
+    doing: [
+      "Reach out to companies and pitch sponsorship",
+      "Coordinate industry tech talks and recruiting events",
+      "Steward sponsor relationships across the year",
+      "Help bring $10k+ of funding to the org",
+    ],
+    involve:
+      "Staff committee with officer and director roles. Comfortable with email and people? Come talk to us.",
     logo: "/assets/logo/outreach.png",
-    banner: "/assets/logo/outreach.png",
-    color: "#facc15",
-    gradientFrom: "#facc15",
-    gradientTo: "#f59e0b",
   },
   {
     id: "community",
     name: "Community",
     slug: "community",
-    summary: "Builds a welcoming culture via socials, game nights, and peer mentoring.",
+    kind: "staff",
+    tag: "socials / culture",
+    summary: "Socials, culture, and the day-to-day member experience.",
     description:
-      "Community committee creates a welcoming environment for all members through social events, game nights, study groups, and mentorship programmes. We ensure every member feels valued and connected.",
+      "Community makes ACM feel like a place you belong, not just a club you joined. The team runs game nights, socials, and the small things that turn a Discord server into actual friends. Culture is a feature, and Community owns it.",
+    doing: [
+      "Plan socials, game nights, and end-of-semester parties",
+      "Keep the Discord alive and welcoming",
+      "Welcome new members and help them find their people",
+      "Set the tone for what ACM feels like",
+    ],
+    involve:
+      "Staff committee with officer and director roles. The easiest place to start. Just hang out.",
     logo: "/assets/logo/community.png",
-    banner: "/assets/logo/community.png",
-    color: "#2563eb",
-    gradientFrom: "#2563eb",
-    gradientTo: "#06b6d4",
-  },
-  {
-    id: "hackuta",
-    name: "HackUTA",
-    slug: "hackuta",
-    summary:
-      "Home of UTA's official student hackathon returning this October.",
-    description:
-      "HackUTA is our premier event-planning committee that organizes UTA's largest hackathon. We bring together hundreds of students for 24 hours of innovation, coding, and creativity with amazing prizes and sponsors.",
-    logo: "/assets/logo/hackuta.png",
-    banner: "/assets/logo/hackuta.png",
-    color: "#a855f7",
-    gradientFrom: "#a855f7",
-    gradientTo: "#ec4899",
   },
 ];
+
+// Legacy compat export - removed when pages are rewritten in Stage D/E.
+export const committees = committeesData;

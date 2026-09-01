@@ -1,439 +1,447 @@
+export type OfficerTier = "exec" | "director" | "officer";
+
 export interface Officer {
-id: string;
-name: string;
-role: string;
-focus: string[];
-linkedin: string;
-avatar: string;
-isExec?: boolean;
-committeeId?: string;
-isDirector?: boolean;
+  id: string;
+  name: string;
+  role: string;
+  /** Committee name (matches Committee.name), or "Leadership" for exec */
+  committee: string;
+  tier: OfficerTier;
+  /** Photo URL; empty string = use placeholder */
+  photo: string;
+  /** Instagram handle (no @) - optional */
+  instagram?: string;
+  /** LinkedIn profile slug or full URL - optional */
+  linkedin?: string;
 }
 
-export const officers: Officer[] = [
+export interface Alumni {
+  id: string;
+  name: string;
+  /** Historical role, e.g. "Create Director '24" */
+  role: string;
+  /** Where they are now */
+  now: string;
+  photo: string;
+}
+
+export const officersData: Officer[] = [
+  // ── Executive board ──────────────────────────────────────────────────────
   {
-  id: 'pres',
-  name: 'Muhammad Khurram',
-  role: 'President',
-  focus: ['Leadership', 'Strategy', 'Organization'],
-  linkedin: 'https://www.linkedin.com/in/m-khurram/',
-  avatar: '/assets/officerpics/muhammad.png',
-  isExec: true
+    id: "pres",
+    name: "Muhammad Khurram",
+    role: "President",
+    committee: "Leadership",
+    tier: "exec",
+    photo: "/assets/officerpics/muhammad.png",
+    linkedin: "https://www.linkedin.com/in/m-khurram/",
   },
   {
-  id: 'vpres',
-  name: 'Kevin Farokhrouz',
-  role: 'Vice President',
-  focus: ['Operations', 'Events', 'Coordination'],
-  linkedin: 'https://linkedin.com/in/kevinrouz',
-  avatar: '/assets/officerpics/kevin.png',
-  isExec: true
+    id: "vpres",
+    name: "Kevin Farokhrouz",
+    role: "Vice President",
+    committee: "Leadership",
+    tier: "exec",
+    photo: "/assets/officerpics/kevin.png",
+    linkedin: "https://linkedin.com/in/kevinrouz",
   },
   {
-  id: 'secretary',
-  name: 'Aastha Khatri',
-  role: 'Secretary',
-  focus: ['Documentation', 'Communications', 'Records'],
-  linkedin: 'https://www.linkedin.com/in/aastha-k-b69a5a248/',
-  avatar: '/assets/officerpics/aastha.jpeg',
-  isExec: true
+    id: "secretary",
+    name: "Aastha Khatri",
+    role: "Secretary",
+    committee: "Leadership",
+    tier: "exec",
+    photo: "/assets/officerpics/aastha.jpeg",
+    linkedin: "https://www.linkedin.com/in/aastha-k-b69a5a248/",
   },
   {
-  id: 'treasurer',
-  name: 'Ali Jifi-Bahlool',
-  role: 'Treasurer',
-  focus: ['Finance', 'Budgeting', 'Sponsorships'],
-  linkedin: 'https://www.linkedin.com/in/ali-jifi-bahlool/',
-  avatar: '/assets/officerpics/ali.JPG',
-  isExec: true
+    id: "treasurer",
+    name: "Ali Jifi-Bahlool",
+    role: "Treasurer",
+    committee: "Leadership",
+    tier: "exec",
+    photo: "/assets/officerpics/ali.JPG",
+    linkedin: "https://www.linkedin.com/in/ali-jifi-bahlool/",
   },
   {
-  id: 'studadv-bobby',
-  name: 'Bobby Flennoy',
-  role: 'Student Advisor',
-  focus: ['Mentorship', 'Advising', 'Org Continuity'],
-  linkedin: 'https://www.linkedin.com/in/bobby-flennoy/',
-  avatar: '/assets/officerpics/bobby.JPG',
-  isExec: true
+    id: "studadv-bobby",
+    name: "Bobby Flennoy",
+    role: "Student Advisor",
+    committee: "Leadership",
+    tier: "exec",
+    photo: "/assets/officerpics/bobby.JPG",
+    linkedin: "https://www.linkedin.com/in/bobby-flennoy/",
   },
   {
-  id: 'studadv-yash',
-  name: 'Yash Rao',
-  role: 'Student Advisor',
-  focus: ['Mentorship', 'Advising', 'Org Continuity'],
-  linkedin: 'https://www.linkedin.com/in/yash-rao-9082bb246',
-  avatar: '/assets/officerpics/yash.jpeg',
-  isExec: true
+    id: "studadv-yash",
+    name: "Yash Rao",
+    role: "Student Advisor",
+    committee: "Leadership",
+    tier: "exec",
+    photo: "/assets/officerpics/yash.jpeg",
+    linkedin: "https://www.linkedin.com/in/yash-rao-9082bb246",
   },
 
-  // Create (Red)
+  // ── Create ────────────────────────────────────────────────────────────────
   {
-  id: 'create-tobi',
-  name: 'Tobi Akere',
-  role: 'Create Director',
-  focus: ['Projects', 'Development', 'Innovation'],
-  linkedin: '',
-  avatar: '/assets/officerpics/tobi.png',
-  committeeId: 'create',
-  isDirector: true
+    id: "create-tobi",
+    name: "Tobi Akere",
+    role: "Create Director",
+    committee: "Create",
+    tier: "director",
+    photo: "/assets/officerpics/tobi.png",
   },
   {
-  id: 'create-ghiya',
-  name: 'Ghiya El Daouk El Kadi',
-  role: 'Create Director',
-  focus: ['Projects', 'Development', 'Innovation'],
-  linkedin: '',
-  avatar: '/assets/officerpics/ghiya.jpeg',
-  committeeId: 'create',
-  isDirector: true
+    id: "create-ghiya",
+    name: "Ghiya El Daouk El Kadi",
+    role: "Create Director",
+    committee: "Create",
+    tier: "director",
+    photo: "/assets/officerpics/ghiya.jpeg",
   },
   {
-  id: 'create-prajit',
-  name: 'Prajit Viswanadha',
-  role: 'Create Director',
-  focus: ['Projects', 'Development', 'Innovation'],
-  linkedin: 'https://www.linkedin.com/in/prajit-viswanadha/',
-  avatar: '/assets/officerpics/prajit.jpg',
-  committeeId: 'create'
-  },  
+    id: "create-prajit",
+    name: "Prajit Viswanadha",
+    role: "Create Director",
+    committee: "Create",
+    tier: "director",
+    photo: "/assets/officerpics/prajit.jpg",
+    linkedin: "https://www.linkedin.com/in/prajit-viswanadha/",
+  },
   {
-  id: 'create-wendolee',
-  name: 'Wendolee Villegas',
-  role: 'Project Manager',
-  focus: ['Projects', 'Development', 'Innovation'],
-  linkedin: '',
-  avatar: '/assets/officerpics/wendolee.jpeg',
-  committeeId: 'create'
+    id: "create-wendolee",
+    name: "Wendolee Villegas",
+    role: "Project Manager",
+    committee: "Create",
+    tier: "officer",
+    photo: "/assets/officerpics/wendolee.jpeg",
   },
 
-  // Research (Teal)
+  // ── Research ──────────────────────────────────────────────────────────────
   {
-  id: 'research-mariah',
-  name: 'Mariah Gardner',
-  role: 'Research Director',
-  focus: ['Academic Research', 'Reading Groups', 'Publications'],
-  linkedin: '',
-  avatar: '/assets/officerpics/mariah.jpg',
-  committeeId: 'research',
-  isDirector: true
+    id: "research-mariah",
+    name: "Mariah Gardner",
+    role: "Research Director",
+    committee: "Research",
+    tier: "director",
+    photo: "/assets/officerpics/mariah.jpg",
   },
   {
-  id: 'research-rohita',
-  name: 'Rohita Konjeti',
-  role: 'Research Director',
-  focus: ['Academic Research', 'Reading Groups', 'Publications'],
-  linkedin: 'https://www.linkedin.com/in/rohita-k/',
-  avatar: '/assets/officerpics/rohita.jpg',
-  committeeId: 'research',
-  isDirector: true
+    id: "research-rohita",
+    name: "Rohita Konjeti",
+    role: "Research Director",
+    committee: "Research",
+    tier: "director",
+    photo: "/assets/officerpics/rohita.jpg",
+    linkedin: "https://www.linkedin.com/in/rohita-k/",
   },
   {
-  id: 'research-janet',
-  name: 'Janet Barba',
-  role: 'Research Officer',
-  focus: ['Academic Research', 'Reading Groups', 'Publications'],
-  linkedin: '',
-  avatar: '/assets/officerpics/janet.jpg',
-  committeeId: 'research'
+    id: "research-janet",
+    name: "Janet Barba",
+    role: "Research Officer",
+    committee: "Research",
+    tier: "officer",
+    photo: "/assets/officerpics/janet.jpg",
   },
   {
-  id: 'research-subhaan',
-  name: 'Subhaan Elburz',
-  role: 'Research Officer',
-  focus: ['Academic Research', 'Reading Groups', 'Publications'],
-  linkedin: '',
-  avatar: '/assets/officerpics/subhaan.jpg',
-  committeeId: 'research'
+    id: "research-subhaan",
+    name: "Subhaan Elburz",
+    role: "Research Officer",
+    committee: "Research",
+    tier: "officer",
+    photo: "/assets/officerpics/subhaan.jpg",
   },
   {
-  id: 'research-vamshi',
-  name: 'Vamshi Vavilla',
-  role: 'Research Officer',
-  focus: ['Academic Research', 'Reading Groups', 'Publications'],
-  linkedin: '',
-  avatar: '/assets/officerpics/vamshi.png',
-  committeeId: 'research'
+    id: "research-vamshi",
+    name: "Vamshi Vavilla",
+    role: "Research Officer",
+    committee: "Research",
+    tier: "officer",
+    photo: "/assets/officerpics/vamshi.png",
   },
 
-
-  // Outreach (Orange)
+  // ── Educate ───────────────────────────────────────────────────────────────
   {
-  id: 'outreach-paul',
-  name: 'Paul Santana',
-  role: 'Outreach Director',
-  focus: ['Community Engagement', 'Partners', 'K-12'],
-  linkedin: 'https://www.linkedin.com/in/paul-hunter-santana/',
-  avatar: '/assets/officerpics/paul.jpg',
-  committeeId: 'outreach',
-  isDirector: true
+    id: "educate-will",
+    name: "Will Maberry",
+    role: "Educate Director",
+    committee: "Educate",
+    tier: "director",
+    photo: "/assets/officerpics/will.jpg",
+    linkedin: "https://www.linkedin.com/in/will-maberry/",
   },
   {
-  id: 'outreach-vincent',
-  name: 'Vincent Dang',
-  role: 'Outreach Officer',
-  focus: ['Community Engagement', 'Partners', 'K-12'],
-  linkedin: 'https://www.linkedin.com/in/vdanguta/',
-  avatar: '/assets/officerpics/vincent.jpg',
-  committeeId: 'outreach'
+    id: "educate-zaineel",
+    name: "Zaineel Mithani",
+    role: "Educate Director",
+    committee: "Educate",
+    tier: "director",
+    photo: "/assets/officerpics/zain.jpeg",
   },
   {
-  id: 'outreach-addison',
-  name: 'Jacob Mathew',
-  role: 'Outreach Officer',
-  focus: ['Community Engagement', 'Partners', 'K-12'],
-  linkedin: 'https://www.linkedin.com/in/jacob-mathew-794987306/',
-  avatar: '/assets/officerpics/jacob.jpg',
-  committeeId: 'outreach'
+    id: "educate-ishana",
+    name: "Ishana Khandakar",
+    role: "Educate Officer",
+    committee: "Educate",
+    tier: "officer",
+    photo: "/assets/officerpics/iggy.jpeg",
   },
   {
-  id: 'outreach-evelyn',
-  name: 'Evelyn Trevino',
-  role: 'Outreach Officer',
-  focus: ['Community Engagement', 'Partners', 'K-12'],
-  linkedin: '',
-  avatar: '/assets/officerpics/eve.jpeg',
-  committeeId: 'outreach'
+    id: "educate-an",
+    name: "An Duong",
+    role: "Educate Officer",
+    committee: "Educate",
+    tier: "officer",
+    photo: "/assets/officerpics/an.jpeg",
+    linkedin: "https://www.linkedin.com/in/real-an-duong",
   },
   {
-  id: 'outreach-mahim',
-  name: 'Mahim Kabir',
-  role: 'Outreach Officer',
-  focus: ['Community Engagement', 'Partners', 'K-12'],
-  linkedin: 'http://linkedin.com/in/tasmim-kabir-mahim',
-  avatar: '/assets/officerpics/mahim.JPG',
-  committeeId: 'outreach'
-  },
-  {
-  id: 'outreach-peter',
-  name: 'Peter Tran',
-  role: 'Outreach Officer',
-  focus: ['Community Engagement', 'Partners', 'K-12'],
-  linkedin: 'https://www.linkedin.com/in/peter-phi-tran/',
-  avatar: '/assets/officerpics/peter.jpeg',
-  committeeId: 'outreach'
+    id: "educate-grace",
+    name: "Grace Whitney",
+    role: "Educate Officer",
+    committee: "Educate",
+    tier: "officer",
+    photo: "/assets/officerpics/grace.JPG",
+    linkedin: "https://www.linkedin.com/in/whitney-grace",
   },
 
-
-  // Marketing (Yellow)
+  // ── Marketing ─────────────────────────────────────────────────────────────
   {
-  id: 'marketing-salima',
-  name: 'Salima Salman',
-  role: 'Marketing Director',
-  focus: ['Design', 'Social Media', 'Branding'],
-  linkedin: '',
-  avatar: '/assets/officerpics/salima.jpeg',
-  committeeId: 'marketing',
-  isDirector: true
+    id: "marketing-salima",
+    name: "Salima Salman",
+    role: "Marketing Director",
+    committee: "Marketing",
+    tier: "director",
+    photo: "/assets/officerpics/salima.jpeg",
   },
   {
-  id: 'marketing-felix',
-  name: 'Felix Cherian',
-  role: 'Marketing Director',
-  focus: ['Design', 'Social Media', 'Branding'],
-  linkedin: 'https://www.linkedin.com/in/felix-cherian',
-  avatar: '/assets/officerpics/felix.jpeg',
-  committeeId: 'marketing',
-  isDirector: true
+    id: "marketing-felix",
+    name: "Felix Cherian",
+    role: "Marketing Director",
+    committee: "Marketing",
+    tier: "director",
+    photo: "/assets/officerpics/felix.jpeg",
+    linkedin: "https://www.linkedin.com/in/felix-cherian",
   },
   {
-  id: 'marketing-nnanna',
-  name: 'Nnanna Ejim',
-  role: 'Marketing Officer',
-  focus: ['Design', 'Social Media', 'Branding'],
-  linkedin: 'https://www.linkedin.com/in/nnanna-ejim/',
-  avatar: '/assets/officerpics/nnanna.png',
-  committeeId: 'marketing'
+    id: "marketing-nnanna",
+    name: "Nnanna Ejim",
+    role: "Marketing Officer",
+    committee: "Marketing",
+    tier: "officer",
+    photo: "/assets/officerpics/nnanna.png",
+    linkedin: "https://www.linkedin.com/in/nnanna-ejim/",
   },
   {
-  id: 'marketing-mohammed',
-  name: 'Mohammed Hajee',
-  role: 'Marketing Officer',
-  focus: ['Design', 'Social Media', 'Branding'],
-  linkedin: '',
-  avatar: '/assets/officerpics/mohammed.png',
-  committeeId: 'marketing'
+    id: "marketing-mohammed",
+    name: "Mohammed Hajee",
+    role: "Marketing Officer",
+    committee: "Marketing",
+    tier: "officer",
+    photo: "/assets/officerpics/mohammed.png",
   },
   {
-  id: 'marketing-sarah',
-  name: 'Sarah Naifa',
-  role: 'Marketing Officer',
-  focus: ['Design', 'Social Media', 'Branding'],
-  linkedin: 'www.linkedin.com/in/sarah-naifa',
-  avatar: '/assets/officerpics/sarah.png',
-  committeeId: 'marketing'
+    id: "marketing-sarah",
+    name: "Sarah Naifa",
+    role: "Marketing Officer",
+    committee: "Marketing",
+    tier: "officer",
+    photo: "/assets/officerpics/sarah.png",
+    linkedin: "https://www.linkedin.com/in/sarah-naifa",
   },
   {
-  id: 'marketing-hania',
-  name: 'Hania Abbasi',
-  role: 'Marketing Officer',
-  focus: ['Design', 'Social Media', 'Branding'],
-  linkedin: '',
-  avatar: '/assets/officerpics/hania.jpeg',
-  committeeId: 'marketing'
+    id: "marketing-hania",
+    name: "Hania Abbasi",
+    role: "Marketing Officer",
+    committee: "Marketing",
+    tier: "officer",
+    photo: "/assets/officerpics/hania.jpeg",
   },
   {
-  id: 'marketing-thinh',
-  name: 'Thinh Tran',
-  role: 'Marketing Officer',
-  focus: ['Design', 'Social Media', 'Branding'],
-  linkedin: '',
-  avatar: '/assets/officerpics/thinh.jpeg',
-  committeeId: 'marketing'
+    id: "marketing-thinh",
+    name: "Thinh Tran",
+    role: "Marketing Officer",
+    committee: "Marketing",
+    tier: "officer",
+    photo: "/assets/officerpics/thinh.jpeg",
   },
   {
-  id: 'marketing-namira',
-  name: 'Namira Asem',
-  role: 'Marketing Officer',
-  focus: ['Design', 'Social Media', 'Branding'],
-  linkedin: '',
-  avatar: '/assets/officerpics/namira.jpeg',
-  committeeId: 'marketing'
+    id: "marketing-namira",
+    name: "Namira Asem",
+    role: "Marketing Officer",
+    committee: "Marketing",
+    tier: "officer",
+    photo: "/assets/officerpics/namira.jpeg",
   },
 
-  // Educate (Green)
+  // ── Outreach ──────────────────────────────────────────────────────────────
   {
-  id: 'educate-will',
-  name: 'Will Maberry',
-  role: 'Educate Director',
-  focus: ['Teaching', 'Workshops', 'Career Development'],
-  linkedin: 'https://www.linkedin.com/in/will-maberry/',
-  avatar: '/assets/officerpics/will.jpg',
-  committeeId: 'educate',
-  isDirector: true
+    id: "outreach-paul",
+    name: "Paul Santana",
+    role: "Outreach Director",
+    committee: "Outreach",
+    tier: "director",
+    photo: "/assets/officerpics/paul.jpg",
+    linkedin: "https://www.linkedin.com/in/paul-hunter-santana/",
   },
   {
-  id: 'create-zaineel',
-  name: 'Zaineel Mithani',
-  role: 'Educate Director',
-  focus: ['Careers', 'Tech Interviews', 'Networking'],
-  linkedin: '',
-  avatar: '/assets/officerpics/zain.jpeg',
-  committeeId: 'educate',
-  isDirector: true
+    id: "outreach-vincent",
+    name: "Vincent Dang",
+    role: "Outreach Officer",
+    committee: "Outreach",
+    tier: "officer",
+    photo: "/assets/officerpics/vincent.jpg",
+    linkedin: "https://www.linkedin.com/in/vdanguta/",
   },
   {
-  id: 'educate-ishana',
-  name: 'Ishana Khandakar',
-  role: 'Educate Officer',
-  focus: ['Teaching', 'Workshops', 'Career Development'],
-  linkedin: '',
-  avatar: '/assets/officerpics/iggy.jpeg',
-  committeeId: 'educate'
+    id: "outreach-jacob",
+    name: "Jacob Mathew",
+    role: "Outreach Officer",
+    committee: "Outreach",
+    tier: "officer",
+    photo: "/assets/officerpics/jacob.jpg",
+    linkedin: "https://www.linkedin.com/in/jacob-mathew-794987306/",
   },
   {
-  id: 'educate-an',
-  name: 'An Duong',
-  role: 'Educate Officer',
-  focus: ['Teaching', 'Workshops', 'Career Development'],
-  linkedin: 'https://www.linkedin.com/in/real-an-duong',
-  avatar: '/assets/officerpics/an.jpeg',
-  committeeId: 'educate'
+    id: "outreach-evelyn",
+    name: "Evelyn Trevino",
+    role: "Outreach Officer",
+    committee: "Outreach",
+    tier: "officer",
+    photo: "/assets/officerpics/eve.jpeg",
   },
   {
-  id: 'educate-grace',
-  name: 'Grace Whitney',
-  role: 'Educate Officer',
-  focus: ['Teaching', 'Workshops', 'Career Development'],
-  linkedin: 'www.linkedin.com/in/whitney-grace',
-  avatar: '/assets/officerpics/grace.JPG',
-  committeeId: 'educate'
-  },
-
-  // Community (Purple)
-  {
-  id: 'community-yoselin',
-  name: 'Yoselin Ventura',
-  role: 'Community Director',
-  focus: ['Social Events', 'Member Engagement', 'Culture'],
-  linkedin: 'http://linkedin.com/in/yoselin-ventura-a01036334',
-  avatar: '/assets/officerpics/yoselin.jpeg',
-  committeeId: 'community',
-  isDirector: true
+    id: "outreach-mahim",
+    name: "Mahim Kabir",
+    role: "Outreach Officer",
+    committee: "Outreach",
+    tier: "officer",
+    photo: "/assets/officerpics/mahim.JPG",
+    linkedin: "http://linkedin.com/in/tasmim-kabir-mahim",
   },
   {
-  id: 'community-kimiya',
-  name: 'Kimiya Ceballos',
-  role: 'Community Officer',
-  focus: ['Social Events', 'Member Engagement', 'Culture'],
-  linkedin: 'https://www.linkedin.com/in/kimiyaceballos/',
-  avatar: '/assets/officerpics/kimiya.jpeg',
-  committeeId: 'community',
-  isDirector: true
-  },
-  {
-  id: 'community-steven',
-  name: 'Steven Nguyen',
-  role: 'Community Officer',
-  focus: ['Social Events', 'Member Engagement', 'Culture'],
-  linkedin: 'https://www.linkedin.com/in/stevnnguyen/',
-  avatar: '/assets/officerpics/steven.jpg',
-  committeeId: 'community'
-  },
-  {
-  id: 'community-samera',
-  name: 'Samera Wadud',
-  role: 'Community Officer',
-  focus: ['Social Events', 'Member Engagement', 'Culture'],
-  linkedin: '',
-  avatar: '/assets/officerpics/mera.jpeg',
-  committeeId: 'community'
-  },
-  {
-  id: 'community-paul',
-  name: 'Paul Dang',
-  role: 'Community Officer',
-  focus: ['Social Events', 'Member Engagement', 'Culture'],
-  linkedin: 'https://www.linkedin.com/in/paul-dang-260a74290',
-  avatar: '/assets/officerpics/pauld.jpeg',
-  committeeId: 'community'
-  },
-  {
-  id: 'community-christopher',
-  name: 'Christopher Tran',
-  role: 'Community Officer',
-  focus: ['Social Events', 'Member Engagement', 'Culture'],
-  linkedin: 'https://www.linkedin.com/in/christran4209',
-  avatar: '/assets/officerpics/christ.jpg',
-  committeeId: 'community'
+    id: "outreach-peter",
+    name: "Peter Tran",
+    role: "Outreach Officer",
+    committee: "Outreach",
+    tier: "officer",
+    photo: "/assets/officerpics/peter.jpeg",
+    linkedin: "https://www.linkedin.com/in/peter-phi-tran/",
   },
 
-  // HackUTA
+  // ── Community ─────────────────────────────────────────────────────────────
   {
-  id: 'hackuta-dominic',
-  name: 'Dominic Lamana',
-  role: 'HackUTA Exec Director',
-  focus: ['Event Planning', 'Hackathons', 'Logistics'],
-  linkedin: 'https://www.linkedin.com/in/dominic-lamana/',
-  avatar: '/assets/officerpics/dominic.jpg',
-  committeeId: 'hackuta',
-  isDirector: true
+    id: "community-yoselin",
+    name: "Yoselin Ventura",
+    role: "Community Director",
+    committee: "Community",
+    tier: "director",
+    photo: "/assets/officerpics/yoselin.jpeg",
+    linkedin: "http://linkedin.com/in/yoselin-ventura-a01036334",
   },
   {
-  id: 'hackuta-may',
-  name: 'Tanmayee Siddineni',
-  role: 'HackUTA Exec Director',
-  focus: ['Event Planning', 'Hackathons', 'Experience'],
-  linkedin: 'https://www.linkedin.com/in/tanmayee523/',
-  avatar: '/assets/officerpics/may.jpg',
-  committeeId: 'hackuta',
-  isDirector: true
+    id: "community-kimiya",
+    name: "Kimiya Ceballos",
+    role: "Community Officer",
+    committee: "Community",
+    tier: "officer",
+    photo: "/assets/officerpics/kimiya.jpeg",
+    linkedin: "https://www.linkedin.com/in/kimiyaceballos/",
   },
   {
-  id: 'hackuta-oscar',
-  name: 'Oscar Ventura',
-  role: 'HackUTA Officer',
-  focus: ['Event Planning', 'Hackathons', 'Logistics'],
-  linkedin: 'https://www.linkedin.com/in/oscar-ventura-cs',
-  avatar: '/assets/officerpics/oscar.png',
-  committeeId: 'hackuta',
+    id: "community-steven",
+    name: "Steven Nguyen",
+    role: "Community Officer",
+    committee: "Community",
+    tier: "officer",
+    photo: "/assets/officerpics/steven.jpg",
+    linkedin: "https://www.linkedin.com/in/stevnnguyen/",
   },
-    {
-  id: 'hackuta-ved',
-  name: 'Ved Dharmatti',
-  role: 'HackUTA Officer',
-  focus: ['Event Planning', 'Hackathons', 'Experience'],
-  linkedin: 'http://linkedin.com/in/ved-dharmatti',
-  avatar: '/assets/officerpics/ved.jpg',
-  committeeId: 'hackuta',
+  {
+    id: "community-samera",
+    name: "Samera Wadud",
+    role: "Community Officer",
+    committee: "Community",
+    tier: "officer",
+    photo: "/assets/officerpics/mera.jpeg",
+  },
+  {
+    id: "community-paul",
+    name: "Paul Dang",
+    role: "Community Officer",
+    committee: "Community",
+    tier: "officer",
+    photo: "/assets/officerpics/pauld.jpeg",
+    linkedin: "https://www.linkedin.com/in/paul-dang-260a74290",
+  },
+  {
+    id: "community-christopher",
+    name: "Christopher Tran",
+    role: "Community Officer",
+    committee: "Community",
+    tier: "officer",
+    photo: "/assets/officerpics/christ.jpg",
+    linkedin: "https://www.linkedin.com/in/christran4209",
   },
 ];
+
+export const alumniData: Alumni[] = [
+  {
+    id: "alumni-yash",
+    name: "Yash Rao",
+    role: "Student Advisor '24–25",
+    now: "Mentorship & Advising",
+    photo: "/assets/officerpics/yash.jpeg",
+  },
+  {
+    id: "alumni-tobi",
+    name: "Tobi Akere",
+    role: "Create Director '24–25",
+    now: "Software Engineering",
+    photo: "/assets/officerpics/tobi.png",
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Hall of Fame
+// Manually curated list of exceptional past and present ACM officers.
+// To add someone: copy an entry below and fill in their details.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface HallOfFameMember {
+  id: string;
+  name: string;
+  /** Role(s) they are most known for */
+  role: string;
+  /** One-line description of their impact */
+  impact: string;
+  /** Year or year range (e.g. "2024–25") */
+  years: string;
+  photo: string;
+  linkedin?: string;
+}
+
+export const hallOfFameData: HallOfFameMember[] = [
+  {
+    id: "hof-muhammad",
+    name: "Muhammad Khurram",
+    role: "President",
+    impact: "Led ACM at UTA through its largest growth period, rebuilding the organization's leadership structure, launching HackUTA, and scaling membership to 1,700+ students.",
+    years: "2024–25",
+    photo: "/assets/officerpics/muhammad.png",
+    linkedin: "https://www.linkedin.com/in/m-khurram/",
+  },
+  {
+    id: "hof-yash",
+    name: "Yash Rao",
+    role: "Student Advisor",
+    impact: "Instrumental in establishing the mentorship and advising culture at ACM, guiding dozens of officers through their roles and helping build long-term organizational health.",
+    years: "2024–25",
+    photo: "/assets/officerpics/yash.jpeg",
+    linkedin: "https://www.linkedin.com/in/yash-rao-9082bb246",
+  },
+];
+
+// Legacy compat exports - removed when Officers page is rewritten in Stage D/E.
+export const officers = officersData;
+export const alumni = alumniData;

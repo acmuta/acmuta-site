@@ -1,127 +1,112 @@
-import { Link } from 'react-router-dom';
-import { Github, Linkedin, Instagram, Mail, MapPin, ExternalLink } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Arrow } from "@/components/icons";
+import { Reveal } from "@/components/Reveal";
 
-export const Footer = () => {
-  const currentYear = new Date().getFullYear();
+function useTheme() {
+  const [theme, setTheme] = useState(
+    () => document.documentElement.getAttribute("data-theme") || "light"
+  );
+  useEffect(() => {
+    const handler = () =>
+      setTheme(document.documentElement.getAttribute("data-theme") || "light");
+    window.addEventListener("themechange", handler);
+    return () => window.removeEventListener("themechange", handler);
+  }, []);
+  return theme;
+}
 
-  const quickLinks = [
-    { name: 'About Us', path: '/about' },
-    { name: 'Committees', path: '/committees' },
-    { name: 'Officers', path: '/officers' },
-    { name: 'Events', path: '/events' },
-  ];
-
-  const resources = [
-    { name: 'Gallery', path: '/gallery' },
-    { name: 'Contact', path: '/contact' },
-    { name: 'Join ACM', path: 'https://mavengage.uta.edu/submitter/form/start/623436', external: true },
-    { name: 'Mailing List', path: 'https://forms.gle/vvu4T9SKP5LnZtgs6', external: true },
-  ];
-
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com/acmuta', label: 'GitHub' }, 
-    { icon: Linkedin, href: 'https://www.linkedin.com/company/acmuta', label: 'LinkedIn' },
-    { icon: Instagram, href: 'https://www.instagram.com/acmuta', label: 'Instagram' },
-    { icon: Mail, href: 'mailto:acm.uta@gmail.com', label: 'Email' }, 
-  ];
-
+function AcmMark({ size = 26 }: { size?: number }) {
+  const theme = useTheme();
+  const logo = theme === "dark"
+    ? "/assets/logo/acmlogo-white.png"
+    : "/assets/logo/acmlogo-black.png";
   return (
-    <footer className="border-t border-white/10">
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center space-x-3 mb-6">
-              <img
-                src="/assets/logo/acm-logo.png"
-                alt="ACM UTA Logo"
-                className="h-12 w-12 transition-transform duration-300 group-hover:scale-110"
-              />              
-              <div>
-                <div className="text-2xl font-bold text-gradient">ACM UTA</div>
-                <div className="text-sm text-white/60">Association for Computing Machinery</div>
-              </div>
+    <Link to="/" className="acm-mark" aria-label="ACM at UTA home">
+      <img
+        src={logo}
+        alt=""
+        width={size}
+        height={size}
+        style={{ objectFit: "contain" }}
+        aria-hidden="true"
+      />
+      <span className="acm-word">
+        ACM<span style={{ color: "var(--text-faint)" }}>·</span>UTA
+      </span>
+    </Link>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer className="ftr">
+      <div className="wrap">
+        <Reveal className="ftr-cta">
+          <span className="tag mono">
+            <span className="node" />
+            OPEN TO ALL MAJORS · ALL SKILL LEVELS
+          </span>
+          <h2 className="display ftr-head">
+            Come build<br />something.
+          </h2>
+          <div className="ftr-actions">
+            <Link to="/apply" className="btn btn-primary">
+              Join ACM <Arrow />
             </Link>
-            <p className="text-white/70 mb-6 max-w-md">
-              The premier student computing organization at the University of Texas at Arlington, 
-              fostering innovation, education, and community in computer science and technology.
+            <Link to="/events" className="btn btn-ghost">
+              See upcoming events <Arrow />
+            </Link>
+          </div>
+        </Reveal>
+
+        <hr className="hr" style={{ margin: "0" }} />
+
+        <div className="ftr-grid">
+          <div className="ftr-brand">
+            <AcmMark size={26} />
+            <p className="ftr-blurb">
+              A home for students across every major who want to build, learn, and grow in
+              computing. Workshops, projects, research, hackathons, and the people who make it
+              worth showing up.
             </p>
-            <div className="flex items-center space-x-2 text-white/60 mb-4">
-              <MapPin size={16} />
-              <span className="text-sm">University of Texas at Arlington</span>
-            </div>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target={social.href.startsWith('http') ? '_blank' : undefined}
-                  rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="glass-card p-3 hover:bg-white/10 transition-colors group"
-                  aria-label={social.label}
-                >
-                  <social.icon size={20} className="text-white/60 group-hover:text-accent transition-colors" />
-                </a>
-              ))}
-            </div>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-white/70 hover:text-accent transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="ftr-col">
+            <span className="mono ftr-h">Explore</span>
+            <Link to="/committees">Committees</Link>
+            <Link to="/projects">Projects</Link>
+            <Link to="/hackuta">HackUTA</Link>
+            <Link to="/events">Events</Link>
           </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-6">Resources</h3>
-            <ul className="space-y-3">
-              {resources.map((link) => (
-                <li key={link.path}>
-                  {link.external ? (
-                    <a
-                      href={link.path}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white/70 hover:text-accent transition-colors flex items-center space-x-1"
-                    >
-                      <span>{link.name}</span>
-                      <ExternalLink size={14} />
-                    </a>
-                  ) : (
-                    <Link
-                      to={link.path}
-                      className="text-white/70 hover:text-accent transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
+          <div className="ftr-col">
+            <span className="mono ftr-h">Org</span>
+            <Link to="/about">About</Link>
+            <Link to="/officers">Officers</Link>
+            <Link to="/apply">Apply</Link>
+            <Link to="/contact">Contact</Link>
+          </div>
+          <div className="ftr-col">
+            <span className="mono ftr-h">Connect</span>
+            <a href="https://discord.gg/yXggXURBVQ" target="_blank" rel="noreferrer">
+              Discord <Arrow s={12} />
+            </a>
+            <a href="https://instagram.com/acmuta" target="_blank" rel="noreferrer">
+              Instagram <Arrow s={12} />
+            </a>
+            <a href="https://github.com/acmuta" target="_blank" rel="noreferrer">
+              GitHub <Arrow s={12} />
+            </a>
+            <a href="mailto:acm.uta@gmail.com">
+              Email <Arrow s={12} />
+            </a>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-white/60 text-sm mb-4 md:mb-0">
-            © {currentYear} ACM UTA. All rights reserved.
-          </div>
-          <div className="text-white/60 text-sm">
-            Built with ❤️ by the ACM UTA Marketing Committee
-          </div>
+        <div className="ftr-base mono">
+          <span>© {new Date().getFullYear()} ACM AT UTA</span>
+          <span>BUILT BY MEMBERS · OPEN SOURCE</span>
         </div>
       </div>
     </footer>
   );
-};
+}

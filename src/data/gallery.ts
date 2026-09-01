@@ -1,87 +1,89 @@
-export type Album = {
+export interface PhotoAlbum {
   id: string;
-  link: string;
-  title?: string;
-  date?: string;
-  description?: string;
-};
+  title: string;
+  event_id: string | null;
+  /** ISO date string (YYYY-MM-DD) */
+  album_date: string;
+  /** Google Photos album URL */
+  google_photos_url: string;
+}
 
-export const gallery: Album[] = [
+export const albumsData: PhotoAlbum[] = [
   {
-    id: '11',
-    title: 'ACM Create Summit 2025',
-    link: 'https://photos.app.goo.gl/Q5TUdASnEREfX9GKA',
-    date: '2025-12-1',
-    description: 'Showcasing projects made by ACM Create members',
-  },  
-  {
-    id: '10',
-    title: 'Halloween Bash 2025',
-    link: 'https://photos.app.goo.gl/vFJkJPUowWmzQQE9A',
-    date: '2025-10-25',
-    description: 'Halloween Social 2025 with costumes, games, and spooky fun.',
-  }, 
-  {
-    id: '9',
-    title: 'Adobe Workshop',
-    link: 'https://photos.app.goo.gl/HyVrsAG48LAVkwfW6',
-    date: '2025-10-23',
-    description: 'Adobe Creative Cloud workshop covering Adobe Express.',
-  },  
-  {
-    id: '8',
-    title: 'Second General Body Meeting',
-    link: 'https://photos.app.goo.gl/5hyeBUCCCX8G6qy7A',
-    date: '2025-10-15',
-    description: 'A mid-semester gathering for updates, networking, and upcoming events.',
-  },  
-  {
-    id: '7',
-    title: 'Unlocking the power of RPi4b with GPIO Workshop',
-    link: 'https://photos.app.goo.gl/sbvREk6qpKyju3fr7',
-    date: '2025-10-7',
-    description: 'Hands-on Raspberry Pi 4B workshop exploring GPIO basics, sensors, and device control.',
+    id: "a11",
+    title: "ACM Create Summit 2025",
+    event_id: null,
+    album_date: "2025-12-01",
+    google_photos_url: "https://photos.app.goo.gl/Q5TUdASnEREfX9GKA",
   },
   {
-    id: '6',
-    title: 'HackUTA 2025 (Day 2)',
-    link: 'https://photos.app.goo.gl/mooiHHy8ozhLsCr77',
-    date: '2025-10-5',
-    description: 'Day 2 highlights from HackUTA 2025 including final hacking, demos, judging, and awards.',
+    id: "a10",
+    title: "Halloween Bash 2025",
+    event_id: null,
+    album_date: "2025-10-25",
+    google_photos_url: "https://photos.app.goo.gl/vFJkJPUowWmzQQE9A",
   },
   {
-    id: '5',
-    title: 'HackUTA 2025 (Day 1)',
-    link: 'https://photos.app.goo.gl/k8Fo5ALmx1FZxU7F7',
-    date: '2025-10-4',
-    description: 'Kickoff and Day 1 moments from HackUTA 2025 with opening ceremony and team formation.',
+    id: "a9",
+    title: "Adobe Workshop",
+    event_id: null,
+    album_date: "2025-10-23",
+    google_photos_url: "https://photos.app.goo.gl/HyVrsAG48LAVkwfW6",
   },
   {
-    id: '4',
-    title: 'React Full-Stack Workshop',
-    link: 'https://photos.app.goo.gl/wKsy5ziAGmqdw1iH8',
-    date: '2025-10-2',
-    description: 'Building a full‑stack React app with API integration and database basics.',
+    id: "a8",
+    title: "Second General Body Meeting",
+    event_id: null,
+    album_date: "2025-10-15",
+    google_photos_url: "https://photos.app.goo.gl/5hyeBUCCCX8G6qy7A",
   },
   {
-    id: '3',
-    title: 'Performative Male Contest',
-    link: 'https://photos.app.goo.gl/xymD1agSSqyfsrCi8',
-    date: '2025-9-24',
-    description: 'Photos from the Performative Male Contest showcase and performances.',
+    id: "a7",
+    title: "RPi4b GPIO Workshop",
+    event_id: null,
+    album_date: "2025-10-07",
+    google_photos_url: "https://photos.app.goo.gl/sbvREk6qpKyju3fr7",
   },
   {
-    id: '2',
-    title: 'Lockheed Martin Resume Review',
-    link: 'https://photos.app.goo.gl/63VLfk4VDKqmBEXr9',
-    date: '2025-9-15',
-    description: 'Resume review and feedback session with Lockheed Martin engineers and recruiters.',
+    id: "a6",
+    title: "HackUTA 2025 - Day 2",
+    event_id: "p1",
+    album_date: "2025-10-05",
+    google_photos_url: "https://photos.app.goo.gl/mooiHHy8ozhLsCr77",
   },
   {
-    id: '1',
-    title: 'ACM Fall Kickoff 2025',
-    link: 'https://photos.app.goo.gl/zdCVuPWRt4Gn8udx5',
-    date: '2025-9-8',
-    description: 'ACM Fall 2025 kickoff social and info session with members and officers.',
+    id: "a5",
+    title: "HackUTA 2025 - Day 1",
+    event_id: "p1",
+    album_date: "2025-10-04",
+    google_photos_url: "https://photos.app.goo.gl/k8Fo5ALmx1FZxU7F7",
+  },
+  {
+    id: "a4",
+    title: "React Full-Stack Workshop",
+    event_id: null,
+    album_date: "2025-10-02",
+    google_photos_url: "https://photos.app.goo.gl/wKsy5ziAGmqdw1iH8",
+  },
+  {
+    id: "a3",
+    title: "Performative Male Contest",
+    event_id: null,
+    album_date: "2025-09-24",
+    google_photos_url: "https://photos.app.goo.gl/xymD1agSSqyfsrCi8",
+  },
+  {
+    id: "a2",
+    title: "Lockheed Martin Resume Review",
+    event_id: null,
+    album_date: "2025-09-15",
+    google_photos_url: "https://photos.app.goo.gl/63VLfk4VDKqmBEXr9",
+  },
+  {
+    id: "a1",
+    title: "ACM Fall Kickoff 2025",
+    event_id: null,
+    album_date: "2025-09-08",
+    google_photos_url: "https://photos.app.goo.gl/zdCVuPWRt4Gn8udx5",
   },
 ];

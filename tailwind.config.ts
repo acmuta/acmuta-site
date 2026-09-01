@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
-	darkMode: ["class"],
+	darkMode: ["selector", '[data-theme="dark"]'],
 	content: [
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
@@ -12,132 +12,109 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
-			screens: {
-				'2xl': '1400px'
-			}
+			padding: "2rem",
+			screens: { "2xl": "1400px" },
 		},
 		extend: {
 			fontFamily: {
-				'poppins': ['Poppins', 'sans-serif'],
-				'inter': ['Inter', 'sans-serif'],
+				archivo: ["Archivo", "system-ui", "sans-serif"],
+				mono: ["JetBrains Mono", "monospace"],
 			},
 			colors: {
-				border: '#2e3a4b',
-				input: '#1a2332',
-				ring: '#3b82f6',
-				background: '#0a0e1a',
-				foreground: '#ffffff',
-				primary: {
-					DEFAULT: '#1e40af',
-					light: '#3b82f6',
-					foreground: '#ffffff'
-				},
-				secondary: {
-					DEFAULT: '#1e293b',
-					foreground: '#f1f5f9'
-				},
-				destructive: {
-					DEFAULT: '#dc2626',
-					foreground: '#ffffff'
-				},
-				muted: {
-					DEFAULT: '#1e293b',
-					foreground: '#94a3b8'
-				},
-				accent: {
-					DEFAULT: '#3b82f6',
-					foreground: '#ffffff'
+				// Map every prototype token to a CSS variable so both themes work.
+				// Components use e.g. bg-canvas, text-primary, border-line, etc.
+				canvas:       "var(--bg)",
+				surface:      "var(--bg-1)",
+				raised:       "var(--bg-2)",
+				primary:      "var(--text)",
+				dim:          "var(--text-dim)",
+				faint:        "var(--text-faint)",
+				accent:       "var(--accent)",
+				"accent-ink": "var(--accent-ink)",
+				"accent-dim": "var(--accent-dim)",
+				line:         "var(--line)",
+				"line-2":     "var(--line-2)",
+				// shadcn/ui-compatible aliases (keeps any installed shadcn components working)
+				background:   "var(--bg)",
+				foreground:   "var(--text)",
+				border:       "var(--line)",
+				input:        "var(--bg-1)",
+				ring:         "var(--accent)",
+				card: {
+					DEFAULT:    "var(--bg-1)",
+					foreground: "var(--text)",
 				},
 				popover: {
-					DEFAULT: '#1e293b',
-					foreground: '#f1f5f9'
+					DEFAULT:    "var(--bg-1)",
+					foreground: "var(--text)",
 				},
-				card: {
-					DEFAULT: '#1e293b',
-					foreground: '#f1f5f9'
+				secondary: {
+					DEFAULT:    "var(--bg-1)",
+					foreground: "var(--text-dim)",
 				},
-				'bg-dark': '#0a0e1a',
-				'bg-card': '#1e293b',
-			},
-			backgroundImage: {
-				'gradient-primary': 'var(--gradient-primary)',
-				'gradient-accent': 'var(--gradient-accent)',
-				'gradient-dark': 'var(--gradient-dark)',
-			},
-			boxShadow: {
-				'sm': 'var(--shadow-sm)',
-				'md': 'var(--shadow-md)',
-				'xl': 'var(--shadow-xl)',
-				'glow': 'var(--shadow-glow)',
-			},
-			fontSize: {
-				'xs': 'var(--text-xs)',
-				'sm': 'var(--text-sm)',
-				'base': 'var(--text-base)',
-				'lg': 'var(--text-lg)',
-				'xl': 'var(--text-xl)',
-				'2xl': 'var(--text-2xl)',
-				'3xl': 'var(--text-3xl)',
-				'4xl': 'var(--text-4xl)',
-				'5xl': 'var(--text-5xl)',
-				'6xl': 'var(--text-6xl)',
+				muted: {
+					DEFAULT:    "var(--bg-1)",
+					foreground: "var(--text-faint)",
+				},
+				destructive: {
+					DEFAULT:    "hsl(0 84% 60%)",
+					foreground: "hsl(0 0% 98%)",
+				},
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
-			},
-			backdropBlur: {
-				'sm': '4px',
-				'md': '12px',
-				'lg': '16px',
+				lg: "var(--radius)",
+				md: "calc(var(--radius) - 2px)",
+				sm: "calc(var(--radius) - 4px)",
 			},
 			keyframes: {
-				'accordion-down': {
-					from: { height: '0' },
-					to: { height: 'var(--radix-accordion-content-height)' }
+				"accordion-down": {
+					from: { height: "0" },
+					to:   { height: "var(--radix-accordion-content-height)" },
 				},
-				'accordion-up': {
-					from: { height: 'var(--radix-accordion-content-height)' },
-					to: { height: '0' }
+				"accordion-up": {
+					from: { height: "var(--radix-accordion-content-height)" },
+					to:   { height: "0" },
 				},
-				'fade-in': {
-					'0%': { opacity: '0', transform: 'translateY(10px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
+				heroLine: {
+					from: { transform: "translateY(105%)" },
+					to:   { transform: "translateY(0)" },
 				},
-				'slide-up': {
-					'0%': { opacity: '0', transform: 'translateY(40px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' }
+				cue: {
+					"0%":       { transform: "translateY(-100%)" },
+					"60%,100%": { transform: "translateY(300%)" },
 				},
-				'scale-in': {
-					'0%': { opacity: '0', transform: 'scale(0.95)' },
-					'100%': { opacity: '1', transform: 'scale(1)' }
+				marquee: {
+					to: { transform: "translateX(-50%)" },
 				},
-				'pulse-glow': {
-					'0%, 100%': { boxShadow: '0 0 20px hsl(var(--accent) / 0.4)' },
-					'50%': { boxShadow: '0 0 40px hsl(var(--accent) / 0.6)' }
+				routeIn: {
+					from: { transform: "translateY(16px)", opacity: "0" },
+					to:   { transform: "translateY(0)",    opacity: "1" },
 				},
-				'float': {
-					'0%, 100%': { transform: 'translateY(0px)' },
-					'50%': { transform: 'translateY(-10px)' }
-				}
+				pulse: {
+					"0%,100%": { opacity: "0.25", transform: "scale(0.8)" },
+					"50%":     { opacity: "1",    transform: "scale(1)" },
+				},
+				"pulse-glow": {
+					"0%,100%": { boxShadow: "0 0 20px var(--accent-dim)" },
+					"50%":     { boxShadow: "0 0 40px var(--accent-dim)" },
+				},
+				float: {
+					"0%,100%": { transform: "translateY(0px)" },
+					"50%":     { transform: "translateY(-10px)" },
+				},
 			},
 			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.6s ease-out',
-				'slide-up': 'slide-up 0.8s ease-out',
-				'scale-in': 'scale-in 0.3s ease-out',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-				'float': 'float 3s ease-in-out infinite',
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up":   "accordion-up 0.2s ease-out",
+				"hero-line":      "heroLine 1.05s cubic-bezier(.16,1,.3,1) both",
+				cue:              "cue 1.9s cubic-bezier(.7,0,.3,1) infinite",
+				marquee:          "marquee 42s linear infinite",
+				"route-in":       "routeIn 0.55s cubic-bezier(.16,1,.3,1) both",
+				pulse:            "pulse 1.1s ease-in-out infinite",
+				"pulse-glow":     "pulse-glow 2s ease-in-out infinite",
+				float:            "float 3s ease-in-out infinite",
 			},
-			transitionDuration: {
-				'fast': 'var(--transition-fast)',
-				'normal': 'var(--transition-normal)',
-				'slow': 'var(--transition-slow)',
-			}
-		}
+		},
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;

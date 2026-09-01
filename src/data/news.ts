@@ -1,35 +1,53 @@
 export interface NewsItem {
   id: string;
   title: string;
-  cover: string;
-  url: string;
+  /** ISO date string (YYYY-MM-DD) */
   date: string;
-  excerpt?: string;
+  blurb: string;
+  /** Internal path or external URL */
+  link: string;
+  /** Short tag shown in mono above the title */
+  tag: string;
 }
 
-export const news: NewsItem[] = [
+export const newsData: NewsItem[] = [
   {
-    id: '1',
-    title: 'HackUTA 2025',
-    cover: 'assets/events/hackuta2025.jpg',
-    url: '/events',
-    date: '2025-10-4',
-    excerpt: 'Join us for our annual hackathon event, where students collaborate and innovate over 24 hours.'
+    id: "n1",
+    title: "Applications are open for fall dev teams",
+    date: "2026-08-25",
+    blurb:
+      "Create and Research are taking applications. Pick a team, ship something real this semester.",
+    link: "/committees",
+    tag: "Apply",
   },
   {
-    id: '2',
-    title: 'Performative Male Contest',
-    cover: 'assets/events/performative.JPG',
-    url: '/events',
-    date: '2025-09-25',
-    excerpt: 'Love listening to Clairo? Hate period cramps? Come to our Performative Male Contest to win prizes!'
+    id: "n2",
+    title: "HackUTA 2026 dates locked: Oct 18–19",
+    date: "2026-08-20",
+    blurb:
+      "Our flagship hackathon returns to College Park Center. Hacker registration opens soon.",
+    link: "/hackuta",
+    tag: "HackUTA",
   },
   {
-    id: '3',
-    title: 'ACM Fall Kickoff 2025',
-    cover: 'assets/events/fallkickoff2025.JPG',
-    url: '/about',
-    date: '2025-09-09',
-    excerpt: 'HackUTA 2024 was a huge success with over 600 participants, 24 hours of coding, and amazing prizes from our sponsors.'
+    id: "n3",
+    title: "Mentor/mentee matching for fall is live",
+    date: "2026-08-18",
+    blurb:
+      "New to CS? Get paired with someone who's been through it. Sign-ups close the second week.",
+    link: "/educate",
+    tag: "Educate",
+  },
+  {
+    id: "n4",
+    title: "We crossed 1,700 members",
+    date: "2026-08-10",
+    blurb:
+      "ACM at UTA is now one of the largest tech orgs on campus. Thanks for building this with us.",
+    link: "/about",
+    tag: "Org",
   },
 ];
+
+// Legacy compat export - removed when pages are rewritten in Stage D/E.
+export const news = newsData;

@@ -1,257 +1,225 @@
-import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Linkedin, Filter, X } from 'lucide-react';
-import { officers } from '@/data/officers';
-import { committees } from '@/data/committees';
-import { alumni } from '@/data/alumni';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Reveal } from "@/components/Reveal";
+import { Ph } from "@/components/Placeholder";
+import { PageLoading } from "@/components/Loading";
+import { IgIcon, LiIcon, Arrow } from "@/components/icons";
+import {
+  getOfficers,
+  getAlumni,
+  getHallOfFame,
+  type Officer,
+  type Alumni,
+  type HallOfFameMember,
+} from "@/lib/api";
 
-gsap.registerPlugin(ScrollTrigger);
+const COMMITTEE_ORDER = [
+  "Create", "Research", "Educate", "Marketing", "Outreach", "Community",
+];
+
+function OfficerSocials({ o }: { o: Officer }) {
+  if (!o.instagram && !o.linkedin) return null;
+  return (
+    <div className="off-socials">
+      {o.instagram && (
+        <a
+          href={`https://instagram.com/${o.instagram}`}
+          target="_blank"
+          rel="noreferrer"
+          className="off-social"
+          aria-label={`${o.name} on Instagram`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <IgIcon s={15} />
+        </a>
+      )}
+      {o.linkedin && (
+        <a
+          href={o.linkedin.startsWith("http") ? o.linkedin : `https://linkedin.com/in/${o.linkedin}`}
+          target="_blank"
+          rel="noreferrer"
+          className="off-social"
+          aria-label={`${o.name} on LinkedIn`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <LiIcon s={15} />
+        </a>
+      )}
+    </div>
+  );
+}
+
+function OfficerCard({ o }: { o: Officer }) {
+  return (
+    <div className="off-card">
+      <div className="off-photo">
+        <Ph label={o.name} src={o.photo} alt={o.name} />
+      </div>
+      <div className="off-info">
+        <div className="off-name">{o.name}</div>
+        <div className="off-role">{o.role}</div>
+        <OfficerSocials o={o} />
+      </div>
+    </div>
+  );
+}
+
+function HofCard({ m }: { m: HallOfFameMember }) {
+  return (
+    <div className="hof-card">
+      <div className="hof-photo">
+        <Ph label={m.name} src={m.photo} alt={m.name} />
+      </div>
+      <div className="hof-body">
+        <div>
+          <div className="hof-name">{m.name}</div>
+          <div className="hof-role">{m.role}</div>
+          <div className="hof-years mono">{m.years}</div>
+        </div>
+        <p className="hof-impact">{m.impact}</p>
+        {m.linkedin && (
+          <a
+            href={m.linkedin.startsWith("http") ? m.linkedin : `https://linkedin.com/in/${m.linkedin}`}
+            target="_blank"
+            rel="noreferrer"
+            className="hof-linkedin"
+          >
+            <LiIcon s={14} /> LinkedIn <Arrow s={11} />
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
 
 const Officers = () => {
-  const pageRef = useRef<HTMLDivElement>(null);
-  const [filter, setFilter] = useState<string>('all');
+  const [officers, setOfficers] = useState<Officer[] | null>(null);
+  const [alumni, setAlumni] = useState<Alumni[]>([]);
+  const [hallOfFame, setHallOfFame] = useState<HallOfFameMember[]>([]);
 
-  const execOfficers = officers.filter(officer => officer.isExec);
-  const committeeOfficers = officers.filter(officer => !officer.isExec);
+  useEffect(() => {
+    getOfficers().then(setOfficers);
+    getAlumni().then(setAlumni);
+    getHallOfFame().then(setHallOfFame);
+  }, []);
 
-  const filteredOfficers = filter === 'all' 
-    ? [...execOfficers, ...committeeOfficers]
-    : filter === 'exec'
-    ? execOfficers
-    : committeeOfficers.filter(officer => officer.committeeId === filter);
+  if (!officers) return <PageLoading />;
 
-  const filterOptions = [
-    { id: 'all', label: 'All Officers', count: execOfficers.length + committeeOfficers.length },
-    { id: 'exec', label: 'Executive Board', count: execOfficers.length },
-    ...committees.map(committee => ({
-      id: committee.id,
-      label: committee.name,
-      count: committeeOfficers.filter(o => o.committeeId === committee.id).length
-    }))
-  ];
-
-  const sortedAlumni = [...alumni].sort((a, b) => {
-    const aIsPresident = a.role.toLowerCase().includes('president');
-    const bIsPresident = b.role.toLowerCase().includes('president');
-    
-    if (aIsPresident && !bIsPresident) return -1;
-    if (!aIsPresident && bIsPresident) return 1;
-    
-    return b.year.localeCompare(a.year);
-  });
+  const leadership = officers.filter((o) => o.tier === "exec");
+  const byCmt = COMMITTEE_ORDER.map((name) => ({
+    name,
+    people: officers.filter((o) => o.committee === name),
+  })).filter((g) => g.people.length > 0);
 
   return (
-    <div ref={pageRef} className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="officers-hero section-padding">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient mb-8">
-            Our Officers
-          </h1>
-          <p className="text-xl md:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed">
-            Meet the dedicated leaders who drive ACM UTA forward. Our officers are passionate 
-            students committed to serving our community and advancing the field of computing.
-          </p>
+    <div>
+      <section className="page-top">
+        <div className="wrap">
+          <Reveal>
+            <span className="tag mono page-eyebrow">
+              <span className="node" />
+              THE TEAM
+            </span>
+            <h1 className="page-h1">
+              The people
+              <br />
+              who <span className="amp">run it.</span>
+            </h1>
+            <p className="page-intro">
+              50+ officers across leadership and six committees keep ACM moving.
+              Here are some of the people behind it.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* Executive Board - Always Visible */}
-      <section className="section-padding">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
-              Executive Board
-            </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              The executive team provides strategic leadership and governance for ACM UTA.
-            </p>
+      <section className="section" style={{ paddingTop: "clamp(40px,6vw,64px)" }}>
+        <div className="wrap">
+          {/* Leadership */}
+          <div className="cmt-group-h" style={{ marginBottom: 36 }}>
+            <h3>Leadership</h3>
+            <span className="mono gmeta">EXECUTIVE BOARD</span>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto justify-items-center">
-            {execOfficers.map((officer, index) => (
-              <div key={officer.id} className="officer-card group">
-                <div className="relative mb-6">
-                  <div className="aspect-square rounded-2xl overflow-hidden glass-card">
-                    <div 
-                      className="w-full h-full bg-gradient-to-br from-primary to-accent"
-                      style={{
-                        backgroundImage: `url(${officer.avatar})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-black/20" />
-                    </div>
-                  </div>
-                  
-                  {/* LinkedIn overlay */}
-                  <a
-                    href={officer.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute top-4 right-4 glass-card p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white/20"
-                  >
-                    <Linkedin className="h-5 w-5 text-accent" />
-                  </a>
-                </div>
-
-                <div className="text-center">
-                  <h3 className="text-xl font-bold text-white mb-2">{officer.name}</h3>
-                  <div className="text-accent font-medium mb-3">{officer.role}</div>
-                  
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {officer.focus.map((tag, tagIndex) => (
-                      <span 
-                        key={tagIndex}
-                        className="px-3 py-1 bg-white/10 rounded-full text-white/70 text-sm"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+          <Reveal className="off-grid" stagger gap={40}>
+            {leadership.map((o) => (
+              <OfficerCard key={o.id} o={o} />
             ))}
-          </div>
-        </div>
-      </section>
+          </Reveal>
 
-      {/* Filter Section */}
-      <section className="section-padding">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
-              Committee Officers
-            </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto mb-8">
-              Discover the leaders of our specialized committees who organize events, 
-              manage projects, and build our community.
-            </p>
-
-            {/* Filter Controls */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              <div className="flex items-center glass-card p-2 rounded-lg">
-                <Filter className="h-4 w-4 text-accent mr-2" />
-                <span className="text-white/70 text-sm">Filter by:</span>
+          {/* Per-committee */}
+          {byCmt.map((g) => (
+            <div key={g.name} style={{ marginTop: "clamp(56px,8vw,88px)" }}>
+              <div className="cmt-group-h" style={{ marginBottom: 36 }}>
+                <h3>{g.name}</h3>
+                <Link
+                  to={`/${g.name.toLowerCase()}`}
+                  className="mono gmeta"
+                  style={{ color: "var(--text-faint)" }}
+                >
+                  VIEW COMMITTEE →
+                </Link>
               </div>
-              
-              {filterOptions.map((option) => (
-                <button
-                  key={option.id}
-                  onClick={() => setFilter(option.id)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm ${
-                    filter === option.id
-                      ? 'bg-accent text-black'
-                      : 'glass-card text-white hover:bg-white/10'
-                  }`}
-                >
-                  {option.label} {option.count > 0 && `(${option.count})`}
-                </button>
-              ))}
-              
-              {filter !== 'all' && (
-                <button
-                  onClick={() => setFilter('all')}
-                  className="glass-card p-2 text-white hover:bg-white/10 transition-colors"
-                  title="Clear filter"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
+              <Reveal className="off-grid" stagger gap={40}>
+                {g.people.map((o) => (
+                  <OfficerCard key={o.id} o={o} />
+                ))}
+              </Reveal>
             </div>
-          </div>
+          ))}
 
-          {/* Officers Grid */}
-          {filteredOfficers.length > 0 ? (
-            <div className="officers-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto justify-items-center">
-              {filteredOfficers.map((officer, index) => (
-                <div key={officer.id} className="officer-card group">
-                  <div className="relative mb-6">
-                    <div className="aspect-square rounded-2xl overflow-hidden glass-card">
-                      <div 
-                        className="w-full h-full bg-gradient-to-br from-primary to-accent"
-                        style={{
-                          backgroundImage: `url(${officer.avatar})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-black/20" />
-                      </div>
+          {/* Alumni */}
+          {alumni.length > 0 && (
+            <div style={{ marginTop: "clamp(56px,8vw,96px)" }}>
+              <div className="cmt-group-h" style={{ marginBottom: 36 }}>
+                <h3>Alumni</h3>
+                <span className="mono gmeta">WHERE THEY LANDED</span>
+              </div>
+              <Reveal className="off-grid" stagger gap={40}>
+                {alumni.map((a) => (
+                  <div className="off-card" key={a.id}>
+                    <div className="off-photo">
+                      <Ph label={a.name} src={a.photo} alt={a.name} />
                     </div>
-                    
-                    {/* LinkedIn overlay */}
-                    <a
-                      href={officer.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="absolute top-4 right-4 glass-card p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white/20"
-                    >
-                      <Linkedin className="h-5 w-5 text-accent" />
-                    </a>
-                  </div>
-
-                  <div className="text-center">
-                    <h3 className="text-xl font-bold text-white mb-2">{officer.name}</h3>
-                    <div className="text-accent font-medium mb-3">{officer.role}</div>
-                    
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {officer.focus.map((tag, tagIndex) => (
-                        <span 
-                          key={tagIndex}
-                          className="px-3 py-1 bg-white/10 rounded-full text-white/70 text-sm"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                    <div>
+                      <div className="off-name">{a.name}</div>
+                      <div className="off-role">{a.now}</div>
+                      <div className="off-cmt">{a.role}</div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <div className="glass-card p-8 max-w-md mx-auto">
-                <p className="text-white/70 text-lg">
-                  No officers found for the selected filter.
-                </p>
-              </div>
+                ))}
+              </Reveal>
             </div>
           )}
-        </div>
-      </section>
 
-
-      {/* Join Leadership CTA */}
-      <section className="section-padding">
-        <div className="container mx-auto px-6 text-center">
-          <div className="glass-card p-12 max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-gradient mb-6">
-              Interested in Leadership?
-            </h2>
-            <p className="text-xl text-white/80 mb-8">
-              ACM UTA is always looking for passionate students to join our leadership team. 
-              Officer positions become available each semester, and we encourage members 
-              to get involved and make a difference.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <a
-                href="https://mavengage.uta.edu/submitter/form/start/623436"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-lg px-8 py-4"
-              >
-                Become a Member
-              </a>
-              <a
-                href="/contact"
-                className="btn-secondary text-lg px-8 py-4"
-              >
-                Contact Leadership
-              </a>
+          {/* Hall of Fame */}
+          {hallOfFame.length > 0 && (
+            <div className="hof-section">
+              <Reveal>
+                <div className="hof-eyebrow">
+                  <span className="hof-star">★</span>
+                  <span className="tag mono" style={{ display: "inline-flex" }}>
+                    <span className="node" />
+                    ACM HALL OF FAME
+                  </span>
+                </div>
+                <h2
+                  className="sec-title"
+                  style={{ fontSize: "clamp(2rem,5vw,3.5rem)", marginBottom: 8 }}
+                >
+                  Those who shaped <span className="amp">the org.</span>
+                </h2>
+                <p style={{ color: "var(--text-dim)", maxWidth: "52ch", fontSize: "1rem" }}>
+                  A curated recognition of exceptional officers whose contributions left
+                  a lasting mark on ACM at UTA - past and present.
+                </p>
+              </Reveal>
+              <Reveal className="hof-grid" stagger gap={60}>
+                {hallOfFame.map((m) => (
+                  <HofCard key={m.id} m={m} />
+                ))}
+              </Reveal>
             </div>
-          </div>
+          )}
         </div>
       </section>
     </div>
