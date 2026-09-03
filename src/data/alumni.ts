@@ -24,6 +24,27 @@ export const alumniData: Alumni[] = [
     now: "Software Engineering",
     photo: "/assets/officerpics/tobi.png",
   },
+  {
+    id: "alumni-bobby",
+    name: "Bobby Flennoy",
+    role: "President '23–24",
+    now: "UI/UX Design",
+    photo: "/assets/officerpics/bobby.JPG",
+  },
+  {
+    id: "alumni-kevin",
+    name: "Kevin Farokhrouz",
+    role: "Vice President '25–26",
+    now: "Software Engineering",
+    photo: "/assets/officerpics/kevin.png",
+  },
+  {
+    id: "alumni-muhammad",
+    name: "Muhammad Khurram",
+    role: "President '25–26",
+    now: "Software Engineering",
+    photo: "/assets/officerpics/muhammad.png",
+  },
 ];
 
 // Legacy compat export - removed when Officers page is rewritten in Stage D/E.
