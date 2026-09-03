@@ -449,7 +449,7 @@ The site is a static SPA. Build with `npm run build`, then deploy the `dist/` fo
 3. Set output directory: `dist`
 4. Add environment variables (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`)
 
-All routes must be configured to serve `index.html` for client-side routing. Vercel does this automatically. For Netlify, add a `_redirects` file with `/* /index.html 200`.
+All routes must be configured to serve `index.html` for client-side routing. The checked-in `vercel.json` provides this SPA fallback for Vercel. For Netlify, add a `_redirects` file with `/* /index.html 200`.
 
 ---
 
