@@ -247,7 +247,7 @@ const Index = () => {
                 style={{ marginBottom: 16, display: "inline-flex" }}
               >
                 <span className="node" />
-                SIX COMMITTEES
+                COMMITTEES
               </span>
               <h2 className="sec-title">
                 Pick where <span className="amp">you fit.</span>
@@ -345,7 +345,7 @@ const Index = () => {
         <div className="wrap" style={{ marginBottom: 28 }}>
           <span className="tag mono">
             <span className="node" />
-            PROOF OF LIFE · 2025–26
+            PHOTOS · 2025–26
           </span>
         </div>
         <div className="strip-track">
@@ -378,7 +378,7 @@ const Index = () => {
                 style={{ marginBottom: 18, display: "inline-flex" }}
               >
                 <span className="node" />
-                BACKED BY
+                SPONSORS
               </span>
               <h2
                 className="sec-title"

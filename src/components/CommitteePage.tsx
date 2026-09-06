@@ -82,7 +82,7 @@ export function CommitteePage({ slug }: CommitteePageProps) {
   );
   const kindLabel =
     committee.kind === "application"
-      ? "BY APPLICATION"
+      ? "APPLICATION REQUIRED"
       : committee.kind === "program"
       ? "OPEN TO ALL"
       : "STAFF COMMITTEE";

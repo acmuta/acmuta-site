@@ -302,7 +302,7 @@ const Events = () => {
           <Reveal>
             <span className="tag mono page-eyebrow">
               <span className="node" />
-              WHAT'S ON
+              EVENT LINEUP
             </span>
             <h1 className="page-h1">
               Show <span className="amp">up.</span>

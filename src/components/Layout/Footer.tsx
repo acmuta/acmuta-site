@@ -104,7 +104,7 @@ export function Footer() {
 
         <div className="ftr-base mono">
           <span>© {new Date().getFullYear()} ACM AT UTA</span>
-          <span>BUILT BY MEMBERS · OPEN SOURCE</span>
+          <span>BUILT BY MEMBERS, WITH LOVE · OPEN SOURCE</span>
         </div>
       </div>
     </footer>

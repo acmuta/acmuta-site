@@ -23,7 +23,7 @@ const Gallery = () => {
               THE GALLERY
             </span>
             <h1 className="page-h1">
-              Proof of <span className="amp">life.</span>
+              Look <span className="amp">back.</span>
             </h1>
             <p className="page-intro">
               Every event, photographed. Click an album to open the full set on

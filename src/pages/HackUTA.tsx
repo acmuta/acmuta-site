@@ -37,7 +37,7 @@ function HackUTAEnabled({ cfg }: { cfg: HackUTAConfig }) {
           <Reveal>
             <span className="tag mono" style={{ marginBottom: 22, display: "inline-flex" }}>
               <span className="node" />
-              ACM'S FLAGSHIP HACKATHON
+              ACM'S FLAGSHIP EVENT
             </span>
             <h1 className="hk-title display">
               Hack<span className="yr">UTA</span>
@@ -158,7 +158,7 @@ function HackUTADisabled() {
           <Reveal>
             <span className="tag mono" style={{ marginBottom: 22, display: "inline-flex" }}>
               <span className="node" />
-              ACM'S FLAGSHIP HACKATHON
+              ACM'S FLAGSHIP EVENT
             </span>
             <h1 className="hk-title display">
               Hack<span className="yr">UTA</span>

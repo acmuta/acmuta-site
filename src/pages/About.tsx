@@ -23,7 +23,7 @@ const About = () => {
           <Reveal>
             <span className="tag mono page-eyebrow">
               <span className="node" />
-              ABOUT · EST. ON CAMPUS
+              ABOUT · EST. 1961 ON CAMPUS
             </span>
             <h1 className="page-h1">
               We're ACM
@@ -84,7 +84,7 @@ const About = () => {
             <div className="ab-text">
               <span className="tag mono ab-kicker">
                 <span className="node" />
-                WHAT WE ACTUALLY DO
+                EVENT LINEUP
               </span>
               <h2 className="ab-h">
                 140+ events
@@ -112,7 +112,7 @@ const About = () => {
             <div className="ab-text">
               <span className="tag mono ab-kicker">
                 <span className="node" />
-                HOW WE'RE ORGANIZED
+                COMMITTEES
               </span>
               <h2 className="ab-h">
                 Six committees,
