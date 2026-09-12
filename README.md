@@ -189,7 +189,7 @@ Add a new officer to the `officersData` array:
   role: "Create Officer",
   committee: "Create",         // must match exactly: Create, Research, Educate, Marketing, Outreach, Community, or Leadership
   tier: "officer",             // "exec" | "director" | "officer"
-  photo: "/assets/officerpics/jane.jpg",   // place photo in public/assets/officerpics/
+  photo: "/assets/officerpics/jane",       // base name of the photo, no extension (see Photos below)
   linkedin: "https://linkedin.com/in/jane-doe",   // optional
   instagram: "janedoe",        // optional, handle without @
 }
@@ -202,7 +202,7 @@ Add a new officer to the `officersData` array:
 
 **To remove an officer:** delete their entry from the array.
 
-**Photos:** Place in `public/assets/officerpics/`. Supported formats: `.jpg`, `.jpeg`, `.png`, `.webp`. Recommended size: 400×500px (4:5 ratio).
+**Photos:** Drop the original (`.jpg`, `.jpeg`, `.png`, `.webp`) in `image-src/officerpics/` and reference it as `photo: "/assets/officerpics/<name>"` (lowercase file name, no extension). The 300px and 600px WebP variants in `public/assets/officerpics/` are generated automatically by `npm run dev` (including while it is running) and `npm run build`, and are not committed. To regenerate by hand: `npm run img:officers`. The build fails if a referenced photo has no variants or an image in that folder is oversized.
 
 ---
 
