@@ -12,6 +12,7 @@ The complete website and member portal for ACM at UT Arlington. Built in Vite + 
 4. [Project structure](#project-structure)
 5. [How to update content](#how-to-update-content)
    - [Officers](#officers)
+   - [Officer photos](#officer-photos)
    - [Hall of Fame](#hall-of-fame)
    - [Projects (Create & Research)](#projects-create--research)
    - [Committees](#committees)
@@ -119,12 +120,14 @@ cp .env.example .env
 npm run dev
 ```
 
-Visit `http://localhost:8080`.
+Visit `http://localhost:8080`. The first start also generates the officer photo variants (about 20 s); later starts only rebuild photos that changed. See [Officer photos](#officer-photos).
 
 To build for production:
 ```bash
 npm run build
 ```
+
+The build regenerates photo variants and runs `npm run check:assets`, which fails on oversized images or a photo reference with no generated files.
 
 ---
 
@@ -144,9 +147,11 @@ src/
 │   ├── CommitteePage.tsx    # Shared committee detail template
 │   ├── Reveal.tsx           # Intersection-observer fade-in
 │   ├── Placeholder.tsx      # <Ph> image with graceful fallback
+│   ├── OfficerPhoto.tsx     # Officer photo with srcset from generated variants
 │   └── ...
 ├── data/                    # Static data files (content lives here)
-│   ├── officers.ts          # Officer list + Alumni + Hall of Fame
+│   ├── officers.ts          # Officer list + Hall of Fame
+│   ├── alumni.ts            # Alumni list
 │   ├── projects.ts          # Create & Research projects
 │   ├── committees.ts        # Committee definitions (fallback if Supabase fails)
 │   ├── events.ts            # Event fallback data (not shown if Supabase has none)
@@ -170,6 +175,11 @@ src/
 supabase/
 ├── migrations/              # Run these in order when setting up a new DB
 └── seed.sql                 # Initial data (application templates, etc.)
+image-src/
+└── officerpics/             # Original officer photos (source of truth, any size)
+scripts/
+├── officer-photos.mjs       # Generates public/assets/officerpics/*.webp from image-src/
+└── check-assets.mjs         # Build guard: oversized images or missing photo variants
 ```
 
 ---
@@ -189,7 +199,7 @@ Add a new officer to the `officersData` array:
   role: "Create Officer",
   committee: "Create",         // must match exactly: Create, Research, Educate, Marketing, Outreach, Community, or Leadership
   tier: "officer",             // "exec" | "director" | "officer"
-  photo: "/assets/officerpics/jane",       // base name of the photo, no extension (see Photos below)
+  photo: "/assets/officerpics/jane",       // base name of the photo, no extension (see Officer photos)
   linkedin: "https://linkedin.com/in/jane-doe",   // optional
   instagram: "janedoe",        // optional, handle without @
 }
@@ -202,7 +212,35 @@ Add a new officer to the `officersData` array:
 
 **To remove an officer:** delete their entry from the array.
 
-**Photos:** Drop the original (`.jpg`, `.jpeg`, `.png`, `.webp`) in `image-src/officerpics/` and reference it as `photo: "/assets/officerpics/<name>"` (lowercase file name, no extension). The 300px and 600px WebP variants in `public/assets/officerpics/` are generated automatically by `npm run dev` (including while it is running) and `npm run build`, and are not committed. To regenerate by hand: `npm run img:officers`. The build fails if a referenced photo has no variants or an image in that folder is oversized.
+**Photos:** see [Officer photos](#officer-photos) below.
+
+---
+
+### Officer photos
+
+Officer, alumni, and Hall of Fame photos share one pipeline. Originals live in `image-src/officerpics/`; the site serves small WebP variants generated from them.
+
+**To add a photo:**
+
+1. Drop the original in `image-src/officerpics/`, e.g. `jane.jpg`. Any size or orientation; `.jpg`, `.jpeg`, `.png`, and `.webp` are accepted. The file name, lowercased and without extension, becomes the photo's id, so keep it unique and free of spaces.
+2. Reference it from the data file by base name, without extension:
+
+   ```ts
+   photo: "/assets/officerpics/jane",
+   ```
+
+   Officers and Hall of Fame: [src/data/officers.ts](src/data/officers.ts). Alumni: [src/data/alumni.ts](src/data/alumni.ts).
+3. Commit the original and the data change. Do **not** commit `public/assets/officerpics/`; it is gitignored and rebuilt on every build.
+
+**What happens automatically:** `scripts/officer-photos.mjs` crops each original to 4:5 (face-aware) and writes `public/assets/officerpics/<name>-300.webp` and `<name>-600.webp`. It runs:
+
+- before `npm run dev` and `npm run build` (only missing or stale variants are rebuilt; a cold run of every photo takes about 20 s)
+- while the dev server is running, about a second after a file in `image-src/officerpics/` is added, changed, or removed
+- by hand with `npm run img:officers`
+
+**To replace a photo:** overwrite the file in `image-src/officerpics/`. **To remove one:** delete it there and its variants are cleaned up; then remove or update any data entry that pointed to it.
+
+**Build guard:** `npm run build` runs `scripts/check-assets.mjs` first and fails if a `photo:` entry has no generated variants, or if anything in `public/assets/officerpics/` is over 200 KB or 1200 px. The error names the offending file.
 
 ---
 
@@ -219,7 +257,7 @@ Add a new inductee:
   role: "Role they're known for",
   impact: "One or two sentences about their contribution.",
   years: "2024–25",
-  photo: "/assets/officerpics/photo.jpg",
+  photo: "/assets/officerpics/firstname",   // see Officer photos
   linkedin: "https://linkedin.com/in/...",   // optional
 }
 ```
@@ -445,7 +483,7 @@ The site is a static SPA. Build with `npm run build`, then deploy the `dist/` fo
 
 **Vercel (recommended):**
 1. Connect your GitHub repo
-2. Set build command: `npm run build`
+2. Build command: `npm run build` (already pinned in `vercel.json`; keep it, since the build generates the officer photo variants, which are not committed)
 3. Set output directory: `dist`
 4. Add environment variables (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`)
 
