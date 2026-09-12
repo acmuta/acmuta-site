@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
 import { CommitteeLogo } from "@/components/CommitteeLogo";
 import { ProjectCard } from "@/components/ProjectCard";
-import { Ph } from "@/components/Placeholder";
+import { OfficerPhoto } from "@/components/OfficerPhoto";
 import { PageLoading } from "@/components/Loading";
 import { Arrow, IgIcon, LiIcon } from "@/components/icons";
 import { getCommittee, getProjects, getOfficers, type Committee, type Project, type Officer } from "@/lib/api";
+import { Snowflake } from "lucide-react";
 
 interface CommitteePageProps {
   slug: string;
@@ -16,7 +17,7 @@ function DirectorCard({ o }: { o: Officer }) {
   return (
     <div className="off-card">
       <div className="off-photo">
-        <Ph label={o.name} src={o.photo} alt={o.name} />
+        <OfficerPhoto src={o.photo} alt={o.name} sizes="180px" />
       </div>
       <div className="off-info">
         <div className="off-name">{o.name}</div>
