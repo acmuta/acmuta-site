@@ -10,7 +10,7 @@ const GROUPS = [
   {
     key: "application" as const,
     title: "Build teams",
-    meta: "BY APPLICATION",
+    meta: "APPLICATION REQUIRED",
     note: "Small teams you apply to join. You ship real work over the semester.",
   },
   {
