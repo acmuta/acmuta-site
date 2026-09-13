@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
-import { Ph } from "@/components/Placeholder";
+import { OfficerPhoto } from "@/components/OfficerPhoto";
 import { PageLoading } from "@/components/Loading";
 import { IgIcon, LiIcon, Arrow } from "@/components/icons";
 import {
@@ -12,6 +12,9 @@ import {
   type Alumni,
   type HallOfFameMember,
 } from "@/lib/api";
+
+/** Matches .hof-grid: 1 / 2 / 3 columns inside the 1320px wrap */
+const HOF_SIZES = "(min-width: 1320px) 410px, (min-width: 1040px) 33vw, (min-width: 640px) 50vw, 100vw";
 
 const COMMITTEE_ORDER = [
   "Create", "Research", "Educate", "Marketing", "Outreach", "Community",
@@ -49,11 +52,11 @@ function OfficerSocials({ o }: { o: Officer }) {
   );
 }
 
-function OfficerCard({ o }: { o: Officer }) {
+function OfficerCard({ o, priority }: { o: Officer; priority?: boolean }) {
   return (
     <div className="off-card">
       <div className="off-photo">
-        <Ph label={o.name} src={o.photo} alt={o.name} />
+        <OfficerPhoto src={o.photo} alt={o.name} priority={priority} />
       </div>
       <div className="off-info">
         <div className="off-name">{o.name}</div>
@@ -68,7 +71,7 @@ function HofCard({ m }: { m: HallOfFameMember }) {
   return (
     <div className="hof-card">
       <div className="hof-photo">
-        <Ph label={m.name} src={m.photo} alt={m.name} />
+        <OfficerPhoto src={m.photo} alt={m.name} sizes={HOF_SIZES} />
       </div>
       <div className="hof-body">
         <div>
@@ -141,8 +144,8 @@ const Officers = () => {
             <span className="mono gmeta">EXECUTIVE BOARD</span>
           </div>
           <Reveal className="off-grid" stagger gap={40}>
-            {leadership.map((o) => (
-              <OfficerCard key={o.id} o={o} />
+            {leadership.map((o, i) => (
+              <OfficerCard key={o.id} o={o} priority={i < 4} />
             ))}
           </Reveal>
 
@@ -178,7 +181,7 @@ const Officers = () => {
                 {alumni.map((a) => (
                   <div className="off-card" key={a.id}>
                     <div className="off-photo">
-                      <Ph label={a.name} src={a.photo} alt={a.name} />
+                      <OfficerPhoto src={a.photo} alt={a.name} />
                     </div>
                     <div>
                       <div className="off-name">{a.name}</div>

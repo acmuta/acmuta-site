@@ -7,7 +7,7 @@ export interface Officer {
   /** Committee name (matches Committee.name), or "Leadership" for exec */
   committee: string;
   tier: OfficerTier;
-  /** Photo URL; empty string = use placeholder */
+  /** Photo base path without extension, e.g. "/assets/officerpics/jane" (see scripts/officer-photos.mjs); empty string = use placeholder */
   photo: string;
   /** Instagram handle (no @) - optional */
   instagram?: string;
@@ -23,7 +23,7 @@ export const officersData: Officer[] = [
     role: "President",
     committee: "Leadership",
     tier: "exec",
-    photo: "/assets/officerpics/ghiya.jpeg",
+    photo: "/assets/officerpics/ghiya",
     linkedin: "https://www.linkedin.com/in/ghiya-el-daouk/",
   },
   {
@@ -32,7 +32,7 @@ export const officersData: Officer[] = [
     role: "Vice President - Internal",
     committee: "Leadership",
     tier: "exec",
-    photo: "/assets/officerpics/adam.jpg",
+    photo: "/assets/officerpics/adam",
     linkedin: "https://www.linkedin.com/in/adam-heatley-5a2008215/",
   },
   {
@@ -41,7 +41,7 @@ export const officersData: Officer[] = [
     role: "Vice President - External",
     committee: "Leadership",
     tier: "exec",
-    photo: "/assets/officerpics/salima.jpeg",
+    photo: "/assets/officerpics/salima",
     linkedin: "https://www.linkedin.com/in/salima-salman/",
   },
   {
@@ -50,7 +50,7 @@ export const officersData: Officer[] = [
     role: "Secretary",
     committee: "Leadership",
     tier: "exec",
-    photo: "/assets/officerpics/brian.jpg",
+    photo: "/assets/officerpics/brian",
     linkedin: "https://www.linkedin.com/in/brian-shamayev/",
   },
   {
@@ -59,7 +59,7 @@ export const officersData: Officer[] = [
     role: "Treasurer",
     committee: "Leadership",
     tier: "exec",
-    photo: "/assets/officerpics/rohita.jpg",
+    photo: "/assets/officerpics/rohita",
     linkedin: "https://www.linkedin.com/in/rohita-k/",
   },
   {
@@ -68,7 +68,7 @@ export const officersData: Officer[] = [
     role: "Student Advisor",
     committee: "Leadership",
     tier: "exec",
-    photo: "/assets/officerpics/ali.png",
+    photo: "/assets/officerpics/ali",
     linkedin: "https://www.linkedin.com/in/ali-jifi-bahlool/",
   },
 
@@ -79,7 +79,7 @@ export const officersData: Officer[] = [
     role: "Create Director",
     committee: "Create",
     tier: "director",
-    photo: "/assets/officerpics/prajit.jpg",
+    photo: "/assets/officerpics/prajit",
     linkedin: "https://www.linkedin.com/in/prajit-viswanadha/",
   },
   {
@@ -88,7 +88,7 @@ export const officersData: Officer[] = [
     role: "Create Director",
     committee: "Create",
     tier: "director",
-    photo: "/assets/officerpics/bryan.jpg",
+    photo: "/assets/officerpics/bryan",
     linkedin: "https://www.linkedin.com/in/bryan-m-nguyen/",
   },
   {
@@ -97,7 +97,7 @@ export const officersData: Officer[] = [
     role: "Project Manager",
     committee: "Create",
     tier: "officer",
-    photo: "/assets/officerpics/wendolee.jpeg",
+    photo: "/assets/officerpics/wendolee",
   },
 
   // ── Research ──────────────────────────────────────────────────────────────
@@ -107,7 +107,7 @@ export const officersData: Officer[] = [
     role: "Research Director",
     committee: "Research",
     tier: "director",
-    photo: "/assets/officerpics/rohita.jpg",
+    photo: "/assets/officerpics/rohita",
     linkedin: "https://www.linkedin.com/in/rohita-k/",
   },
   {
@@ -116,7 +116,7 @@ export const officersData: Officer[] = [
     role: "Research Officer",
     committee: "Research",
     tier: "officer",
-    photo: "/assets/officerpics/vamshi.png",
+    photo: "/assets/officerpics/vamshi",
   },
 
   // ── Educate ───────────────────────────────────────────────────────────────
@@ -126,7 +126,7 @@ export const officersData: Officer[] = [
     role: "Educate Director",
     committee: "Educate",
     tier: "director",
-    photo: "/assets/officerpics/will.jpg",
+    photo: "/assets/officerpics/will",
     linkedin: "https://www.linkedin.com/in/will-maberry/",
   },
   {
@@ -135,7 +135,7 @@ export const officersData: Officer[] = [
     role: "Educate Director",
     committee: "Educate",
     tier: "director",
-    photo: "/assets/officerpics/zain.jpeg",
+    photo: "/assets/officerpics/zain",
   },
   {
     id: "educate-ishana",
@@ -143,7 +143,7 @@ export const officersData: Officer[] = [
     role: "Educate Officer",
     committee: "Educate",
     tier: "officer",
-    photo: "/assets/officerpics/iggy.jpeg",
+    photo: "/assets/officerpics/iggy",
   },
 
   // ── Marketing ─────────────────────────────────────────────────────────────
@@ -153,7 +153,7 @@ export const officersData: Officer[] = [
     role: "Marketing Director",
     committee: "Marketing",
     tier: "director",
-    photo: "/assets/officerpics/salima.jpeg",
+    photo: "/assets/officerpics/salima",
   },
   {
     id: "marketing-nnanna",
@@ -161,7 +161,7 @@ export const officersData: Officer[] = [
     role: "Marketing Officer",
     committee: "Marketing",
     tier: "officer",
-    photo: "/assets/officerpics/nnanna.png",
+    photo: "/assets/officerpics/nnanna",
     linkedin: "https://www.linkedin.com/in/nnanna-ejim/",
   },
   {
@@ -170,7 +170,7 @@ export const officersData: Officer[] = [
     role: "Marketing Officer",
     committee: "Marketing",
     tier: "officer",
-    photo: "/assets/officerpics/mohammed.png",
+    photo: "/assets/officerpics/mohammed",
   },
   {
     id: "marketing-hania",
@@ -178,7 +178,7 @@ export const officersData: Officer[] = [
     role: "Marketing Officer",
     committee: "Marketing",
     tier: "officer",
-    photo: "/assets/officerpics/hania.jpeg",
+    photo: "/assets/officerpics/hania",
   },
   {
     id: "marketing-namira",
@@ -186,7 +186,7 @@ export const officersData: Officer[] = [
     role: "Marketing Officer",
     committee: "Marketing",
     tier: "officer",
-    photo: "/assets/officerpics/namira.jpeg",
+    photo: "/assets/officerpics/namira",
   },
 
   // ── Outreach ──────────────────────────────────────────────────────────────
@@ -196,7 +196,7 @@ export const officersData: Officer[] = [
     role: "Outreach Director",
     committee: "Outreach",
     tier: "director",
-    photo: "/assets/officerpics/paul.jpg",
+    photo: "/assets/officerpics/paul",
     linkedin: "https://www.linkedin.com/in/paul-hunter-santana/",
   },
   {
@@ -205,7 +205,7 @@ export const officersData: Officer[] = [
     role: "Outreach Officer",
     committee: "Outreach",
     tier: "officer",
-    photo: "/assets/officerpics/vincent.jpg",
+    photo: "/assets/officerpics/vincent",
     linkedin: "https://www.linkedin.com/in/vdanguta/",
   },
   {
@@ -214,7 +214,7 @@ export const officersData: Officer[] = [
     role: "Outreach Officer",
     committee: "Outreach",
     tier: "officer",
-    photo: "/assets/officerpics/eve.jpeg",
+    photo: "/assets/officerpics/eve",
   },
   {
     id: "outreach-peter",
@@ -222,7 +222,7 @@ export const officersData: Officer[] = [
     role: "Outreach Officer",
     committee: "Outreach",
     tier: "officer",
-    photo: "/assets/officerpics/peter.jpeg",
+    photo: "/assets/officerpics/peter",
     linkedin: "https://www.linkedin.com/in/peter-phi-tran/",
   },
 
@@ -233,7 +233,7 @@ export const officersData: Officer[] = [
     role: "Community Director",
     committee: "Community",
     tier: "director",
-    photo: "/assets/officerpics/yoselin.jpeg",
+    photo: "/assets/officerpics/yoselin",
     linkedin: "http://linkedin.com/in/yoselin-ventura-a01036334",
   },
   {
@@ -242,7 +242,7 @@ export const officersData: Officer[] = [
     role: "Community Officer",
     committee: "Community",
     tier: "officer",
-    photo: "/assets/officerpics/mera.jpeg",
+    photo: "/assets/officerpics/mera",
   },
   {
     id: "community-paul",
@@ -250,7 +250,7 @@ export const officersData: Officer[] = [
     role: "Community Officer",
     committee: "Community",
     tier: "officer",
-    photo: "/assets/officerpics/pauld.jpeg",
+    photo: "/assets/officerpics/pauld",
     linkedin: "https://www.linkedin.com/in/paul-dang-260a74290",
   },
   {
@@ -259,7 +259,7 @@ export const officersData: Officer[] = [
     role: "Community Officer",
     committee: "Community",
     tier: "officer",
-    photo: "/assets/officerpics/christ.jpg",
+    photo: "/assets/officerpics/christ",
     linkedin: "https://www.linkedin.com/in/christran4209",
   },
 ];
@@ -290,7 +290,7 @@ export const hallOfFameData: HallOfFameMember[] = [
     role: "President",
     impact: "Led ACM at UTA through its largest growth period, rebuilding the organization's leadership structure, launching HackUTA, and scaling membership to 1,700+ students.",
     years: "2024–25",
-    photo: "/assets/officerpics/muhammad.png",
+    photo: "/assets/officerpics/muhammad",
     linkedin: "https://www.linkedin.com/in/m-khurram/",
   },
   {
@@ -299,7 +299,7 @@ export const hallOfFameData: HallOfFameMember[] = [
     role: "Student Advisor",
     impact: "Instrumental in establishing the mentorship and advising culture at ACM, guiding dozens of officers through their roles and helping build long-term organizational health.",
     years: "2024–25",
-    photo: "/assets/officerpics/yash.jpeg",
+    photo: "/assets/officerpics/yash",
     linkedin: "https://www.linkedin.com/in/yash-rao-9082bb246",
   },
 ];
