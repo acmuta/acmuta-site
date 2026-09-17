@@ -27,7 +27,6 @@ import { statsData,      type Stat }        from "@/data/stats";
 import { hackutaConfig, type HackUTAConfig } from "@/data/hackuta";
 import { supabase } from "./supabase";
 import { downloadBlob } from "./download";
-import JSZip from "jszip";
 
 // Re-export types so consumers import from one place.
 export type { Committee, Project, EventItem, PhotoAlbum, Officer, Alumni, HallOfFameMember, NewsItem, Sponsor, Stat, HackUTAConfig };
@@ -895,7 +894,7 @@ export async function updateApplicationReview(
   if (update.reviewer_notes !== undefined) payload.reviewer_notes = update.reviewer_notes;
   const { error } = await supabase.from("applications").update(payload).eq("id", applicationId);
   if (error) throw new Error(error.message);
-  await logAuditEvent("application.review", "application", applicationId, update);
+  await logAuditEvent("application.review", "application", applicationId, { ...update });
 }
 
 // One column per question label, plus applicant/status/submitted columns.
@@ -930,6 +929,7 @@ function csvEscape(value: string): string {
 
 // Bundles every submitted resume into a zip for offline review.
 export async function exportFormResumesZip(submissions: AdminApplicationSubmission[]): Promise<Blob> {
+  const { default: JSZip } = await import("jszip");
   const zip = new JSZip();
   for (const s of submissions) {
     if (!s.resume_path) continue;

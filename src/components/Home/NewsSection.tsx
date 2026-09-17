@@ -93,14 +93,7 @@ export const NewsSection = () => {
         <div className="news-carousel grid grid-cols-1 sm:grid-cols-3 gap-8">
           {currentNews.map((item) => (
             <article key={item.id} className="glass-card overflow-hidden">
-              <div
-                className="aspect-[16/10] bg-gradient-to-br from-primary to-accent relative"
-                style={{
-                  backgroundImage: `url(${item.cover})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
+              <div className="aspect-[16/10] bg-gradient-to-br from-primary to-accent relative">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               </div>
 
@@ -118,9 +111,9 @@ export const NewsSection = () => {
                   {item.title}
                 </h3>
 
-                {item.excerpt && (
+                {item.blurb && (
                   <p className="text-white/70 text-sm line-clamp-3">
-                    {item.excerpt}
+                    {item.blurb}
                   </p>
                 )}
               </div>

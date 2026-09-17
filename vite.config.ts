@@ -32,6 +32,19 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [react(), officerPhotos()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return;
+          if (id.includes("/@supabase/")) return "supabase";
+          if (/\/(react|react-dom|react-router|react-router-dom|scheduler|@tanstack\/react-query)\//.test(id)) return "react";
+          if (id.includes("/@radix-ui/") || id.includes("/lucide-react/") || id.includes("/sonner/")) return "ui";
+          if (id.includes("/jszip/")) return "exports";
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

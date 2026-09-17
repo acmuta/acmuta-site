@@ -11,7 +11,9 @@ export function ThemeToggle() {
     setTheme(next);
     try {
       localStorage.setItem("acm-theme", next);
-    } catch (_) {}
+    } catch (error) {
+      void error;
+    }
     window.dispatchEvent(new Event("themechange"));
   };
 

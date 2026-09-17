@@ -34,10 +34,8 @@ export function NodeField({ density = 1, className, style }: NodeFieldProps) {
     };
 
     const readColors = () => {
-      try {
-        cText = hexToRgb(css("--text"));
-        cAccent = hexToRgb(css("--accent"));
-      } catch (_) {}
+      cText = hexToRgb(css("--text"));
+      cAccent = hexToRgb(css("--accent"));
     };
 
     function resize() {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/auth";
 import { updateProfile } from "@/lib/api";
@@ -31,26 +31,23 @@ export default function Onboarding() {
   const [instagram, setInstagram] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const prefilledProfileId = useRef<string | null>(null);
 
   // Pre-fill once the profile loads (async after auth callback)
   useEffect(() => {
-    if (profile) {
-      if (!name) setName(profile.full_name || "");
-      if (!majorChoice) {
-        const { choice, other } = splitMajor(profile.major);
-        setMajorChoice(choice);
-        setMajorOther(other);
-      }
-      if (!classification) setClassification(profile.classification || "");
-      if (!pronounsChoice) {
-        const { choice, other } = splitPronouns(profile.pronouns);
-        setPronounsChoice(choice);
-        setPronounsOther(other);
-      }
-      if (!gradYear) setGradYear(profile.grad_year || "");
-      setDiscord(profile.discord_joined);
-      setInstagram(profile.instagram_joined);
-    }
+    if (!profile || prefilledProfileId.current === profile.id) return;
+    prefilledProfileId.current = profile.id;
+    const major = splitMajor(profile.major);
+    const pronouns = splitPronouns(profile.pronouns);
+    setName(profile.full_name || "");
+    setMajorChoice(major.choice);
+    setMajorOther(major.other);
+    setClassification(profile.classification || "");
+    setPronounsChoice(pronouns.choice);
+    setPronounsOther(pronouns.other);
+    setGradYear(profile.grad_year || "");
+    setDiscord(profile.discord_joined);
+    setInstagram(profile.instagram_joined);
   }, [profile]);
 
   // If already onboarded, redirect home

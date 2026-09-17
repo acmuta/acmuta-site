@@ -50,14 +50,14 @@ export const SponsorsSection = () => {
 
   const tabs = [
     { id: 'all', label: 'All', count: sponsors.length },
-    { id: 'platinum', label: 'Platinum', count: sponsors.filter(s => s.tier === 'platinum').length },
-    { id: 'gold', label: 'Gold', count: sponsors.filter(s => s.tier === 'gold').length },
-    { id: 'silver', label: 'Silver', count: sponsors.filter(s => s.tier === 'silver').length },
+    { id: 'platinum', label: 'Platinum', count: sponsors.filter(s => s.tier.toLowerCase() === 'platinum').length },
+    { id: 'gold', label: 'Gold', count: sponsors.filter(s => s.tier.toLowerCase() === 'gold').length },
+    { id: 'silver', label: 'Silver', count: sponsors.filter(s => s.tier.toLowerCase() === 'silver').length },
   ] as const;
 
-  const filteredSponsors = activeTab === 'all' 
-    ? sponsors 
-    : sponsors.filter(sponsor => sponsor.tier === activeTab);
+  const filteredSponsors = activeTab === 'all'
+    ? sponsors
+    : sponsors.filter(sponsor => sponsor.tier.toLowerCase() === activeTab);
 
   const getTierBadgeColor = (tier: string) => {
     switch (tier) {
@@ -103,7 +103,7 @@ export const SponsorsSection = () => {
           {filteredSponsors.map((sponsor) => (
             <a 
               key={sponsor.id} 
-              href={sponsor.site}
+              href={sponsor.url}
               target="_blank"
               rel="noopener noreferrer"
               className="sponsor-card glass-card p-8 flex items-center justify-center transition-all duration-300 hover:bg-white/[0.05] hover:scale-105 cursor-pointer w-full max-w-xs"

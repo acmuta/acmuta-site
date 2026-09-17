@@ -1,5 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
-import { useEffect, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, type ReactNode } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,48 +8,50 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from
 import { Layout } from "@/components/Layout/Layout";
 import { PortalLayout } from "@/components/Layout/PortalLayout";
 import { ChromelessLayout } from "@/components/Layout/ChromelessLayout";
+import { PageLoading } from "@/components/Loading";
 import { AuthProvider, useAuth } from "@/lib/auth";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Committees from "./pages/Committees";
-import Officers from "./pages/Officers";
-import Events from "./pages/Events";
-import Gallery from "./pages/Gallery";
-import Contact from "./pages/Contact";
-import Create from "./pages/Create";
-import Research from "./pages/Research";
-import Educate from "./pages/Educate";
-import HackUTA from "./pages/HackUTA";
-import Marketing from "./pages/Marketing";
-import Outreach from "./pages/Outreach";
-import Community from "./pages/Community";
-import Projects from "./pages/Projects";
-import Apply from "./pages/Apply";
-import ApplyDetail from "./pages/ApplyDetail";
-import ApplyForm from "./pages/ApplyForm";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import AuthCallback from "./pages/AuthCallback";
-import ResetPassword from "./pages/ResetPassword";
-import Onboarding from "./pages/Onboarding";
-import Profile from "./pages/Profile";
-import CheckIn from "./pages/CheckIn";
-import Leaderboard from "./pages/Leaderboard";
-import Notifications from "./pages/Notifications";
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminEvents from "./pages/admin/AdminEvents";
-import AdminApplicationForms from "./pages/admin/AdminApplicationForms";
-import AdminApplicationBuilder from "./pages/admin/AdminApplicationBuilder";
-import AdminApplicationSubmissions from "./pages/admin/AdminApplicationSubmissions";
-import AdminMembers from "./pages/admin/AdminMembers";
-import AdminTeams from "./pages/admin/AdminTeams";
-import AdminMentorship from "./pages/admin/AdminMentorship";
-import AdminRoster from "./pages/admin/AdminRoster";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminAuditLog from "./pages/admin/AdminAuditLog";
-import AdminHackUTA from "./pages/admin/AdminHackUTA";
-import AdminNews from "./pages/admin/AdminNews";
-import NotFound from "./pages/NotFound";
+
+const Index = lazy(() => import("./pages/Index"));
+const About = lazy(() => import("./pages/About"));
+const Committees = lazy(() => import("./pages/Committees"));
+const Officers = lazy(() => import("./pages/Officers"));
+const Events = lazy(() => import("./pages/Events"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Create = lazy(() => import("./pages/Create"));
+const Research = lazy(() => import("./pages/Research"));
+const Educate = lazy(() => import("./pages/Educate"));
+const HackUTA = lazy(() => import("./pages/HackUTA"));
+const Marketing = lazy(() => import("./pages/Marketing"));
+const Outreach = lazy(() => import("./pages/Outreach"));
+const Community = lazy(() => import("./pages/Community"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Apply = lazy(() => import("./pages/Apply"));
+const ApplyDetail = lazy(() => import("./pages/ApplyDetail"));
+const ApplyForm = lazy(() => import("./pages/ApplyForm"));
+const SignIn = lazy(() => import("./pages/SignIn"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const AuthCallback = lazy(() => import("./pages/AuthCallback"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const Onboarding = lazy(() => import("./pages/Onboarding"));
+const Profile = lazy(() => import("./pages/Profile"));
+const CheckIn = lazy(() => import("./pages/CheckIn"));
+const Leaderboard = lazy(() => import("./pages/Leaderboard"));
+const Notifications = lazy(() => import("./pages/Notifications"));
+const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
+const AdminEvents = lazy(() => import("./pages/admin/AdminEvents"));
+const AdminApplicationForms = lazy(() => import("./pages/admin/AdminApplicationForms"));
+const AdminApplicationBuilder = lazy(() => import("./pages/admin/AdminApplicationBuilder"));
+const AdminApplicationSubmissions = lazy(() => import("./pages/admin/AdminApplicationSubmissions"));
+const AdminMembers = lazy(() => import("./pages/admin/AdminMembers"));
+const AdminTeams = lazy(() => import("./pages/admin/AdminTeams"));
+const AdminMentorship = lazy(() => import("./pages/admin/AdminMentorship"));
+const AdminRoster = lazy(() => import("./pages/admin/AdminRoster"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const AdminAuditLog = lazy(() => import("./pages/admin/AdminAuditLog"));
+const AdminHackUTA = lazy(() => import("./pages/admin/AdminHackUTA"));
+const AdminNews = lazy(() => import("./pages/admin/AdminNews"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -87,61 +89,63 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <OnboardingGate>
-            <Routes>
-              <Route element={<Layout />}>
-                <Route path="/"            element={<Index />} />
-                <Route path="/about"       element={<About />} />
-                <Route path="/committees"  element={<Committees />} />
-                <Route path="/create"      element={<Create />} />
-                <Route path="/research"    element={<Research />} />
-                <Route path="/educate"     element={<Educate />} />
-                <Route path="/marketing"   element={<Marketing />} />
-                <Route path="/outreach"    element={<Outreach />} />
-                <Route path="/community"   element={<Community />} />
-                <Route path="/officers"    element={<Officers />} />
-                <Route path="/projects"    element={<Projects />} />
-                <Route path="/hackuta"     element={<HackUTA />} />
-                <Route path="/events"      element={<Events />} />
-                <Route path="/gallery"     element={<Gallery />} />
-                <Route path="/contact"     element={<Contact />} />
-                <Route path="/apply"       element={<Apply />} />
-                <Route path="/apply/:committeeSlug/:track" element={<ApplyDetail />} />
-                <Route path="/apply/:committeeSlug/:track/:formId" element={<ApplyForm />} />
-                <Route path="/checkin"          element={<CheckIn />} />
-                <Route path="*"            element={<NotFound />} />
-              </Route>
+            <Suspense fallback={<PageLoading />}>
+              <Routes>
+                <Route element={<Layout />}>
+                  <Route path="/"            element={<Index />} />
+                  <Route path="/about"       element={<About />} />
+                  <Route path="/committees"  element={<Committees />} />
+                  <Route path="/create"      element={<Create />} />
+                  <Route path="/research"    element={<Research />} />
+                  <Route path="/educate"     element={<Educate />} />
+                  <Route path="/marketing"   element={<Marketing />} />
+                  <Route path="/outreach"    element={<Outreach />} />
+                  <Route path="/community"   element={<Community />} />
+                  <Route path="/officers"    element={<Officers />} />
+                  <Route path="/projects"    element={<Projects />} />
+                  <Route path="/hackuta"     element={<HackUTA />} />
+                  <Route path="/events"      element={<Events />} />
+                  <Route path="/gallery"     element={<Gallery />} />
+                  <Route path="/contact"     element={<Contact />} />
+                  <Route path="/apply"       element={<Apply />} />
+                  <Route path="/apply/:committeeSlug/:track" element={<ApplyDetail />} />
+                  <Route path="/apply/:committeeSlug/:track/:formId" element={<ApplyForm />} />
+                  <Route path="/checkin"          element={<CheckIn />} />
+                  <Route path="*"            element={<NotFound />} />
+                </Route>
 
-              <Route element={<ChromelessLayout />}>
-                <Route path="/signin"      element={<SignIn />} />
-                <Route path="/signup"      element={<SignUp />} />
-                <Route path="/auth/callback"    element={<AuthCallback />} />
-                <Route path="/reset-password"   element={<ResetPassword />} />
-                <Route path="/onboarding"       element={<Onboarding />} />
-              </Route>
+                <Route element={<ChromelessLayout />}>
+                  <Route path="/signin"      element={<SignIn />} />
+                  <Route path="/signup"      element={<SignUp />} />
+                  <Route path="/auth/callback"    element={<AuthCallback />} />
+                  <Route path="/reset-password"   element={<ResetPassword />} />
+                  <Route path="/onboarding"       element={<Onboarding />} />
+                </Route>
 
-              <Route element={<PortalLayout />}>
-                <Route path="/profile"          element={<Profile />} />
-                <Route path="/leaderboard"      element={<Leaderboard />} />
-                <Route path="/notifications"    element={<Notifications />} />
-              </Route>
+                <Route element={<PortalLayout />}>
+                  <Route path="/profile"          element={<Profile />} />
+                  <Route path="/leaderboard"      element={<Leaderboard />} />
+                  <Route path="/notifications"    element={<Notifications />} />
+                </Route>
 
-              <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<Navigate to="/admin/dashboard" replace />} />
-                <Route path="dashboard" element={<AdminDashboard />} />
-                <Route path="events" element={<AdminEvents />} />
-                <Route path="applications" element={<AdminApplicationForms />} />
-                <Route path="applications/builder" element={<AdminApplicationBuilder />} />
-                <Route path="applications/builder/:formId" element={<AdminApplicationBuilder />} />
-                <Route path="applications/:formId/submissions" element={<AdminApplicationSubmissions />} />
-                <Route path="members" element={<AdminMembers />} />
-                <Route path="teams" element={<AdminTeams />} />
-                <Route path="mentorship" element={<AdminMentorship />} />
-                <Route path="roster" element={<AdminRoster />} />
-                <Route path="audit-log" element={<AdminAuditLog />} />
-                <Route path="hackuta" element={<AdminHackUTA />} />
-                <Route path="news" element={<AdminNews />} />
-              </Route>
-            </Routes>
+                <Route path="/admin" element={<AdminLayout />}>
+                  <Route index element={<Navigate to="/admin/dashboard" replace />} />
+                  <Route path="dashboard" element={<AdminDashboard />} />
+                  <Route path="events" element={<AdminEvents />} />
+                  <Route path="applications" element={<AdminApplicationForms />} />
+                  <Route path="applications/builder" element={<AdminApplicationBuilder />} />
+                  <Route path="applications/builder/:formId" element={<AdminApplicationBuilder />} />
+                  <Route path="applications/:formId/submissions" element={<AdminApplicationSubmissions />} />
+                  <Route path="members" element={<AdminMembers />} />
+                  <Route path="teams" element={<AdminTeams />} />
+                  <Route path="mentorship" element={<AdminMentorship />} />
+                  <Route path="roster" element={<AdminRoster />} />
+                  <Route path="audit-log" element={<AdminAuditLog />} />
+                  <Route path="hackuta" element={<AdminHackUTA />} />
+                  <Route path="news" element={<AdminNews />} />
+                </Route>
+              </Routes>
+            </Suspense>
           </OnboardingGate>
         </AuthProvider>
       </BrowserRouter>

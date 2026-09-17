@@ -87,3 +87,5 @@ export const albumsData: PhotoAlbum[] = [
     google_photos_url: "https://photos.app.goo.gl/zdCVuPWRt4Gn8udx5",
   },
 ];
+
+export const gallery = albumsData;
