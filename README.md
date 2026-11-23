@@ -278,12 +278,11 @@ Add a new project:
   title: "My App",
   summary: "One sentence description.",
   committee: "Create",         // "Create" or "Research"
-  year: 2025,
+  year: "2025",
   featured: false,             // true = spans 2 columns on desktop
-  image: "/assets/projects/myapp.jpg",   // optional, place in public/assets/projects/
-  github: "https://github.com/acmuta/my-app",   // optional
-  demo: "https://myapp.com",   // optional
-  tags: ["React", "Node.js"],  // optional list of tech tags
+  image: "/assets/projects/myapp.jpg",   // place in public/assets/projects/, or "" for a placeholder
+  websiteUrl: "https://myapp.com",       // optional live site link
+  codeUrl: "https://github.com/acmuta/my-app",   // optional source repo link
 }
 ```
 
