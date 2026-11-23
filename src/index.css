@@ -3395,13 +3395,13 @@
     align-items: center;
     gap: 11px;
     padding: 10px 12px;
+    border: 1px solid transparent;
     border-radius: var(--r);
     color: var(--text-dim);
     font-weight: 600;
     font-size: 0.92rem;
     white-space: nowrap;
-    position: relative;
-    transition: color 0.2s, background 0.2s;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
   }
 
   .adm-nav-link svg { flex: none; opacity: 0.85; }
@@ -3411,19 +3411,7 @@
   .adm-nav-link.active {
     color: var(--accent);
     background: var(--accent-dim);
-  }
-
-  @media (min-width: 860px) {
-    .adm-nav-link.active::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 8px;
-      bottom: 8px;
-      width: 3px;
-      border-radius: 100px;
-      background: var(--accent);
-    }
+    border-color: var(--accent);
   }
 
   .adm-main {
@@ -3482,7 +3470,6 @@
     .adm-nav { flex-direction: row; }
     .adm-nav-link span { display: none; }
     .adm-nav-link { padding: 9px; }
-    .adm-nav-link.active::before { display: none; }
   }
 
   .adm-form {
