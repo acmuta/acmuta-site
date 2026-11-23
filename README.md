@@ -58,13 +58,13 @@ All colors are CSS custom properties (tokens). **Never hardcode hex values** —
 | `--bg-1` | `#F4F1E9` | `#17171A` | Cards / surfaces |
 | `--bg-2` | `#FBF9F3` | `#212126` | Raised / hover |
 | `--text` | `#1B1A17` | `#F2F0EA` | Primary text |
-| `--text-dim` | `#6E6C64` | `#9A988F` | Muted text |
-| `--text-faint` | `#9A968B` | `#66645C` | Tertiary / labels |
+| `--text-dim` | `#5E5D56` | `#9A988F` | Muted text |
+| `--text-faint` | `#69665F` | `#8B897E` | Tertiary / labels |
 | `--line` | `rgba(20,18,15,0.16)` | `rgba(255,255,255,0.13)` | Hairline borders |
 | `--line-2` | `rgba(20,18,15,0.26)` | `rgba(255,255,255,0.22)` | Heavier borders |
-| `--accent` | `#C2640F` Burnt orange | `#E0892A` Warm amber | Accent / highlights |
+| `--accent` | `#9F520C` Burnt orange | `#E0892A` Warm amber | Accent / highlights |
 | `--accent-ink` | `#FFF6EC` | `#1A1206` | Text on accent bg |
-| `--accent-dim` | `rgba(194,100,15,0.12)` | `rgba(224,137,42,0.14)` | Accent bg tint |
+| `--accent-dim` | `rgba(159,82,12,0.12)` | `rgba(224,137,42,0.14)` | Accent bg tint |
 
 ### Typography
 

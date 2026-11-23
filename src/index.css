@@ -21,18 +21,18 @@
 
     /* Text */
     --text:        #1B1A17;   /* primary text */
-    --text-dim:    #6E6C64;   /* muted text */
-    --text-faint:  #9A968B;   /* tertiary / hairline labels */
+    --text-dim:    #5E5D56;   /* muted text */
+    --text-faint:  #69665F;   /* tertiary / hairline labels */
 
     /* Borders */
     --line:        rgba(20, 18, 15, 0.16);
     --line-2:      rgba(20, 18, 15, 0.26);
 
     /* Accent - burnt orange */
-    --accent:      #C2640F;
+    --accent:      #9F520C;
     --accent-ink:  #FFF6EC;   /* text ON the accent background */
-    --accent-dim:  rgba(194, 100, 15, 0.12);
-    --sel:         rgba(194, 100, 15, 0.20);
+    --accent-dim:  rgba(159, 82, 12, 0.12);
+    --sel:         rgba(159, 82, 12, 0.20);
 
     --radius: 0.25rem;
     --r:    var(--radius);          /* sharp corners */
@@ -51,7 +51,7 @@
 
     --text:        #F2F0EA;
     --text-dim:    #9A988F;
-    --text-faint:  #66645C;
+    --text-faint:  #8B897E;
 
     --line:        rgba(255, 255, 255, 0.13);
     --line-2:      rgba(255, 255, 255, 0.22);

@@ -25,7 +25,7 @@ export function NodeField({ density = 1, className, style }: NodeFieldProps) {
       getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
     let cText = "27,26,23";
-    let cAccent = "194,100,15";
+    let cAccent = "159,82,12";
 
     const hexToRgb = (h: string) => {
       h = h.replace("#", "");
