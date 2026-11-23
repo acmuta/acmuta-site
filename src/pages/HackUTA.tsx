@@ -20,9 +20,9 @@ const STRIP_LABELS = [
 ];
 
 const STRIP_IMAGES = [
-  "/assets/events/hackuta2025.jpg",
-  "/assets/homepage/hackuta.jpeg",
-  "/assets/homepage/hackathon.JPG",
+  "/assets/events/hackuta2025-768.webp",
+  "/assets/homepage/hackuta-640.webp",
+  "/assets/homepage/hackathon-640.webp",
 ];
 
 function HackUTAEnabled({ cfg }: { cfg: HackUTAConfig }) {
