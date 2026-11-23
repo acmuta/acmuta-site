@@ -8,6 +8,7 @@ import {
   type EventItem,
   type Committee,
 } from "@/lib/api";
+import { toLocalISODate } from "@/lib/dates";
 
 // ─── Calendar helpers ─────────────────────────────────────────────────────────
 
@@ -195,15 +196,16 @@ function MiniCalendar({
   committees: Committee[];
   onAdd: (event: EventItem) => void;
 }) {
-  const months = [...new Set(events.map((e) => e.start_time.slice(0, 7)))].sort();
+  const localMonth = (iso: string) => toLocalISODate(new Date(iso)).slice(0, 7);
+  const nowMonth = toLocalISODate(new Date()).slice(0, 7);
+  const months = [...new Set(events.map((e) => localMonth(e.start_time)))].sort();
   const [mi, setMi] = useState(() => {
-    const now = new Date().toISOString().slice(0, 7);
-    const idx = months.findIndex((m) => m >= now);
+    const idx = months.findIndex((m) => m >= nowMonth);
     return idx >= 0 ? idx : 0;
   });
 
   const idx = Math.max(0, Math.min(mi, months.length - 1));
-  const ym = months[idx] ?? new Date().toISOString().slice(0, 7);
+  const ym = months[idx] ?? nowMonth;
   const [y, m] = ym.split("-").map(Number);
   const first = new Date(y, m - 1, 1);
   const startPad = first.getDay();

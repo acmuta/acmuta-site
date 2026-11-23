@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight, Calendar, ExternalLink } from "lucide-react";
 import { news } from "@/data/news";
+import { parseLocalDate } from "@/lib/dates";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,7 +108,7 @@ export const NewsSection = () => {
               <div className="p-6">
                 <div className="flex items-center text-accent text-sm mb-3">
                   <Calendar className="h-4 w-4 mr-2" />
-                  {new Date(item.date).toLocaleDateString("en-US", {
+                  {parseLocalDate(item.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",

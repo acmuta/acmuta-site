@@ -16,6 +16,7 @@ import {
   type NewsItem,
   type Sponsor,
 } from "@/lib/api";
+import { parseLocalDate } from "@/lib/dates";
 
 // ─── Count-up hook ────────────────────────────────────────────────────────────
 
@@ -325,7 +326,7 @@ const Index = () => {
                 <div className="news-top mono">
                   <span className="news-tag">{n.tag}</span>
                   <span className="news-date">
-                    {new Date(n.date).toLocaleDateString("en-US", {
+                    {parseLocalDate(n.date).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
                       year: "numeric",
