@@ -6,6 +6,7 @@ import { Ph } from "@/components/Placeholder";
 import { Arrow } from "@/components/icons";
 import { getHackUTAConfig, type HackUTAConfig } from "@/lib/api";
 import { PageLoading } from "@/components/Loading";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const STATS = [
   { n: "500", s: "+", l: "hackers" },
@@ -209,6 +210,8 @@ function HackUTADisabled() {
 }
 
 const HackUTA = () => {
+  usePageTitle("HackUTA");
+
   const [cfg, setCfg] = useState<HackUTAConfig | null>(null);
 
   useEffect(() => {

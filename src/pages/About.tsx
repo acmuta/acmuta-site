@@ -6,8 +6,11 @@ import { Ph } from "@/components/Placeholder";
 import { PageLoading } from "@/components/Loading";
 import { Arrow } from "@/components/icons";
 import { getCommittees, type Committee } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const About = () => {
+  usePageTitle("About");
+
   const [committees, setCommittees] = useState<Committee[] | null>(null);
 
   useEffect(() => {

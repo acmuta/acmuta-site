@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Arrow } from "@/components/icons";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const REASONS = [
   { value: "question",    label: "General question" },
@@ -37,6 +38,8 @@ const APPLIES = [
 ];
 
 const Contact = () => {
+  usePageTitle("Contact");
+
   const [name, setName]     = useState("");
   const [email, setEmail]   = useState("");
   const [reason, setReason] = useState("question");

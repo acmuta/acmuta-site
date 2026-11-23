@@ -3,8 +3,11 @@ import { Reveal } from "@/components/Reveal";
 import { PageLoading } from "@/components/Loading";
 import { Arrow } from "@/components/icons";
 import { getAlbums, type PhotoAlbum } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const Gallery = () => {
+  usePageTitle("Gallery");
+
   const [albums, setAlbums] = useState<PhotoAlbum[] | null>(null);
 
   useEffect(() => {
