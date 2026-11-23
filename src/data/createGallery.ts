@@ -244,8 +244,8 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
   {
     id: "mavresume-fall-2025",
     semester: "fall-2025",
-    status: "pending",
-    pendingReason: "No public source names MavResume as a Create project yet. A Create director needs to confirm it.",
+    // The Fall 2025 Create project brief corroborates the affiliation; keep the internal link out of the site.
+    status: "published",
     title: "MavResume",
     summary: "A guided resume builder for UTA students, with AI bullet refinement and reviewer feedback on the same PDF.",
     semesterWork: "The first version of the builder: personal info, education, skills, and project sections with a live preview.",
