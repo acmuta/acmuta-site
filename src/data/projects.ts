@@ -45,7 +45,6 @@ export const projectsData: Project[] = [
     summary:
       "The registration and info site for HackUTA, ACM's flagship hackathon. Handles applications, schedules, and sponsor placement for 500+ hackers.",
     websiteUrl: "https://hackuta.org",
-    codeUrl: "https://github.com/hackuta/hackuta.github.io",
     committee: "Create",
     year: "2024",
     featured: true,
