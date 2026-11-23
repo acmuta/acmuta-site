@@ -9,6 +9,10 @@ export default {
 		"./src/**/*.{ts,tsx}",
 	],
 	prefix: "",
+	// JS negations like `!active` are scanned as `!`-prefixed (important)
+	// class candidates; when `.active` exists in the CSS, Tailwind emits a
+	// malformed empty-selector rule plus dead `.\!active` clones.
+	blocklist: ["!active", "!loading", "!n", "!open", "!running", "!stats"],
 	theme: {
 		container: {
 			center: true,
