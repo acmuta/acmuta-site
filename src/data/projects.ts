@@ -86,6 +86,3 @@ export const projectsData: Project[] = [
     featured: false,
   },
 ];
-
-// Legacy compat export - removed when Projects page is rewritten in Stage D/E.
-export const projects = projectsData;
