@@ -65,6 +65,7 @@ All colors are CSS custom properties (tokens). **Never hardcode hex values** —
 | `--accent` | `#9F520C` Burnt orange | `#E0892A` Warm amber | Accent / highlights |
 | `--accent-ink` | `#FFF6EC` | `#1A1206` | Text on accent bg |
 | `--accent-dim` | `rgba(159,82,12,0.12)` | `rgba(224,137,42,0.14)` | Accent bg tint |
+| `--accent-text` | `#8F470B` | `var(--accent)` | Accent-hued text on accent-dim tints |
 
 ### Typography
 

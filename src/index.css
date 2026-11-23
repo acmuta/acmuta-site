@@ -32,6 +32,7 @@
     --accent:      #9F520C;
     --accent-ink:  #FFF6EC;   /* text ON the accent background */
     --accent-dim:  rgba(159, 82, 12, 0.12);
+    --accent-text: #8F470B;   /* accent-hued text on accent-dim tints */
     --sel:         rgba(159, 82, 12, 0.20);
 
     --radius: 0.25rem;
@@ -60,6 +61,7 @@
     --accent:      #E0892A;
     --accent-ink:  #1A1206;
     --accent-dim:  rgba(224, 137, 42, 0.14);
+    --accent-text: var(--accent);
     --sel:         rgba(224, 137, 42, 0.22);
 
     --ok-accept: oklch(0.74 0.11 152);
@@ -2719,7 +2721,7 @@
     white-space: nowrap;
   }
 
-  .pf-role-badge--officer { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-dim); }
+  .pf-role-badge--officer { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-dim); }
   .pf-role-badge--director { color: var(--accent-ink); background: var(--accent); border-color: transparent; }
   .pf-role-badge--member { color: var(--text-dim); }
 
@@ -4383,7 +4385,7 @@
     font-weight: 700;
   }
 
-  .adm-flag--admin { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-dim); }
+  .adm-flag--admin { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-dim); }
   .adm-flag--alumni { color: var(--text-dim); }
   .adm-flag--pending { color: var(--ok-wait); border-color: color-mix(in oklch, var(--ok-wait) 40%, transparent); }
 
@@ -4565,7 +4567,7 @@
   }
 
   .adm-form-status--draft  { color: var(--text-faint); border-color: var(--line-2); }
-  .adm-form-status--open   { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: var(--accent-dim); }
+  .adm-form-status--open   { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: var(--accent-dim); }
   .adm-form-status--closed { color: var(--ok-reject); border-color: color-mix(in oklch, var(--ok-reject) 38%, transparent); }
 
   /* ── Application builder ── */
@@ -4908,7 +4910,7 @@
   .sub-status--submitted   { color: var(--text-dim); border-color: var(--line-2); background: var(--bg-2); }
   .sub-status--draft       { color: var(--text-faint); border-color: var(--line); background: var(--bg-2); }
   .sub-status--under_review,
-  .sub-status--open        { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: var(--accent-dim); }
+  .sub-status--open        { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: var(--accent-dim); }
   .sub-status--accepted    { color: var(--ok-accept); border-color: color-mix(in oklch, var(--ok-accept) 40%, transparent); background: color-mix(in oklch, var(--ok-accept) 13%, var(--bg-1)); }
   .sub-status--rejected,
   .sub-status--closed      { color: var(--ok-reject); border-color: color-mix(in oklch, var(--ok-reject) 38%, transparent); background: color-mix(in oklch, var(--ok-reject) 12%, var(--bg-1)); }
