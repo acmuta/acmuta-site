@@ -2,9 +2,6 @@ import { useRef } from 'react';
 import { Award, Users, Code2, Lightbulb } from 'lucide-react';
 
 
-// Matches .about-card: 2 columns inside Tailwind's container (1280/1536px)
-const IMG_SIZES = "(min-width: 1536px) 720px, (min-width: 1024px) 46vw, 100vw";
-
 export const AboutSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -13,33 +10,25 @@ export const AboutSection = () => {
       icon: Award,
       title: "What is ACM?",
       content: "The Association for Computing Machinery (ACM) is the world's largest educational and scientific computing society. At UTA, we bring this global mission to our local community, creating opportunities for students to grow, learn, and connect.",
-      image: "/assets/homepage/lookdown-1280.webp",
-      srcSet: "/assets/homepage/lookdown-640.webp 640w, /assets/homepage/lookdown-1280.webp 1280w",
-      alt: "ACM members seen from above at a meeting"
+      image: "/assets/homepage/lookdown.JPG"
     },
     {
       icon: Users,
       title: "Our Community",
       content: "We are a diverse group of students passionate about technology, innovation, and making a difference. From computer science majors to students from all disciplines interested in tech, everyone is welcome in our community.",
-      image: "/assets/homepage/acm_stem-1280.webp",
-      srcSet: "/assets/homepage/acm_stem-640.webp 640w, /assets/homepage/acm_stem-1280.webp 1280w",
-      alt: "ACM members gathered at a STEM event"
+      image: "/assets/homepage/acm_stem.png"
     },
     {
       icon: Code2,
       title: "What We Do",
       content: "Through workshops, hackathons, research projects, and social events, we provide hands-on learning experiences that complement classroom education. We bridge the gap between academic learning and industry practice.",
-      image: "/assets/homepage/hackuta-1280.webp",
-      srcSet: "/assets/homepage/hackuta-640.webp 640w, /assets/homepage/hackuta-1280.webp 1280w",
-      alt: "Students hacking together at HackUTA"
+      image: "/assets/homepage/hackuta.jpeg"
     },
     {
       icon: Lightbulb,
       title: "Our Impact",
       content: "Our members go on to work at top tech companies, pursue graduate research, and start their own ventures. We're proud to be launching pad for the next generation of technology leaders.",
-      image: "/assets/homepage/nokia-1280.webp",
-      srcSet: "/assets/homepage/nokia-640.webp 640w, /assets/homepage/nokia-1280.webp 1280w",
-      alt: "Members at a Nokia industry event"
+      image: "/assets/homepage/nokia.jpg"
     }
   ];
 
@@ -93,16 +82,16 @@ export const AboutSection = () => {
               <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
                 <div className="relative group">
                   <div className={`glass-card overflow-hidden rounded-2xl transform group-hover:rotate-0 transition-transform duration-500`}>
-                    <img
-                      src={item.image}
-                      srcSet={item.srcSet}
-                      sizes={IMG_SIZES}
-                      alt={item.alt}
-                      loading="lazy"
-                      decoding="async"
-                      className="aspect-[4/3] w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 opacity-5" />
+                    <div 
+                      className="aspect-[4/3]"
+                      style={{
+                        backgroundImage: `url(${item.image})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 opacity-5" />
+                    </div>
                   </div>
                   <div className="absolute inset-0 bg-accent/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
                 </div>

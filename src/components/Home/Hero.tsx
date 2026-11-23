@@ -81,7 +81,7 @@ export const Hero = () => {
           {/* Logo */}
           <img
             ref={logoRef}
-            src="/assets/logo/acm-logo.webp"
+            src="/assets/logo/acm-logo.png"
             alt="ACM UTA Logo"
             className="h-60 w-60 mx-auto"
           />

@@ -42,13 +42,13 @@ export const CommitteesSection = () => {
   }, []);
 
   const committees = [
-    { name: 'HackUTA', image: '/assets/logo/hackuta.webp', description: "UTA's official student hackathon", link: '/hackuta' },
-    { name: 'Marketing', image: '/assets/logo/marketing.webp', description: "Drive ACM's brand and social strategy", link: '/marketing' },
-    { name: 'Outreach', image: '/assets/logo/outreach.webp', description: 'Connect with schools and communities', link: '/outreach' },
-    { name: 'Community', image: '/assets/logo/community.webp', description: 'Build welcoming culture through events', link: '/community' },
-    { name: 'Create', image: '/assets/logo/create.webp', description: 'Build skills through hands-on projects', link: '/create' },
-    { name: 'Educate', image: '/assets/logo/educate.webp', description: 'Develop valuable skills for the workforce', link: '/educate' },
-    { name: 'Research', image: '/assets/logo/research.webp', description: 'Foster research skills and innovation', link: '/research' },
+    { name: 'HackUTA', image: '/assets/logo/hackuta.png', description: "UTA's official student hackathon", link: '/hackuta' },
+    { name: 'Marketing', image: '/assets/logo/marketing.png', description: "Drive ACM's brand and social strategy", link: '/marketing' },
+    { name: 'Outreach', image: '/assets/logo/outreach.png', description: 'Connect with schools and communities', link: '/outreach' },
+    { name: 'Community', image: '/assets/logo/community.png', description: 'Build welcoming culture through events', link: '/community' },
+    { name: 'Create', image: '/assets/logo/create.png', description: 'Build skills through hands-on projects', link: '/create' },
+    { name: 'Educate', image: '/assets/logo/educate.png', description: 'Develop valuable skills for the workforce', link: '/educate' },
+    { name: 'Research', image: '/assets/logo/research.png', description: 'Foster research skills and innovation', link: '/research' },
   ];
 
   const committeeRows = chunkArray(committees, 4);
