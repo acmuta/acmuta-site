@@ -202,7 +202,7 @@ export function CommitteePage({ slug }: CommitteePageProps) {
       )}
 
       {/* ── Related projects ── */}
-      {related.length > 0 && (
+      {(related.length > 0 || slug === "create") && (
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="wrap">
             <div className="sec-head row">
@@ -214,17 +214,24 @@ export function CommitteePage({ slug }: CommitteePageProps) {
                   From this <span className="amp">committee.</span>
                 </h2>
               </Reveal>
-              <Reveal>
+              <Reveal className="sec-links">
+                {slug === "create" && (
+                  <Link to="/create/gallery" className="sec-link">
+                    Projects by semester <Arrow />
+                  </Link>
+                )}
                 <Link to="/projects" className="sec-link">
                   All projects <Arrow />
                 </Link>
               </Reveal>
             </div>
-            <Reveal className="proj-grid" stagger gap={60}>
-              {related.map((p) => (
-                <ProjectCard key={p.id} p={p} />
-              ))}
-            </Reveal>
+            {related.length > 0 && (
+              <Reveal className="proj-grid" stagger gap={60}>
+                {related.map((p) => (
+                  <ProjectCard key={p.id} p={p} />
+                ))}
+              </Reveal>
+            )}
           </div>
         </section>
       )}

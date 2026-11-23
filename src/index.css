@@ -1498,6 +1498,190 @@
 }
 
 /* ============================================================
+   CREATE PROJECT GALLERY  (/create/gallery)
+   ============================================================ */
+@layer components {
+  /* --text-dim sits under 4.5:1 on the light canvas; small gallery copy
+     uses a darker mix of the same tokens. Dark mode already passes. */
+  .cg { --cg-dim: color-mix(in srgb, var(--text) 68%, var(--bg)); }
+  [data-theme="dark"] .cg { --cg-dim: var(--text-dim); }
+
+  .cg-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 26px;
+    color: var(--cg-dim);
+    transition: color 0.25s;
+  }
+  .cg-back:hover { color: var(--accent); }
+
+  .cg-index { margin-top: clamp(32px, 5vw, 52px); }
+  .cg-index ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+  }
+  .cg-index a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line-2);
+    transition: color 0.25s, border-color 0.25s;
+  }
+  .cg-index a:hover { border-color: var(--accent); }
+  .cg-index a:hover .cg-index-term { color: var(--accent); }
+  .cg-index-term { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; transition: color 0.25s; }
+  .cg-index-n { color: var(--cg-dim); font-size: 0.66rem; }
+
+  .cg-sem {
+    padding-top: clamp(64px, 9vw, 120px);
+    scroll-margin-top: 72px;
+  }
+  .cg-sem-h {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px 32px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--line-2);
+  }
+  .cg-sem-title {
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+  }
+  .cg-sem-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 20px;
+    color: var(--cg-dim);
+  }
+  .cg-sem-meta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    transition: color 0.25s;
+  }
+  .cg-sem-meta a:hover { color: var(--accent); }
+
+  .cg-list { list-style: none; }
+  .cg-list > li + li .cg-proj { border-top: 1px solid var(--line); }
+
+  .cg-proj {
+    display: grid;
+    gap: 26px;
+    padding: clamp(32px, 4.5vw, 56px) 0;
+  }
+  @media (min-width: 900px) {
+    .cg-proj {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: clamp(36px, 4.5vw, 64px);
+      align-items: start;
+    }
+  }
+
+  .cg-media { margin: 0; }
+  .cg-frame {
+    aspect-ratio: 16 / 10;
+    border-radius: 3px;
+    overflow: hidden;
+    background: var(--bg-1);
+  }
+  .cg-frame > img,
+  .cg-frame > .ph {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Letterbox clips instead of cropping them, so the controls never cover content. */
+  .cg-frame.is-video > video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: var(--bg-2);
+  }
+  .cg-media figcaption {
+    margin-top: 12px;
+    color: var(--cg-dim);
+    font-size: 0.9rem;
+    max-width: 65ch;
+  }
+
+  .cg-body { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+  .cg-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+  }
+  .cg-stack {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    color: var(--cg-dim);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+  }
+  .cg-sum { font-size: 1.1rem; line-height: 1.5; max-width: 52ch; text-wrap: pretty; }
+  .cg-work { color: var(--cg-dim); max-width: 60ch; text-wrap: pretty; }
+
+  .cg-credits { margin-top: 6px; }
+  .cg-credits h4 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    padding-bottom: 10px;
+  }
+  .cg-credits dl > div {
+    display: grid;
+    gap: 3px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 560px) {
+    .cg-credits dl > div { grid-template-columns: minmax(9rem, 2fr) minmax(0, 5fr); gap: 18px; }
+  }
+  .cg-credits dt { font-weight: 700; font-size: 0.95rem; overflow-wrap: anywhere; }
+  .cg-credits dd { color: var(--cg-dim); font-size: 0.95rem; text-wrap: pretty; }
+
+  .cg-empty {
+    padding: clamp(28px, 4vw, 44px) 0 0;
+    color: var(--cg-dim);
+    font-size: 1.1rem;
+    max-width: 54ch;
+    text-wrap: pretty;
+  }
+
+  .cg-foot { padding-top: clamp(72px, 9vw, 120px); }
+  .cg-foot p {
+    max-width: 60ch;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--cg-dim);
+  }
+  .cg-foot a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+    transition: color 0.25s;
+  }
+  .cg-foot a:hover { color: var(--accent); }
+
+  .sec-links { display: flex; flex-wrap: wrap; gap: 14px 30px; }
+}
+
+/* ============================================================
    OFFICERS
    ============================================================ */
 @layer components {
