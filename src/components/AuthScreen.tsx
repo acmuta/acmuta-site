@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { NodeField } from "@/components/NodeField";
 import { useAuth } from "@/lib/auth";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 type AuthMode = "signin" | "signup";
 type CardView = "form" | "check-email" | "forgot-form" | "forgot-sent";
@@ -44,6 +45,8 @@ export function AuthScreen({ mode }: AuthScreenProps) {
   const isUp = mode === "signup";
   const { user, profile, loading: authLoading, signIn, signUp, resetPassword, resendConfirmation } = useAuth();
   const navigate = useNavigate();
+
+  usePageTitle(isUp ? "Sign Up" : "Sign In");
 
   const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");

@@ -23,8 +23,8 @@ export function PortalHeader() {
   const name = profile?.full_name ?? user?.email ?? null;
   const theme = useTheme();
   const logo = theme === "dark"
-    ? "/assets/logo/acmlogo-white.png"
-    : "/assets/logo/acmlogo-black.png";
+    ? "/assets/logo/acmlogo-white.webp"
+    : "/assets/logo/acmlogo-black.webp";
 
   return (
     <header className="phdr">

@@ -5,6 +5,7 @@ import { getLeaderboard, getOfficerLeaderboard } from "@/lib/api";
 import type { LeaderboardEntry, LeaderboardScope } from "@/lib/api";
 import { Reveal } from "@/components/Reveal";
 import { Avatar } from "@/components/Avatar";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const SCOPES: { value: LeaderboardScope; label: string }[] = [
   { value: "term", label: "This semester" },
@@ -19,6 +20,8 @@ const BOARDS: { value: Board; label: string }[] = [
 ];
 
 export default function Leaderboard() {
+  usePageTitle("Leaderboard");
+
   const { user, loading, isOfficer } = useAuth();
   const navigate = useNavigate();
 

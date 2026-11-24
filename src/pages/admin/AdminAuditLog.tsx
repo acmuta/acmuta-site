@@ -5,10 +5,13 @@ import { BackIcon, ChevronIcon } from "@/components/icons";
 import { getAuditLog, type AuditLogEntry } from "@/lib/api";
 import type { AdminContext } from "./AdminLayout";
 import { ACTION_LABEL, ACTION_GROUPS, describeAuditEntry, formatAuditMetadata } from "./auditLabels";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const PAGE_SIZE = 25;
 
 export default function AdminAuditLog() {
+  usePageTitle("Admin Audit Log");
+
   const { isAdmin } = useOutletContext<AdminContext>();
 
   const [entries, setEntries] = useState<AuditLogEntry[]>([]);

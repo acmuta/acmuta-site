@@ -12,6 +12,7 @@ import {
   type Alumni,
   type HallOfFameMember,
 } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 /** Matches .hof-grid: 1 / 2 / 3 columns inside the 1320px wrap */
 const HOF_SIZES = "(min-width: 1320px) 410px, (min-width: 1040px) 33vw, (min-width: 640px) 50vw, 100vw";
@@ -96,6 +97,8 @@ function HofCard({ m }: { m: HallOfFameMember }) {
 }
 
 const Officers = () => {
+  usePageTitle("Officers");
+
   const [officers, setOfficers] = useState<Officer[] | null>(null);
   const [alumni, setAlumni] = useState<Alumni[]>([]);
   const [hallOfFame, setHallOfFame] = useState<HallOfFameMember[]>([]);

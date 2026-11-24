@@ -6,6 +6,7 @@ import { Arrow } from "@/components/icons";
 import { PageLoading } from "@/components/Loading";
 import { getApplicationFormSummaries, TERM_LABEL } from "@/lib/api";
 import type { ApplicationFormSummary, ApplicationType } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const MEMBERSHIP_TYPES: ApplicationType[] = ["member", "mentor", "mentee"];
 
@@ -16,6 +17,10 @@ export default function ApplyDetail() {
   useEffect(() => {
     getApplicationFormSummaries().then(setForms);
   }, []);
+
+  const isOfficer = track === "officer";
+  const committeeName = forms?.find((f) => f.committee_slug === committeeSlug)?.committee_name;
+  usePageTitle(committeeName ? `${committeeName} ${isOfficer ? "Officer" : "Membership"}` : "Apply");
 
   if (track !== "membership" && track !== "officer") {
     return <Navigate to="/apply" replace />;
@@ -30,9 +35,6 @@ export default function ApplyDetail() {
   );
 
   if (matching.length === 0) return <Navigate to="/apply" replace />;
-
-  const isOfficer = track === "officer";
-  const committeeName = matching[0].committee_name;
 
   return (
     <div>

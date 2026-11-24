@@ -168,8 +168,8 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
   {
     id: "smartadvisors-fall-2025",
     semester: "fall-2025",
-    status: "pending",
-    pendingReason: "No public source names SmartAdvisors as a Create project yet. A Create director needs to confirm it.",
+    // A Create director confirmed the affiliation on Nov 23, 2026; no public page states it.
+    status: "published",
     title: "SmartAdvisors",
     summary:
       "Upload a UTA transcript, set your preferences, and get ranked course and professor recommendations for next semester.",
@@ -208,8 +208,8 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
   {
     id: "smartadvisors-spring-2026",
     semester: "spring-2026",
-    status: "pending",
-    pendingReason: "No public source names SmartAdvisors as a Create project yet. A Create director needs to confirm it.",
+    // A Create director confirmed the affiliation on Nov 23, 2026; no public page states it.
+    status: "published",
     title: "SmartAdvisors",
     summary:
       "Upload a UTA transcript, set your preferences, and get ranked course and professor recommendations for next semester.",
@@ -264,8 +264,8 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
   {
     id: "mavresume-spring-2026",
     semester: "spring-2026",
-    status: "pending",
-    pendingReason: "No public source names MavResume as a Create project yet. A Create director needs to confirm it.",
+    // A Create director confirmed the affiliation on Nov 23, 2026; no public page states it.
+    status: "published",
     title: "MavResume",
     summary: "A guided resume builder for UTA students, with AI bullet refinement and reviewer feedback on the same PDF.",
     semesterWork: "Accounts, saved resumes, cached AI refinement, and a review system where reviewers annotate the PDF directly.",

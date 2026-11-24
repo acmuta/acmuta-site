@@ -1,14 +1,13 @@
 import { Analytics } from "@vercel/analytics/react";
-import { useEffect, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, type ReactNode } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
 import { Layout } from "@/components/Layout/Layout";
-import { PortalLayout } from "@/components/Layout/PortalLayout";
-import { ChromelessLayout } from "@/components/Layout/ChromelessLayout";
 import { AuthProvider, useAuth } from "@/lib/auth";
+import { PageLoading } from "@/components/Loading";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Committees from "./pages/Committees";
@@ -27,30 +26,38 @@ import Community from "./pages/Community";
 import Projects from "./pages/Projects";
 import Apply from "./pages/Apply";
 import ApplyDetail from "./pages/ApplyDetail";
-import ApplyForm from "./pages/ApplyForm";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import AuthCallback from "./pages/AuthCallback";
-import ResetPassword from "./pages/ResetPassword";
-import Onboarding from "./pages/Onboarding";
-import Profile from "./pages/Profile";
-import CheckIn from "./pages/CheckIn";
-import Leaderboard from "./pages/Leaderboard";
-import Notifications from "./pages/Notifications";
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminEvents from "./pages/admin/AdminEvents";
-import AdminApplicationForms from "./pages/admin/AdminApplicationForms";
-import AdminApplicationBuilder from "./pages/admin/AdminApplicationBuilder";
-import AdminApplicationSubmissions from "./pages/admin/AdminApplicationSubmissions";
-import AdminMembers from "./pages/admin/AdminMembers";
-import AdminTeams from "./pages/admin/AdminTeams";
-import AdminMentorship from "./pages/admin/AdminMentorship";
-import AdminRoster from "./pages/admin/AdminRoster";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminAuditLog from "./pages/admin/AdminAuditLog";
-import AdminHackUTA from "./pages/admin/AdminHackUTA";
-import AdminNews from "./pages/admin/AdminNews";
 import NotFound from "./pages/NotFound";
+
+// Signed-in and rarely visited routes are split out of the main bundle.
+const ChromelessLayout = lazy(() =>
+  import("@/components/Layout/ChromelessLayout").then((m) => ({ default: m.ChromelessLayout }))
+);
+const PortalLayout = lazy(() =>
+  import("@/components/Layout/PortalLayout").then((m) => ({ default: m.PortalLayout }))
+);
+const ApplyForm = lazy(() => import("./pages/ApplyForm"));
+const SignIn = lazy(() => import("./pages/SignIn"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const AuthCallback = lazy(() => import("./pages/AuthCallback"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const Onboarding = lazy(() => import("./pages/Onboarding"));
+const Profile = lazy(() => import("./pages/Profile"));
+const CheckIn = lazy(() => import("./pages/CheckIn"));
+const Leaderboard = lazy(() => import("./pages/Leaderboard"));
+const Notifications = lazy(() => import("./pages/Notifications"));
+const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
+const AdminEvents = lazy(() => import("./pages/admin/AdminEvents"));
+const AdminApplicationForms = lazy(() => import("./pages/admin/AdminApplicationForms"));
+const AdminApplicationBuilder = lazy(() => import("./pages/admin/AdminApplicationBuilder"));
+const AdminApplicationSubmissions = lazy(() => import("./pages/admin/AdminApplicationSubmissions"));
+const AdminMembers = lazy(() => import("./pages/admin/AdminMembers"));
+const AdminTeams = lazy(() => import("./pages/admin/AdminTeams"));
+const AdminMentorship = lazy(() => import("./pages/admin/AdminMentorship"));
+const AdminRoster = lazy(() => import("./pages/admin/AdminRoster"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const AdminAuditLog = lazy(() => import("./pages/admin/AdminAuditLog"));
+const AdminHackUTA = lazy(() => import("./pages/admin/AdminHackUTA"));
+const AdminNews = lazy(() => import("./pages/admin/AdminNews"));
 
 const queryClient = new QueryClient();
 
@@ -88,6 +95,7 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <OnboardingGate>
+            <Suspense fallback={<PageLoading />}>
             <Routes>
               <Route element={<Layout />}>
                 <Route path="/"            element={<Index />} />
@@ -144,6 +152,7 @@ const App = () => (
                 <Route path="news" element={<AdminNews />} />
               </Route>
             </Routes>
+            </Suspense>
           </OnboardingGate>
         </AuthProvider>
       </BrowserRouter>
