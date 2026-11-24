@@ -52,28 +52,35 @@ function emptyMessage(s: CreateGallerySemester): string {
   return "Projects from this semester go up here once each team approves its screenshots and credits.";
 }
 
-function GalleryEntry({ e }: { e: CreateGalleryEntry }) {
+function GalleryEntry({ e, term }: { e: CreateGalleryEntry; term: string }) {
   const titleId = `${e.id}-title`;
+  const hasDetails = e.credits.length > 0 || e.semesterWork || e.stack.length > 0;
   return (
-    <article className="cg-proj" aria-labelledby={titleId}>
+    <article className="proj-card cg-card" aria-labelledby={titleId}>
       <CreateGalleryMedia media={e.media} />
-      <div className="cg-body">
-        <h3 id={titleId} className="cg-title">
-          {e.title}
-        </h3>
-        {e.stack.length > 0 && (
-          <ul className="cg-stack mono" aria-label="Built with">
-            {e.stack.map((t) => (
-              <li key={t}>{t}</li>
-            ))}
-          </ul>
-        )}
-        <p className="cg-sum">{e.summary}</p>
-        {e.semesterWork && <p className="cg-work">{e.semesterWork}</p>}
+      <div className="proj-meta mono">
+        <span className="proj-cmt">CREATE</span>
+        <span className="proj-year">{term}</span>
+      </div>
+      <h3 id={titleId} className="proj-title">
+        {e.title}
+      </h3>
+      <p className="proj-sum">{e.summary}</p>
 
-        {e.credits.length > 0 ? (
-          <div className="cg-credits">
-            <h4>Who built what</h4>
+      {hasDetails && (
+        <details className="cg-credits">
+          <summary>
+            {e.credits.length > 0 ? `Who built what (${e.credits.length})` : "Details"}
+          </summary>
+          {e.semesterWork && <p className="cg-work">{e.semesterWork}</p>}
+          {e.stack.length > 0 && (
+            <ul className="cg-stack mono" aria-label="Built with">
+              {e.stack.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          )}
+          {e.credits.length > 0 ? (
             <dl>
               {e.credits.map((c) => (
                 <div key={c.name}>
@@ -82,26 +89,26 @@ function GalleryEntry({ e }: { e: CreateGalleryEntry }) {
                 </div>
               ))}
             </dl>
-          </div>
-        ) : (
-          <p className="cg-work">Individual credits go up once team members confirm them.</p>
-        )}
+          ) : (
+            <p className="cg-work">Individual credits go up once team members confirm them.</p>
+          )}
+        </details>
+      )}
 
-        {(e.demoUrl || e.repoUrl) && (
-          <div className="proj-links">
-            {e.demoUrl && (
-              <a href={e.demoUrl} target="_blank" rel="noreferrer">
-                Try it <Arrow s={13} />
-              </a>
-            )}
-            {e.repoUrl && (
-              <a href={e.repoUrl} target="_blank" rel="noreferrer">
-                Code <Arrow s={13} />
-              </a>
-            )}
-          </div>
-        )}
-      </div>
+      {(e.demoUrl || e.repoUrl) && (
+        <div className="proj-links">
+          {e.demoUrl && (
+            <a href={e.demoUrl} target="_blank" rel="noreferrer">
+              Live site <Arrow s={13} />
+            </a>
+          )}
+          {e.repoUrl && (
+            <a href={e.repoUrl} target="_blank" rel="noreferrer">
+              Code <Arrow s={13} />
+            </a>
+          )}
+        </div>
+      )}
     </article>
   );
 }
@@ -172,10 +179,10 @@ const CreateGallery = () => {
               )}
             </Reveal>
             {s.entries.length > 0 ? (
-              <ul className="cg-list">
+              <ul className="cg-list proj-grid">
                 {s.entries.map((e) => (
                   <li key={e.id}>
-                    <GalleryEntry e={e} />
+                    <GalleryEntry e={e} term={s.label} />
                   </li>
                 ))}
               </ul>

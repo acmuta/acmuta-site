@@ -1582,21 +1582,9 @@
   }
   .cg-sem-meta a:hover { color: var(--accent); }
 
-  .cg-list { list-style: none; }
-  .cg-list > li + li .cg-proj { border-top: 1px solid var(--line); }
-
-  .cg-proj {
-    display: grid;
-    gap: 26px;
-    padding: clamp(32px, 4.5vw, 56px) 0;
-  }
-  @media (min-width: 900px) {
-    .cg-proj {
-      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-      gap: clamp(36px, 4.5vw, 64px);
-      align-items: start;
-    }
-  }
+  .cg-list { list-style: none; margin-top: clamp(24px, 3vw, 36px); }
+  .cg-list > li { display: flex; }
+  .cg-list > li > .cg-card { flex: 1; min-width: 0; }
 
   .cg-media { margin: 0; }
   .cg-frame {
@@ -1627,13 +1615,6 @@
     max-width: 65ch;
   }
 
-  .cg-body { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-  .cg-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 900;
-    letter-spacing: -0.035em;
-    line-height: 0.98;
-  }
   .cg-stack {
     list-style: none;
     display: flex;
@@ -1643,27 +1624,26 @@
     font-size: 0.66rem;
     letter-spacing: 0.12em;
   }
-  .cg-sum { font-size: 1.1rem; line-height: 1.5; max-width: 52ch; text-wrap: pretty; }
-  .cg-work { color: var(--cg-dim); max-width: 60ch; text-wrap: pretty; }
+  .cg-work { color: var(--cg-dim); font-size: 0.92rem; text-wrap: pretty; }
 
-  .cg-credits { margin-top: 6px; }
-  .cg-credits h4 {
-    font-size: 0.95rem;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    padding-bottom: 10px;
+  .cg-credits { border-top: 1px solid var(--line); padding-top: 12px; }
+  .cg-credits[open] { display: flex; flex-direction: column; gap: 12px; }
+  .cg-credits summary {
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    transition: color 0.25s;
   }
+  .cg-credits summary:hover { color: var(--accent); }
   .cg-credits dl > div {
     display: grid;
     gap: 3px;
     padding: 12px 0;
     border-top: 1px solid var(--line);
   }
-  @media (min-width: 560px) {
-    .cg-credits dl > div { grid-template-columns: minmax(9rem, 2fr) minmax(0, 5fr); gap: 18px; }
-  }
-  .cg-credits dt { font-weight: 700; font-size: 0.95rem; overflow-wrap: anywhere; }
-  .cg-credits dd { color: var(--cg-dim); font-size: 0.95rem; text-wrap: pretty; }
+    .cg-credits dt { font-weight: 700; font-size: 0.9rem; overflow-wrap: anywhere; }
+  .cg-credits dd { color: var(--cg-dim); font-size: 0.88rem; text-wrap: pretty; }
 
   .cg-empty {
     padding: clamp(28px, 4vw, 44px) 0 0;
