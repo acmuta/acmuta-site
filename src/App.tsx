@@ -16,6 +16,7 @@ import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Create from "./pages/Create";
+import CreateGallery from "./pages/CreateGallery";
 import Research from "./pages/Research";
 import Educate from "./pages/Educate";
 import HackUTA from "./pages/HackUTA";
@@ -101,6 +102,7 @@ const App = () => (
                 <Route path="/about"       element={<About />} />
                 <Route path="/committees"  element={<Committees />} />
                 <Route path="/create"      element={<Create />} />
+                <Route path="/create/gallery" element={<CreateGallery />} />
                 <Route path="/research"    element={<Research />} />
                 <Route path="/educate"     element={<Educate />} />
                 <Route path="/marketing"   element={<Marketing />} />

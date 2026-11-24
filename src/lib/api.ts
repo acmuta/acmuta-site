@@ -16,6 +16,13 @@
 
 import { committeesData, type Committee, type CommitteeKind } from "@/data/committees";
 import { projectsData,   type Project }     from "@/data/projects";
+import {
+  createSemesters,
+  createGalleryEntries,
+  type CreateSemester,
+  type CreateGalleryEntry,
+  type CreateTerm,
+} from "@/data/createGallery";
 import { eventsData,     type EventItem }   from "@/data/events";
 import { albumsData,     type PhotoAlbum }  from "@/data/gallery";
 import { officersData,   type Officer }     from "@/data/officers";
@@ -29,6 +36,7 @@ import { supabase } from "./supabase";
 import { downloadBlob } from "./download";
 
 // Re-export types so consumers import from one place.
+export type { CreateGalleryEntry, CreateMedia, CreateCredit, CreateShowcase } from "@/data/createGallery";
 export type { Committee, Project, EventItem, PhotoAlbum, Officer, Alumni, HallOfFameMember, NewsItem, Sponsor, Stat, HackUTAConfig };
 
 export interface AdminNewsItem {
@@ -110,6 +118,60 @@ export async function getProjects(): Promise<Project[]> {
   return resolve(projectsData);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Create project gallery
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface CreateGallerySemester extends CreateSemester {
+  label: string;
+  entries: CreateGalleryEntry[];
+}
+
+const CREATE_TERM_ORDER: Record<CreateTerm, number> = { spring: 0, summer: 1, fall: 2 };
+const CREATE_TERM_LABEL: Record<CreateTerm, string> = { spring: "Spring", summer: "Summer", fall: "Fall" };
+
+// The data file can hold pending entries and half-finished media records, so
+// this is the gate that decides what is safe to show publicly.
+function publishableEntry(e: CreateGalleryEntry): CreateGalleryEntry | null {
+  const warn = (why: string) => {
+    if (import.meta.env.DEV) console.warn(`createGallery: ${e.id}: ${why}`);
+  };
+  if (e.status !== "published") return null;
+  if (e.sources.length === 0) {
+    warn("entry hidden, it lists no sources");
+    return null;
+  }
+  const credits = e.credits.filter((c) => {
+    const ok = c.name.trim() && c.contribution.trim() && c.evidence.trim();
+    if (!ok) warn(`credit for "${c.name}" hidden, it needs a contribution and evidence`);
+    return ok;
+  });
+  let media = e.media;
+  if (media && !(media.clearance?.clearedBy && media.clearance.date && media.clearance.peopleConsented)) {
+    warn("media hidden until clearance is complete");
+    media = undefined;
+  }
+  if (media?.kind === "video" && !(media.captions && media.poster && media.sources.length > 0)) {
+    warn("video hidden, it needs sources, a poster, and captions");
+    media = undefined;
+  }
+  return { ...e, credits, media };
+}
+
+export async function getCreateGallery(): Promise<CreateGallerySemester[]> {
+  // === SUPABASE SWAP POINT ===
+  const semesters = createSemesters
+    .map((s) => ({
+      ...s,
+      label: `${CREATE_TERM_LABEL[s.term]} ${s.year}`,
+      entries: createGalleryEntries
+        .filter((e) => e.semester === s.id)
+        .map(publishableEntry)
+        .filter((e): e is CreateGalleryEntry => e !== null),
+    }))
+    .sort((a, b) => b.year - a.year || CREATE_TERM_ORDER[b.term] - CREATE_TERM_ORDER[a.term]);
+  return resolve(semesters);
+}
 // ─────────────────────────────────────────────────────────────────────────────
 // Events
 // ─────────────────────────────────────────────────────────────────────────────

@@ -15,6 +15,7 @@ The complete website and member portal for ACM at UT Arlington. Built in Vite + 
    - [Officer photos](#officer-photos)
    - [Hall of Fame](#hall-of-fame)
    - [Projects (Create & Research)](#projects-create--research)
+   - [Create project gallery](#create-project-gallery)
    - [Committees](#committees)
    - [Events](#events)
    - [Gallery albums](#gallery-albums)
@@ -154,6 +155,7 @@ src/
 │   ├── officers.ts          # Officer list + Hall of Fame
 │   ├── alumni.ts            # Alumni list
 │   ├── projects.ts          # Create & Research projects
+│   ├── createGallery.ts     # Create gallery by semester (see docs/create-gallery.md)
 │   ├── committees.ts        # Committee definitions (fallback if Supabase fails)
 │   ├── events.ts            # Event fallback data (not shown if Supabase has none)
 │   ├── hackuta.ts           # HackUTA config fallback
@@ -302,6 +304,14 @@ Add a new project:
 ```
 
 Projects automatically show up on `/projects` and on the relevant committee page (`/create` or `/research`).
+
+---
+
+### Create project gallery
+
+**File:** [src/data/createGallery.ts](src/data/createGallery.ts) · **Page:** `/create/gallery`
+
+A semester-by-semester record of Create projects, with media and per-person credits. Entries only go live after credit and media checks pass. Read [docs/create-gallery.md](docs/create-gallery.md) before adding anything; it covers the schema, the semester workflow, permission checks, and media export settings.
 
 ---
 
