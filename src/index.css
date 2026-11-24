@@ -251,10 +251,12 @@
     top: 0;
     left: 0;
     height: 2px;
+    width: 100%;
     background: var(--accent);
-    width: 0%;
+    transform: scaleX(0);
+    transform-origin: left;
     z-index: 200;
-    transition: width 0.1s linear;
+    transition: transform 0.1s linear;
     pointer-events: none;
   }
 }
