@@ -8,7 +8,6 @@ import { PageLoading } from "@/components/Loading";
 import { Arrow, IgIcon, LiIcon } from "@/components/icons";
 import { getCommittee, getProjects, getOfficers, type Committee, type Project, type Officer } from "@/lib/api";
 import { usePageTitle } from "@/hooks/usePageTitle";
-import { Snowflake } from "lucide-react";
 
 interface CommitteePageProps {
   slug: string;
