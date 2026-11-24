@@ -21,18 +21,19 @@
 
     /* Text */
     --text:        #1B1A17;   /* primary text */
-    --text-dim:    #6E6C64;   /* muted text */
-    --text-faint:  #9A968B;   /* tertiary / hairline labels */
+    --text-dim:    #5E5D56;   /* muted text */
+    --text-faint:  #69665F;   /* tertiary / hairline labels */
 
     /* Borders */
     --line:        rgba(20, 18, 15, 0.16);
     --line-2:      rgba(20, 18, 15, 0.26);
 
     /* Accent - burnt orange */
-    --accent:      #C2640F;
+    --accent:      #9F520C;
     --accent-ink:  #FFF6EC;   /* text ON the accent background */
-    --accent-dim:  rgba(194, 100, 15, 0.12);
-    --sel:         rgba(194, 100, 15, 0.20);
+    --accent-dim:  rgba(159, 82, 12, 0.12);
+    --accent-text: #8F470B;   /* accent-hued text on accent-dim tints */
+    --sel:         rgba(159, 82, 12, 0.20);
 
     --radius: 0.25rem;
     --r:    var(--radius);          /* sharp corners */
@@ -51,7 +52,7 @@
 
     --text:        #F2F0EA;
     --text-dim:    #9A988F;
-    --text-faint:  #66645C;
+    --text-faint:  #8B897E;
 
     --line:        rgba(255, 255, 255, 0.13);
     --line-2:      rgba(255, 255, 255, 0.22);
@@ -60,6 +61,7 @@
     --accent:      #E0892A;
     --accent-ink:  #1A1206;
     --accent-dim:  rgba(224, 137, 42, 0.14);
+    --accent-text: var(--accent);
     --sel:         rgba(224, 137, 42, 0.22);
 
     --ok-accept: oklch(0.74 0.11 152);
@@ -1308,6 +1310,8 @@
   }
   .ev-date .dy { font-weight: 900; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.03em; line-height: 1; }
 
+  .ev-row:hover .ev-date .mo { color: var(--accent-text); }
+
   .ev-main { min-width: 0; display: flex; flex-direction: column; gap: 9px; }
   @media (min-width: 760px) {
     .ev-main { flex-direction: row; align-items: center; gap: 28px; }
@@ -1316,6 +1320,7 @@
 
   .ev-title { font-weight: 800; font-size: clamp(1.15rem, 2.2vw, 1.5rem); letter-spacing: -0.02em; }
   .ev-when  { color: var(--text-faint); font-size: 0.85rem; margin-top: 4px; }
+  .ev-row:hover .ev-when { color: var(--text-dim); }
   .ev-metarow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   .ev-loc   { color: var(--text-dim); font-size: 0.9rem; }
   .ev-badge { font-size: 0.6rem; padding: 4px 9px; border: 1px solid var(--line-2); border-radius: 2px; color: var(--text-dim); white-space: nowrap; }
@@ -2725,7 +2730,7 @@
     white-space: nowrap;
   }
 
-  .pf-role-badge--officer { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-dim); }
+  .pf-role-badge--officer { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-dim); }
   .pf-role-badge--director { color: var(--accent-ink); background: var(--accent); border-color: transparent; }
   .pf-role-badge--member { color: var(--text-dim); }
 
@@ -3127,6 +3132,8 @@
   .lb-rank--2 { color: #cbd5e1; }
   .lb-rank--3 { color: #d97706; }
 
+  .lb-row.me .lb-rank:not(.lb-rank--1):not(.lb-rank--2):not(.lb-rank--3) { color: var(--text-dim); }
+
   .lb-name {
     flex: 1;
     font-weight: 600;
@@ -3212,7 +3219,7 @@
 
   .lb-you {
     font-size: 0.6rem;
-    color: var(--accent);
+    color: var(--accent-text);
     border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
     border-radius: 100px;
     padding: 2px 6px;
@@ -3373,7 +3380,7 @@
     padding: 4px 10px;
     border-radius: 100px;
     background: var(--accent-dim);
-    color: var(--accent);
+    color: var(--accent-text);
     white-space: nowrap;
   }
 
@@ -3381,7 +3388,7 @@
 
   .adm-role-badge--director {
     background: var(--accent-dim);
-    color: var(--accent);
+    color: var(--accent-text);
     border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
   }
 
@@ -3415,7 +3422,7 @@
   .adm-nav-link:hover { color: var(--text); background: var(--bg-2); }
 
   .adm-nav-link.active {
-    color: var(--accent);
+    color: var(--accent-text);
     background: var(--accent-dim);
     border-color: var(--accent);
   }
@@ -3543,6 +3550,8 @@
     font-size: 0.7rem;
     color: var(--accent);
   }
+
+  .adm-cat-chip.active .adm-cat-bits { color: var(--accent-text); }
 
   .adm-section { margin-bottom: 30px; }
 
@@ -4376,7 +4385,7 @@
     font-weight: 700;
   }
 
-  .adm-flag--admin { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-dim); }
+  .adm-flag--admin { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-dim); }
   .adm-flag--alumni { color: var(--text-dim); }
   .adm-flag--pending { color: var(--ok-wait); border-color: color-mix(in oklch, var(--ok-wait) 40%, transparent); }
 
@@ -4558,7 +4567,7 @@
   }
 
   .adm-form-status--draft  { color: var(--text-faint); border-color: var(--line-2); }
-  .adm-form-status--open   { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: var(--accent-dim); }
+  .adm-form-status--open   { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: var(--accent-dim); }
   .adm-form-status--closed { color: var(--ok-reject); border-color: color-mix(in oklch, var(--ok-reject) 38%, transparent); }
 
   /* ── Application builder ── */
@@ -4901,7 +4910,7 @@
   .sub-status--submitted   { color: var(--text-dim); border-color: var(--line-2); background: var(--bg-2); }
   .sub-status--draft       { color: var(--text-faint); border-color: var(--line); background: var(--bg-2); }
   .sub-status--under_review,
-  .sub-status--open        { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: var(--accent-dim); }
+  .sub-status--open        { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: var(--accent-dim); }
   .sub-status--accepted    { color: var(--ok-accept); border-color: color-mix(in oklch, var(--ok-accept) 40%, transparent); background: color-mix(in oklch, var(--ok-accept) 13%, var(--bg-1)); }
   .sub-status--rejected,
   .sub-status--closed      { color: var(--ok-reject); border-color: color-mix(in oklch, var(--ok-reject) 38%, transparent); background: color-mix(in oklch, var(--ok-reject) 12%, var(--bg-1)); }
