@@ -32,6 +32,10 @@ export interface CreateCredit {
   contribution: string;
   /** Public URL that shows the work, or "approved YYYY-MM-DD" when the person approved the credit privately */
   evidence: string;
+  /** Role on the team, e.g. "Project manager" or "Frontend" */
+  role?: string;
+  linkedin?: string;
+  github?: string;
 }
 
 export interface CreateMediaClearance {
@@ -89,6 +93,8 @@ export interface CreateGalleryEntry {
   media?: CreateMedia;
   demoUrl?: string;
   repoUrl?: string;
+  /** Slides, Devpost, demo video, or other public links */
+  extraLinks?: { label: string; url: string }[];
   credits: CreateCredit[];
   /** Public URLs that back the entry itself (semester, committee, description) */
   sources: string[];
