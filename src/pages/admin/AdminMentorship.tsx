@@ -12,6 +12,7 @@ import {
   type AdminPairing,
 } from "@/lib/api";
 import type { AdminContext } from "./AdminLayout";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 function filterCandidates(candidates: MentorshipCandidate[], query: string): MentorshipCandidate[] {
   const q = query.trim().toLowerCase();
@@ -75,6 +76,8 @@ function CandidatePicker({ label, candidates, search, onSearchChange, selectedId
 }
 
 export default function AdminMentorship() {
+  usePageTitle("Admin Mentorship");
+
   const { user } = useAuth();
   const { isAdmin, directedCommittees } = useOutletContext<AdminContext>();
   const canAccess = isAdmin || directedCommittees.some((c) => c.slug === "educate");

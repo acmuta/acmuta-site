@@ -10,6 +10,7 @@ import {
 } from "@/lib/api";
 import type { AdminContext } from "./AdminLayout";
 import { toLocalISODate } from "@/lib/dates";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 type NewsForm = {
   tag: string;
@@ -141,6 +142,8 @@ function NewsForm({
 }
 
 export default function AdminNews() {
+  usePageTitle("Admin News");
+
   const { isAdmin, directedCommittees } = useOutletContext<AdminContext>();
   const { user } = useAuth();
   const canEdit = isAdmin || directedCommittees.length > 0;

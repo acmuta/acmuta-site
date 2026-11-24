@@ -26,6 +26,7 @@ import {
   type DirectedCommittee,
 } from "@/lib/api";
 import type { AdminContext } from "./AdminLayout";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 function toLocalInput(iso: string): string {
   const d = new Date(iso);
@@ -53,6 +54,8 @@ const EMPTY_CATEGORY_FORM = {
 };
 
 export default function AdminEvents() {
+  usePageTitle("Admin Events");
+
   const { isAdmin, directedCommittees } = useOutletContext<AdminContext>();
 
   const [events, setEvents] = useState<AdminEvent[]>([]);

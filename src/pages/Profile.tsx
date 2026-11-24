@@ -21,6 +21,7 @@ import {
   splitMajor,
   splitPronouns,
 } from "@/lib/onboardingOptions";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 function AppStatusBadge({ status }: { status: SubmissionStatus }) {
   return (
@@ -34,6 +35,8 @@ const THIS_YEAR = new Date().getFullYear();
 const GRAD_YEARS = Array.from({ length: 8 }, (_, i) => THIS_YEAR + i);
 
 export default function Profile() {
+  usePageTitle("Profile");
+
   const { user, profile, loading, directedCommittees, refreshProfile, signOut } = useAuth();
   const navigate = useNavigate();
 

@@ -58,13 +58,14 @@ All colors are CSS custom properties (tokens). **Never hardcode hex values** —
 | `--bg-1` | `#F4F1E9` | `#17171A` | Cards / surfaces |
 | `--bg-2` | `#FBF9F3` | `#212126` | Raised / hover |
 | `--text` | `#1B1A17` | `#F2F0EA` | Primary text |
-| `--text-dim` | `#6E6C64` | `#9A988F` | Muted text |
-| `--text-faint` | `#9A968B` | `#66645C` | Tertiary / labels |
+| `--text-dim` | `#5E5D56` | `#9A988F` | Muted text |
+| `--text-faint` | `#69665F` | `#8B897E` | Tertiary / labels |
 | `--line` | `rgba(20,18,15,0.16)` | `rgba(255,255,255,0.13)` | Hairline borders |
 | `--line-2` | `rgba(20,18,15,0.26)` | `rgba(255,255,255,0.22)` | Heavier borders |
-| `--accent` | `#C2640F` Burnt orange | `#E0892A` Warm amber | Accent / highlights |
+| `--accent` | `#9F520C` Burnt orange | `#E0892A` Warm amber | Accent / highlights |
 | `--accent-ink` | `#FFF6EC` | `#1A1206` | Text on accent bg |
-| `--accent-dim` | `rgba(194,100,15,0.12)` | `rgba(224,137,42,0.14)` | Accent bg tint |
+| `--accent-dim` | `rgba(159,82,12,0.12)` | `rgba(224,137,42,0.14)` | Accent bg tint |
+| `--accent-text` | `#8F470B` | `var(--accent)` | Accent-hued text on accent-dim tints |
 
 ### Typography
 
@@ -244,6 +245,19 @@ Officer, alumni, and Hall of Fame photos share one pipeline. Originals live in `
 
 ---
 
+### Site images
+
+Photos and logos under `public/assets/` (homepage, events, projects, companies, logo) are committed as WebP at web-sized dimensions — not the original camera files. The same build guard also fails if any image outside `officerpics/` is over 400 KB or 2048 px.
+
+Conventions:
+
+- Large photos ship two variants, `<name>-640.webp` and `<name>-1280.webp`, referenced with `srcSet`/`sizes` (see `Ph` props or `OfficerPhoto`).
+- Smaller images ship one file, e.g. `<name>-768.webp` for strip photos or `<name>.webp` for logos.
+- Keep new files under the budget; if something legitimately needs more, raise the limit in `scripts/check-assets.mjs` with a comment explaining why.
+- Delete files nothing references — check `src/`, `index.html`, `vercel.json`, and this README first.
+
+---
+
 ### Hall of Fame
 
 **File:** [src/data/officers.ts](src/data/officers.ts) — `hallOfFameData` array at the bottom.
@@ -278,9 +292,9 @@ Add a new project:
   title: "My App",
   summary: "One sentence description.",
   committee: "Create",         // "Create" or "Research"
-  year: 2025,
+  year: "2025",
   featured: false,             // true = spans 2 columns on desktop
-  image: "/assets/projects/myapp.jpg",   // optional, place in public/assets/projects/
+  image: "/assets/projects/myapp-1280.webp",   // optional; a -1280.webp name auto-adds its -640.webp srcset variant
   github: "https://github.com/acmuta/my-app",   // optional
   demo: "https://myapp.com",   // optional
   tags: ["React", "Node.js"],  // optional list of tech tags

@@ -6,6 +6,7 @@ import { Arrow } from "@/components/icons";
 import { useAuth } from "@/lib/auth";
 import { getApplicationFormSummaries, TERM_LABEL } from "@/lib/api";
 import type { ApplicationFormSummary, ApplicationTerm, ApplicationType } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 // ── Grouping helpers ─────────────────────────────────────────────────────────
 
@@ -143,6 +144,8 @@ function ApplyCard({ data }: { data: ApplyCardData }) {
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 export default function Apply() {
+  usePageTitle("Apply");
+
   const { user, profile } = useAuth();
   const [forms, setForms] = useState<ApplicationFormSummary[]>([]);
 

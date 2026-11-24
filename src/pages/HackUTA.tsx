@@ -6,6 +6,7 @@ import { Ph } from "@/components/Placeholder";
 import { Arrow } from "@/components/icons";
 import { getHackUTAConfig, type HackUTAConfig } from "@/lib/api";
 import { PageLoading } from "@/components/Loading";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const STATS = [
   { n: "500", s: "+", l: "hackers" },
@@ -20,9 +21,9 @@ const STRIP_LABELS = [
 ];
 
 const STRIP_IMAGES = [
-  "/assets/events/hackuta2025.jpg",
-  "/assets/homepage/hackuta.jpeg",
-  "/assets/homepage/hackathon.JPG",
+  "/assets/events/hackuta2025-768.webp",
+  "/assets/homepage/hackuta-640.webp",
+  "/assets/homepage/hackathon-640.webp",
 ];
 
 function HackUTAEnabled({ cfg }: { cfg: HackUTAConfig }) {
@@ -209,6 +210,8 @@ function HackUTADisabled() {
 }
 
 const HackUTA = () => {
+  usePageTitle("HackUTA");
+
   const [cfg, setCfg] = useState<HackUTAConfig | null>(null);
 
   useEffect(() => {

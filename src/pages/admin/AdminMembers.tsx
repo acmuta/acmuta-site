@@ -14,6 +14,7 @@ import {
 import type { AdminContext } from "./AdminLayout";
 import { useCommitteeOptions } from "./useCommitteeOptions";
 import { MemberInfoModal } from "@/components/admin/MemberInfoModal";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
@@ -27,6 +28,8 @@ const ROLE_LABEL: Record<CommitteeRoleType, string> = {
 };
 
 export default function AdminMembers() {
+  usePageTitle("Admin Members");
+
   const { user } = useAuth();
   const { isAdmin, directedCommittees } = useOutletContext<AdminContext>();
   const { options: committees, loading: committeesLoading } = useCommitteeOptions(isAdmin, directedCommittees);

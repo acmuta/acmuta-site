@@ -17,6 +17,7 @@ import {
   type Sponsor,
 } from "@/lib/api";
 import { parseLocalDate } from "@/lib/dates";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 // ─── Count-up hook ────────────────────────────────────────────────────────────
 
@@ -100,6 +101,8 @@ interface HomeData {
 }
 
 const Index = () => {
+  usePageTitle();
+
   const [data, setData] = useState<HomeData | null>(null);
   const heroRef = useRef<HTMLElement>(null);
   const heroInRef = useRef<HTMLDivElement>(null);
@@ -351,18 +354,18 @@ const Index = () => {
         </div>
         <div className="strip-track">
           {[
-            { label: "Fall Kickoff", src: "/assets/events/fallkickoff2025.JPG" },
-            { label: "Demo Night", src: "/assets/homepage/award.jpg" },
-            { label: "HackUTA '25", src: "/assets/events/hackuta2025.jpg" },
-            { label: "Workshop", src: "/assets/homepage/researchthink.jpg" },
-            { label: "Game Night", src: "/assets/homepage/selfie.jpg" },
-            { label: "Industry Night", src: "/assets/homepage/whatisperplexity.jpg" },
-            { label: "Fall Kickoff", src: "/assets/events/fallkickoff2025.JPG" },
-            { label: "Demo Night", src: "/assets/homepage/award.jpg" },
-            { label: "HackUTA '25", src: "/assets/events/hackuta2025.jpg" },
-            { label: "Workshop", src: "/assets/homepage/researchthink.jpg" },
-            { label: "Game Night", src: "/assets/homepage/selfie.jpg" },
-            { label: "Industry Night", src: "/assets/homepage/whatisperplexity.jpg" },
+            { label: "Fall Kickoff", src: "/assets/events/fallkickoff2025-768.webp" },
+            { label: "Demo Night", src: "/assets/homepage/award-768.webp" },
+            { label: "HackUTA '25", src: "/assets/events/hackuta2025-768.webp" },
+            { label: "Workshop", src: "/assets/homepage/researchthink-768.webp" },
+            { label: "Game Night", src: "/assets/homepage/selfie-768.webp" },
+            { label: "Industry Night", src: "/assets/homepage/whatisperplexity-768.webp" },
+            { label: "Fall Kickoff", src: "/assets/events/fallkickoff2025-768.webp" },
+            { label: "Demo Night", src: "/assets/homepage/award-768.webp" },
+            { label: "HackUTA '25", src: "/assets/events/hackuta2025-768.webp" },
+            { label: "Workshop", src: "/assets/homepage/researchthink-768.webp" },
+            { label: "Game Night", src: "/assets/homepage/selfie-768.webp" },
+            { label: "Industry Night", src: "/assets/homepage/whatisperplexity-768.webp" },
           ].map(({ label, src }, i) => (
             <Ph key={i} className="strip-item" label={label} src={src} alt={label} />
           ))}

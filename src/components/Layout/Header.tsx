@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Arrow } from "@/components/icons";
 import { useAuth } from "@/lib/auth";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { NotificationBell } from "./NotificationBell";
 
 const ROUTES = [
@@ -36,8 +37,8 @@ function useTheme() {
 function AcmMark({ size = 30 }: { size?: number }) {
   const theme = useTheme();
   const logo = theme === "dark"
-    ? "/assets/logo/acmlogo-white.png"
-    : "/assets/logo/acmlogo-black.png";
+    ? "/assets/logo/acmlogo-white.webp"
+    : "/assets/logo/acmlogo-black.webp";
   return (
     <Link to="/" className="acm-mark" aria-label="ACM at UTA home">
       <img
@@ -61,6 +62,11 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const { user, profile, loading, signOut } = useAuth();
+  const menuBtnRef = useRef<HTMLButtonElement>(null);
+  const navRef = useFocusTrap<HTMLElement>(open, {
+    onEscape: () => setOpen(false),
+    include: [menuBtnRef],
+  });
 
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
@@ -135,10 +141,12 @@ export function Header() {
               Apply <Arrow s={13} />
             </Link>
             <button
+              ref={menuBtnRef}
               className={`menu-btn${open ? " open" : ""}`}
               onClick={() => setOpen(!open)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
+              aria-controls="site-nav"
             >
               <span className="mono menu-label">{open ? "CLOSE" : "MENU"}</span>
               <span className="menu-ico"><i /><i /></span>
@@ -147,7 +155,14 @@ export function Header() {
         </div>
       </header>
 
-      <nav className={`overlay${open ? " open" : ""}`} aria-hidden={!open}>
+      <nav
+        ref={navRef}
+        id="site-nav"
+        className={`overlay${open ? " open" : ""}`}
+        aria-hidden={!open}
+        aria-label="Site navigation"
+        tabIndex={-1}
+      >
         <div className="wrap overlay-in">
           <div className="overlay-meta mono">
             <span>[ navigation ]</span>

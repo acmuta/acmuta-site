@@ -3,6 +3,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import { useAuth } from "@/lib/auth";
 import { callCheckIn } from "@/lib/api";
 import type { CheckInResult } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 type PageState = "idle" | "loading" | "done";
 
@@ -27,6 +28,8 @@ const ERROR_COPY: Record<string, { heading: string; body: string; isOk?: boolean
 };
 
 export default function CheckIn() {
+  usePageTitle("Check In");
+
   const [params] = useSearchParams();
   const token = params.get("token");
   const { user, loading } = useAuth();

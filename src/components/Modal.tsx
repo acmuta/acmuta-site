@@ -1,5 +1,7 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useId, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { XIcon } from "@/components/icons";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
 
 interface ModalProps {
   title: string;
@@ -9,34 +11,36 @@ interface ModalProps {
 }
 
 export function Modal({ title, onClose, children, wide }: ModalProps) {
+  const titleId = useId();
+  const dialogRef = useFocusTrap<HTMLDivElement>(true, { onEscape: onClose });
+
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
-      window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, []);
 
-  return (
+  return createPortal(
     <div className="pmodal-overlay" onClick={onClose}>
       <div
+        ref={dialogRef}
         className={`pmodal${wide ? " pmodal--wide" : ""}`}
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
       >
         <div className="pmodal-head">
-          <h3>{title}</h3>
+          <h3 id={titleId}>{title}</h3>
           <button type="button" className="pmodal-x" onClick={onClose} aria-label="Close">
             <XIcon s={18} />
           </button>
         </div>
         <div className="pmodal-body">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

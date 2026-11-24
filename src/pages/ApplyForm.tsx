@@ -18,6 +18,7 @@ import {
 } from "@/lib/api";
 import { useQuestionForm, QuestionForm } from "@/components/applications/QuestionForm";
 import { SubmissionView } from "@/components/applications/SubmissionView";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 // Maps a question's `autofill` field to the profile column it's pulled from.
 const AUTOFILL_MAP: Record<AutofillField, keyof Profile> = {
@@ -163,6 +164,8 @@ export default function ApplyForm() {
 
   const [form, setForm] = useState<ApplicationFormDetail | null | undefined>(undefined);
   const [submission, setSubmission] = useState<ApplicationSubmission | null | undefined>(undefined);
+
+  usePageTitle(form?.title ?? "Apply");
 
   useEffect(() => {
     if (!authLoading && !user) navigate("/signin", { replace: true });

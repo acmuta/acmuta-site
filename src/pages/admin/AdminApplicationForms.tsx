@@ -9,8 +9,11 @@ import {
   FORM_STATUS_LABEL,
   type ApplicationFormDetail,
 } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function AdminApplicationForms() {
+  usePageTitle("Admin Applications");
+
   const navigate = useNavigate();
   const [forms, setForms] = useState<ApplicationFormDetail[]>([]);
   const [loading, setLoading] = useState(true);

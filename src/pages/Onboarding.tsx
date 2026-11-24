@@ -12,11 +12,14 @@ import {
   splitMajor,
   splitPronouns,
 } from "@/lib/onboardingOptions";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const THIS_YEAR = new Date().getFullYear();
 const GRAD_YEARS = Array.from({ length: 8 }, (_, i) => THIS_YEAR + i);
 
 export default function Onboarding() {
+  usePageTitle("Onboarding");
+
   const { user, profile, loading, refreshProfile } = useAuth();
   const navigate = useNavigate();
 

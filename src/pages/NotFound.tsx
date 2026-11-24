@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { NodeField } from "@/components/NodeField";
 import { Arrow } from "@/components/icons";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
-const NotFound = () => (
+const NotFound = () => {
+  usePageTitle("Page Not Found");
+
+  return (
   <div>
     <section className="nf">
       <div className="nf-canvas">
@@ -47,6 +51,7 @@ const NotFound = () => (
       </div>
     </section>
   </div>
-);
+  );
+};
 
 export default NotFound;

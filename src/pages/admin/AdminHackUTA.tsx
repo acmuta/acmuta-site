@@ -3,8 +3,11 @@ import { useOutletContext } from "react-router-dom";
 import { getHackUTAConfig, updateHackUTAConfig, type HackUTAConfig } from "@/lib/api";
 import type { AdminContext } from "./AdminLayout";
 import { useAuth } from "@/lib/auth";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function AdminHackUTA() {
+  usePageTitle("Admin HackUTA");
+
   const { isAdmin } = useOutletContext<AdminContext>();
   const { user } = useAuth();
 

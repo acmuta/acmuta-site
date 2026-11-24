@@ -25,7 +25,7 @@ export function NodeField({ density = 1, className, style }: NodeFieldProps) {
       getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
     let cText = "27,26,23";
-    let cAccent = "194,100,15";
+    let cAccent = "159,82,12";
 
     const hexToRgb = (h: string) => {
       h = h.replace("#", "");
@@ -37,7 +37,9 @@ export function NodeField({ density = 1, className, style }: NodeFieldProps) {
       try {
         cText = hexToRgb(css("--text"));
         cAccent = hexToRgb(css("--accent"));
-      } catch (_) {}
+      } catch (_) {
+        // keep the previous colors when the CSS vars can't be parsed
+      }
     };
 
     function resize() {
