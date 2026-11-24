@@ -8,6 +8,7 @@ import {
   type EventItem,
   type Committee,
 } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 // ─── Calendar helpers ─────────────────────────────────────────────────────────
 
@@ -274,6 +275,8 @@ function MiniCalendar({
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 const Events = () => {
+  usePageTitle("Events");
+
   const [events, setEvents] = useState<EventItem[] | null>(null);
   const [committees, setCommittees] = useState<Committee[]>([]);
   const [view, setView] = useState<"list" | "calendar">("list");

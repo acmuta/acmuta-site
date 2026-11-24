@@ -5,8 +5,11 @@ import type { AdminContext } from "./AdminLayout";
 import { describeAuditEntry } from "./auditLabels";
 import { Reveal } from "@/components/Reveal";
 import { CommitteeMark } from "@/components/CommitteeLogo";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function AdminDashboard() {
+  usePageTitle("Admin Dashboard");
+
   const { isAdmin, directedCommittees } = useOutletContext<AdminContext>();
 
   const [stats, setStats] = useState<OrgStats | null>(null);

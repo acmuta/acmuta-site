@@ -32,6 +32,7 @@ import {
   type SliderConfig,
 } from "@/lib/api";
 import type { AdminContext } from "./AdminLayout";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const APPLICATION_TYPES: ApplicationType[] = ["member", "officer", "mentor", "mentee"];
 const TERMS: ApplicationTerm[] = ["spring", "summer", "fall"];
@@ -102,6 +103,8 @@ export default function AdminApplicationBuilder() {
   const [templates, setTemplates] = useState<ApplicationTemplate[]>([]);
   const [form, setForm] = useState<ApplicationFormDetail | null>(null);
   const [notFound, setNotFound] = useState(false);
+
+  usePageTitle(isNew ? "New Application" : form?.title ?? "Application Builder");
 
   const [committeeId, setCommitteeId] = useState("");
   const [applicationType, setApplicationType] = useState<ApplicationType>("officer");

@@ -16,6 +16,7 @@ import {
   type NewsItem,
   type Sponsor,
 } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 // ─── Count-up hook ────────────────────────────────────────────────────────────
 
@@ -99,6 +100,8 @@ interface HomeData {
 }
 
 const Index = () => {
+  usePageTitle();
+
   const [data, setData] = useState<HomeData | null>(null);
   const heroRef = useRef<HTMLElement>(null);
   const heroInRef = useRef<HTMLDivElement>(null);

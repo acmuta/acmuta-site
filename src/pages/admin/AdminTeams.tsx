@@ -15,8 +15,11 @@ import {
 } from "@/lib/api";
 import type { AdminContext } from "./AdminLayout";
 import { useCommitteeOptions } from "./useCommitteeOptions";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function AdminTeams() {
+  usePageTitle("Admin Teams");
+
   const { isAdmin, directedCommittees } = useOutletContext<AdminContext>();
   const { options: committees, loading: committeesLoading } = useCommitteeOptions(isAdmin, directedCommittees);
 

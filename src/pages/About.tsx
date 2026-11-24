@@ -6,11 +6,14 @@ import { Ph } from "@/components/Placeholder";
 import { PageLoading } from "@/components/Loading";
 import { Arrow } from "@/components/icons";
 import { getCommittees, type Committee } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 /** Matches .ab-photo: half of the 1320px wrap above 880px, full width below */
 const PHOTO_SIZES = "(min-width: 1360px) 620px, (min-width: 880px) 45vw, 100vw";
 
 const About = () => {
+  usePageTitle("About");
+
   const [committees, setCommittees] = useState<Committee[] | null>(null);
 
   useEffect(() => {

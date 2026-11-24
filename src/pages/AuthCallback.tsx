@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function AuthCallback() {
+  usePageTitle("Confirming Account");
+
   const navigate = useNavigate();
 
   useEffect(() => {
