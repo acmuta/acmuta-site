@@ -142,8 +142,9 @@ const Contact = () => {
               </p>
               <form onSubmit={handleSubmit}>
                 <div className="field">
-                  <label>Name</label>
+                  <label htmlFor="ct-name">Name</label>
                   <input
+                    id="ct-name"
                     required
                     placeholder="Your name"
                     value={name}
@@ -151,8 +152,9 @@ const Contact = () => {
                   />
                 </div>
                 <div className="field">
-                  <label>Your email</label>
+                  <label htmlFor="ct-email">Your email</label>
                   <input
+                    id="ct-email"
                     required
                     type="email"
                     placeholder="you@example.com"
@@ -161,8 +163,9 @@ const Contact = () => {
                   />
                 </div>
                 <div className="field">
-                  <label>Reason for reaching out</label>
+                  <label htmlFor="ct-reason">Reason for reaching out</label>
                   <select
+                    id="ct-reason"
                     value={reason}
                     onChange={(e) => setReason(e.target.value)}
                     style={{
@@ -182,8 +185,9 @@ const Contact = () => {
                   </select>
                 </div>
                 <div className="field">
-                  <label>Message</label>
+                  <label htmlFor="ct-message">Message</label>
                   <textarea
+                    id="ct-message"
                     required
                     placeholder="Tell us what you're thinking…"
                     value={msg}
