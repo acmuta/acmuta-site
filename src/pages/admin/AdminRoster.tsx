@@ -4,8 +4,11 @@ import { useAuth } from "@/lib/auth";
 import { getRoster, type RosterMember } from "@/lib/api";
 import type { AdminContext } from "./AdminLayout";
 import { MemberInfoModal } from "@/components/admin/MemberInfoModal";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function AdminRoster() {
+  usePageTitle("Admin Roster");
+
   const { isAdmin } = useOutletContext<AdminContext>();
   const { user } = useAuth();
 

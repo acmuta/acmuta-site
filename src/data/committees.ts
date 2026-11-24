@@ -37,7 +37,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Membership is by application. Teams form at the start of each semester. Apply with your Mavs email.",
-    logo: "/assets/logo/create.png",
+    logo: "/assets/logo/create.webp",
   },
   {
     id: "research",
@@ -56,7 +56,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Membership is by application. Teams are small on purpose. Apply with your Mavs email.",
-    logo: "/assets/logo/research.png",
+    logo: "/assets/logo/research.webp",
   },
   {
     id: "educate",
@@ -75,7 +75,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Open to all, no application needed. Sign up for the mentor/mentee program at the start of the semester.",
-    logo: "/assets/logo/educate.png",
+    logo: "/assets/logo/educate.webp",
   },
   {
     id: "marketing",
@@ -94,7 +94,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Staff committee with officer and director roles. Get involved by showing up and pitching in.",
-    logo: "/assets/logo/marketing.png",
+    logo: "/assets/logo/marketing.webp",
   },
   {
     id: "outreach",
@@ -113,7 +113,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Staff committee with officer and director roles. Comfortable with email and people? Come talk to us.",
-    logo: "/assets/logo/outreach.png",
+    logo: "/assets/logo/outreach.webp",
   },
   {
     id: "community",
@@ -132,7 +132,7 @@ export const committeesData: Committee[] = [
     ],
     involve:
       "Staff committee with officer and director roles. The easiest place to start. Just hang out.",
-    logo: "/assets/logo/community.png",
+    logo: "/assets/logo/community.webp",
   },
 ];
 

@@ -3,8 +3,11 @@ import { Reveal } from "@/components/Reveal";
 import { ProjectCard } from "@/components/ProjectCard";
 import { PageLoading } from "@/components/Loading";
 import { getProjects, type Project } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const Projects = () => {
+  usePageTitle("Projects");
+
   const [projects, setProjects] = useState<Project[] | null>(null);
 
   useEffect(() => {

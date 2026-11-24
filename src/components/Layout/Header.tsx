@@ -36,8 +36,8 @@ function useTheme() {
 function AcmMark({ size = 30 }: { size?: number }) {
   const theme = useTheme();
   const logo = theme === "dark"
-    ? "/assets/logo/acmlogo-white.png"
-    : "/assets/logo/acmlogo-black.png";
+    ? "/assets/logo/acmlogo-white.webp"
+    : "/assets/logo/acmlogo-black.webp";
   return (
     <Link to="/" className="acm-mark" aria-label="ACM at UTA home">
       <img
