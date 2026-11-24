@@ -23,7 +23,7 @@ export const projectsData: Project[] = [
     summary:
       "Grade distribution data for every UTA course and professor, in a fast, searchable interface. Built by students, used by thousands every registration season.",
     websiteUrl: "https://mavgrades.com",
-    codeUrl: "https://github.com/acmuta",
+    codeUrl: "https://github.com/acmuta/mavgrades",
     committee: "Create",
     year: "2024",
     featured: true,
@@ -34,7 +34,6 @@ export const projectsData: Project[] = [
     image: "/assets/projects/discordjobbot-1280.webp",
     summary:
       "A bot that scrapes new-grad and internship postings and drops them straight into the ACM Discord, so members see openings the day they go live.",
-    codeUrl: "https://github.com/acmuta",
     committee: "Create",
     year: "2024",
     featured: false,
@@ -46,7 +45,6 @@ export const projectsData: Project[] = [
     summary:
       "The registration and info site for HackUTA, ACM's flagship hackathon. Handles applications, schedules, and sponsor placement for 500+ hackers.",
     websiteUrl: "https://hackuta.org",
-    codeUrl: "https://github.com/acmuta",
     committee: "Create",
     year: "2024",
     featured: true,
@@ -69,7 +67,6 @@ export const projectsData: Project[] = [
     image: "",
     summary:
       "Internal tooling the Research committee uses to organize reading groups, track experiments, and share datasets across teams.",
-    codeUrl: "https://github.com/acmuta",
     committee: "Research",
     year: "2025",
     featured: false,
@@ -80,7 +77,6 @@ export const projectsData: Project[] = [
     image: "",
     summary:
       "Role assignment, event reminders, and committee channels: the bot that keeps a 1,700-member Discord organized.",
-    codeUrl: "https://github.com/acmuta",
     committee: "Create",
     year: "2023",
     featured: false,

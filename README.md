@@ -291,7 +291,7 @@ Add a new project:
   title: "My App",
   summary: "One sentence description.",
   committee: "Create",         // "Create" or "Research"
-  year: 2025,
+  year: "2025",
   featured: false,             // true = spans 2 columns on desktop
   image: "/assets/projects/myapp-1280.webp",   // optional; a -1280.webp name auto-adds its -640.webp srcset variant
   github: "https://github.com/acmuta/my-app",   // optional
