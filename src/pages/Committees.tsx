@@ -5,6 +5,7 @@ import { CommitteeLogo } from "@/components/CommitteeLogo";
 import { PageLoading } from "@/components/Loading";
 import { Arrow } from "@/components/icons";
 import { getCommittees, type Committee } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const GROUPS = [
   {
@@ -53,6 +54,8 @@ function CommitteeRow({ c, index }: { c: Committee; index: number }) {
 }
 
 const Committees = () => {
+  usePageTitle("Committees");
+
   const [committees, setCommittees] = useState<Committee[] | null>(null);
 
   useEffect(() => {

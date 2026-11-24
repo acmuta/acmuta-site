@@ -6,8 +6,14 @@ import { Ph } from "@/components/Placeholder";
 import { PageLoading } from "@/components/Loading";
 import { Arrow } from "@/components/icons";
 import { getCommittees, type Committee } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
+
+/** Matches .ab-photo: half of the 1320px wrap above 880px, full width below */
+const PHOTO_SIZES = "(min-width: 1360px) 620px, (min-width: 880px) 45vw, 100vw";
 
 const About = () => {
+  usePageTitle("About");
+
   const [committees, setCommittees] = useState<Committee[] | null>(null);
 
   useEffect(() => {
@@ -57,7 +63,7 @@ const About = () => {
                 doors in.
               </p>
             </div>
-            <Ph className="ab-photo" label="group / room shot" src="/assets/homepage/crowd.jpg" alt="ACM members gathered at a general body meeting" />
+            <Ph className="ab-photo" label="group / room shot" src="/assets/homepage/crowd-1280.webp" srcSet="/assets/homepage/crowd-640.webp 640w, /assets/homepage/crowd-1280.webp 1280w" sizes={PHOTO_SIZES} alt="ACM members gathered at a general body meeting" />
           </Reveal>
 
           <Reveal className="ab-block rev">
@@ -77,7 +83,7 @@ const About = () => {
                 experience. If you're curious about tech, you belong here.
               </p>
             </div>
-            <Ph className="ab-photo" label="workshop / hands-on" src="/assets/homepage/createmeeting.jpg" alt="Members working together on a project" />
+            <Ph className="ab-photo" label="workshop / hands-on" src="/assets/homepage/createmeeting-1280.webp" srcSet="/assets/homepage/createmeeting-640.webp 640w, /assets/homepage/createmeeting-1280.webp 1280w" sizes={PHOTO_SIZES} alt="Members working together on a project" />
           </Reveal>
 
           <Reveal className="ab-block">
@@ -105,7 +111,7 @@ const About = () => {
                 </Link>
               </div>
             </div>
-            <Ph className="ab-photo" label="event / crowd" src="/assets/homepage/hackathon.JPG" alt="A packed room of students at HackUTA" />
+            <Ph className="ab-photo" label="event / crowd" src="/assets/homepage/hackathon-1280.webp" srcSet="/assets/homepage/hackathon-640.webp 640w, /assets/homepage/hackathon-1280.webp 1280w" sizes={PHOTO_SIZES} alt="A packed room of students at HackUTA" />
           </Reveal>
 
           <Reveal className="ab-block rev" style={{ borderBottom: "none" }}>

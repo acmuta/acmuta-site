@@ -4,8 +4,11 @@ import { useAuth } from "@/lib/auth";
 import { getNotifications, markNotificationRead, markAllNotificationsRead } from "@/lib/api";
 import type { AppNotification } from "@/lib/api";
 import { Reveal } from "@/components/Reveal";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 export default function Notifications() {
+  usePageTitle("Notifications");
+
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 

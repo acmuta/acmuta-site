@@ -23,6 +23,7 @@ import {
 } from "@/lib/api";
 import { downloadBlob } from "@/lib/download";
 import type { AdminContext } from "./AdminLayout";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 const STATUS_OPTIONS: SubmissionStatus[] = ["submitted", "under_review", "accepted", "rejected", "waitlisted"];
 
@@ -49,6 +50,8 @@ export default function AdminApplicationSubmissions() {
   const [sortOrder, setSortOrder] = useState<SortOrder>("newest");
   const [expanded, setExpanded] = useState<string | null>(null);
   const [exportingZip, setExportingZip] = useState(false);
+
+  usePageTitle(form?.title ? `${form.title} Submissions` : "Submissions");
 
   useEffect(() => {
     if (!formId) return;

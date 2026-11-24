@@ -7,6 +7,7 @@ import { OfficerPhoto } from "@/components/OfficerPhoto";
 import { PageLoading } from "@/components/Loading";
 import { Arrow, IgIcon, LiIcon } from "@/components/icons";
 import { getCommittee, getProjects, getOfficers, type Committee, type Project, type Officer } from "@/lib/api";
+import { usePageTitle } from "@/hooks/usePageTitle";
 import { Snowflake } from "lucide-react";
 
 interface CommitteePageProps {
@@ -57,6 +58,8 @@ export function CommitteePage({ slug }: CommitteePageProps) {
   const [committee, setCommittee] = useState<Committee | null | undefined>(undefined);
   const [projects, setProjects] = useState<Project[]>([]);
   const [directors, setDirectors] = useState<Officer[]>([]);
+
+  usePageTitle(committee === null ? "Committee Not Found" : committee?.name);
 
   useEffect(() => {
     getCommittee(slug).then(setCommittee);

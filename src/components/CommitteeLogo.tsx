@@ -1,12 +1,12 @@
 import type { Committee } from "@/lib/api";
 
 const LOGO_MAP: Record<string, string> = {
-  create: "/assets/logo/create.png",
-  research: "/assets/logo/research.png",
-  educate: "/assets/logo/educate.png",
-  marketing: "/assets/logo/marketing.png",
-  outreach: "/assets/logo/outreach.png",
-  community: "/assets/logo/community.png",
+  create: "/assets/logo/create.webp",
+  research: "/assets/logo/research.webp",
+  educate: "/assets/logo/educate.webp",
+  marketing: "/assets/logo/marketing.webp",
+  outreach: "/assets/logo/outreach.webp",
+  community: "/assets/logo/community.webp",
 };
 
 export function CommitteeMark({ id, size = 24 }: { id: string; size?: number }) {
