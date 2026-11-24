@@ -9,6 +9,7 @@ import {
   type AdminNewsItem,
 } from "@/lib/api";
 import type { AdminContext } from "./AdminLayout";
+import { toLocalISODate } from "@/lib/dates";
 import { usePageTitle } from "@/hooks/usePageTitle";
 
 type NewsForm = {
@@ -21,7 +22,7 @@ type NewsForm = {
   sort_order: number;
 };
 
-const TODAY = new Date().toISOString().slice(0, 10);
+const TODAY = toLocalISODate(new Date());
 
 const BLANK: NewsForm = {
   tag: "",

@@ -3,6 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import { PageLoading } from "@/components/Loading";
 import { Arrow } from "@/components/icons";
 import { getAlbums, type PhotoAlbum } from "@/lib/api";
+import { parseLocalDate } from "@/lib/dates";
 import { usePageTitle } from "@/hooks/usePageTitle";
 
 const Gallery = () => {
@@ -48,7 +49,7 @@ const Gallery = () => {
                 key={a.id}
               >
                 <span className="gal-date mono">
-                  {new Date(a.album_date).toLocaleDateString("en-US", {
+                  {parseLocalDate(a.album_date).toLocaleDateString("en-US", {
                     month: "short",
                     year: "numeric",
                   }).toUpperCase()}
