@@ -147,6 +147,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
     summary:
       "A study platform for UTA students, with real-time text channels and voice and video study rooms.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "AWS Amplify", "Cognito", "DynamoDB", "Socket.IO", "WebRTC"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/mavprep-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "MavPrep landing page describing the study platform",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     credits: [
       {
         name: "Aroudra Thakur",
@@ -182,6 +191,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
       "Upload a UTA transcript, set your preferences, and get ranked course and professor recommendations for next semester.",
     semesterWork: "The team built the transcript parser, the course data pipeline, and the recommendation dashboard, then shipped the first full version.",
     stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Flask", "SQLAlchemy"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/smartadvisors-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "SmartAdvisors landing page with a sample course recommendation card",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     repoUrl: SA,
     credits: [
       {
@@ -223,6 +241,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
     semesterWork:
       "The team added Google sign-in and semester-by-semester degree plans, expanded to more College of Engineering majors, and redesigned the landing page and dashboard.",
     stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Flask", "SQLAlchemy"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/smartadvisors-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "SmartAdvisors landing page with a sample course recommendation card",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     repoUrl: SA,
     credits: [
       {
@@ -257,6 +284,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
     summary: "A guided resume builder for UTA students, with AI bullet refinement and reviewer feedback on the same PDF.",
     semesterWork: "The first version of the builder: personal info, education, skills, and project sections with a live preview.",
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/mavresume-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "MavResume landing page showing the builder and review workflow",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     demoUrl: "https://mavresume.com",
     repoUrl: MR,
     credits: [
@@ -277,6 +313,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
     summary: "A guided resume builder for UTA students, with AI bullet refinement and reviewer feedback on the same PDF.",
     semesterWork: "Accounts, saved resumes, cached AI refinement, and a review system where reviewers annotate the PDF directly.",
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "OpenAI", "Upstash Redis"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/mavresume-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "MavResume landing page showing the builder and review workflow",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     demoUrl: "https://mavresume.com",
     repoUrl: MR,
     credits: [
@@ -316,6 +361,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
     semesterWork:
       "The team went from proposal to a working app this semester: cleaned movie-rating datasets, trained the recommendation model, and built the FastAPI backend and React frontend with cold-start, home, history and sign-in screens.",
     stack: ["React", "Vite", "Tailwind CSS", "Zustand", "FastAPI", "MongoDB", "PyTorch"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/moviematch-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "MovieMatch home wireframe with a spotlight movie and like/not-liked controls",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     credits: [
       {
         name: "Talal Aamer",
@@ -384,6 +438,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
     semesterWork:
       "The team built the first version this semester: MP3 upload, basic-pitch transcription running in Redis-backed background jobs, and a frontend that highlights detected notes while the song plays.",
     stack: ["React", "Vite", "FastAPI", "Redis", "RQ", "basic-pitch", "librosa"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/notewave-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "NoteWave landing page with audio upload for note visualization",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     credits: [
       {
         name: "Rishav Bhattarai",
@@ -440,6 +503,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
     semesterWork:
       "The team built the first version this semester, merging over 80 PRs: records as the canonical entity, Dev branches, Collab pull requests, live workspaces, an assistant chat with history, and the dashboard UI.",
     stack: ["Next.js", "React", "TypeScript", "Supabase", "Tailwind CSS", "OpenAI", "Playwright"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/musync-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "MuSync landing page showing version control for music producers",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     credits: [
       {
         name: "Aroudra Thakur",
@@ -506,6 +578,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
       "MediaMTX",
       "Docker",
     ],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/crock-security-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "Crock Security home dashboard showing live camera previews",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     credits: [
       {
         name: "Andrew Truong",
@@ -571,6 +652,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
     semesterWork:
       "A continuing project. The Spring codebase was imported into the ACM repo on Oct 5; this semester the team finished auth with email confirmation and the MavID swipe-to-email check-in, and cleaned up the backend.",
     stack: ["React", "TypeScript", "Vite", "Supabase", "FastAPI", "Playwright"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/uta-bughouse-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "BugHouse upcoming-events calendar view",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     credits: [
       {
         name: "Andrew Dang",
@@ -627,6 +717,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
     semesterWork:
       "The team built the first version this semester: Clerk auth, event and challenge APIs, the host dashboard and player lobby, scoring and leaderboard, and a scavenger-hunt round.",
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Clerk", "FastAPI", "PostgreSQL", "Redis", "WebSockets"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/breakuta-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "BreakUTA landing page with a game PIN join box and mascot art",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     credits: [
       {
         name: "Samyog Maharjan",
@@ -705,6 +804,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
     semesterWork:
       "The team built the first version this semester: washer emulator and ESP32 door/vibration firmware, the Firestore device feed, and a live availability dashboard.",
     stack: ["ESP32", "C++", "React", "Vite", "Firebase", "Firestore"],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/laundry-now-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "Laundry Now landing page showing live residence-hall laundry status",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     credits: [
       {
         name: "Mc-Daniels Chukwukelu",
@@ -781,6 +889,15 @@ export const createGalleryEntries: CreateGalleryEntry[] = [
       "Firebase",
       "ESP32",
     ],
+    media: {
+      kind: "image",
+      src: "/assets/create-gallery/motion-arena-1280.webp",
+      width: 1280,
+      height: 800,
+      alt: "Motion Arena split-screen match preview with two fighters and health bars",
+      // Draft: sourced from the team's repo or public site; a director still needs to sign off.
+      clearance: { clearedBy: "Pending director review", date: "2026-11-23", peopleConsented: true },
+    },
     credits: [
       {
         name: "Alvin Ly",
