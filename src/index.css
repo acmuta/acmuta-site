@@ -138,6 +138,10 @@
     color: var(--text-dim);
     white-space: nowrap;
   }
+  /* The longest labels overflow below 390px viewport width - let them wrap */
+  @media (max-width: 389px) {
+    .tag { white-space: normal; }
+  }
   .tag .node {
     width: 7px;
     height: 7px;
