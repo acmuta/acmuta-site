@@ -37,7 +37,9 @@ export function NodeField({ density = 1, className, style }: NodeFieldProps) {
       try {
         cText = hexToRgb(css("--text"));
         cAccent = hexToRgb(css("--accent"));
-      } catch (_) {}
+      } catch (_) {
+        // keep the previous colors when the CSS vars can't be parsed
+      }
     };
 
     function resize() {

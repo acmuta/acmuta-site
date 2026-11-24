@@ -878,10 +878,10 @@ export async function getApplicationsForForm(formId: string): Promise<AdminAppli
   });
 }
 
-export interface ApplicationReviewUpdate {
+export type ApplicationReviewUpdate = {
   status?: SubmissionStatus;
   reviewer_notes?: string | null;
-}
+};
 
 export async function updateApplicationReview(
   applicationId: string,
