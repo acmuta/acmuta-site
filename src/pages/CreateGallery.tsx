@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
 import { PageLoading } from "@/components/Loading";
@@ -52,9 +52,118 @@ function emptyMessage(s: CreateGallerySemester): string {
   return "Projects from this semester go up here once each team approves its screenshots and credits.";
 }
 
-function GalleryEntry({ e, term }: { e: CreateGalleryEntry; term: string }) {
+function ProjectLinks({ e }: { e: CreateGalleryEntry }) {
+  if (!e.demoUrl && !e.repoUrl && !e.extraLinks?.length) return null;
+  return (
+    <div className="proj-links">
+      {e.demoUrl && (
+        <a href={e.demoUrl} target="_blank" rel="noreferrer">
+          Live site <Arrow s={13} />
+        </a>
+      )}
+      {e.repoUrl && (
+        <a href={e.repoUrl} target="_blank" rel="noreferrer">
+          Code <Arrow s={13} />
+        </a>
+      )}
+      {e.extraLinks?.map((l) => (
+        <a key={l.url} href={l.url} target="_blank" rel="noreferrer">
+          {l.label} <Arrow s={13} />
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function ProjectDialog({ e, term, onClose }: { e: CreateGalleryEntry; term: string; onClose: () => void }) {
+  const ref = useRef<HTMLDialogElement>(null);
+  const titleId = `${e.id}-dlg-title`;
+
+  useEffect(() => {
+    const dlg = ref.current;
+    if (!dlg) return;
+    dlg.showModal();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      if (dlg.open) dlg.close();
+    };
+  }, []);
+
+  return (
+    <dialog
+      ref={ref}
+      className="cg-dlg"
+      aria-labelledby={titleId}
+      onClose={onClose}
+      // A click on the backdrop lands on the <dialog> element itself, not its content.
+      onClick={(ev) => {
+        if (ev.target === ev.currentTarget) onClose();
+      }}
+    >
+      <div className="cg-dlg-inner">
+        <button type="button" className="cg-dlg-x" onClick={onClose} aria-label="Close">
+          ✕
+        </button>
+        <CreateGalleryMedia media={e.media} />
+        <div className="proj-meta mono">
+          <span className="proj-cmt">CREATE</span>
+          <span className="proj-year">{term}</span>
+        </div>
+        <h2 id={titleId} className="cg-dlg-title">
+          {e.title}
+        </h2>
+        <p className="cg-dlg-sum">{e.summary}</p>
+        {e.semesterWork && <p className="cg-work">{e.semesterWork}</p>}
+        {e.stack.length > 0 && (
+          <ul className="cg-stack mono" aria-label="Built with">
+            {e.stack.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+        )}
+        <ProjectLinks e={e} />
+
+        <section className="cg-team" aria-labelledby={`${titleId}-team`}>
+          <h3 id={`${titleId}-team`}>Team</h3>
+          {e.credits.length > 0 ? (
+            <ul>
+              {e.credits.map((c) => (
+                <li key={c.name}>
+                  <div className="cg-team-head">
+                    <span className="cg-team-name">{c.name}</span>
+                    {c.role && <span className="mono cg-team-role">{c.role}</span>}
+                  </div>
+                  <p>{c.contribution}</p>
+                  {(c.linkedin || c.github) && (
+                    <div className="cg-team-links mono">
+                      {c.linkedin && (
+                        <a href={c.linkedin} target="_blank" rel="noreferrer" aria-label={`${c.name} on LinkedIn`}>
+                          LinkedIn <Arrow s={11} />
+                        </a>
+                      )}
+                      {c.github && (
+                        <a href={c.github} target="_blank" rel="noreferrer" aria-label={`${c.name} on GitHub`}>
+                          GitHub <Arrow s={11} />
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="cg-work">Individual credits go up once team members confirm them.</p>
+          )}
+        </section>
+      </div>
+    </dialog>
+  );
+}
+
+function GalleryEntry({ e, term, onOpen }: { e: CreateGalleryEntry; term: string; onOpen: () => void }) {
   const titleId = `${e.id}-title`;
-  const hasDetails = e.credits.length > 0 || e.semesterWork || e.stack.length > 0;
   return (
     <article className="proj-card cg-card" aria-labelledby={titleId}>
       <CreateGalleryMedia media={e.media} />
@@ -63,58 +172,24 @@ function GalleryEntry({ e, term }: { e: CreateGalleryEntry; term: string }) {
         <span className="proj-year">{term}</span>
       </div>
       <h3 id={titleId} className="proj-title">
-        {e.title}
+        {/* Stretched over the whole card so any click opens the project window. */}
+        <button type="button" className="cg-open" onClick={onOpen} aria-haspopup="dialog">
+          {e.title}
+        </button>
       </h3>
       <p className="proj-sum">{e.summary}</p>
-
-      {hasDetails && (
-        <details className="cg-credits">
-          <summary>
-            {e.credits.length > 0 ? `Who built what (${e.credits.length})` : "Details"}
-          </summary>
-          {e.semesterWork && <p className="cg-work">{e.semesterWork}</p>}
-          {e.stack.length > 0 && (
-            <ul className="cg-stack mono" aria-label="Built with">
-              {e.stack.map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ul>
-          )}
-          {e.credits.length > 0 ? (
-            <dl>
-              {e.credits.map((c) => (
-                <div key={c.name}>
-                  <dt>{c.name}</dt>
-                  <dd>{c.contribution}</dd>
-                </div>
-              ))}
-            </dl>
-          ) : (
-            <p className="cg-work">Individual credits go up once team members confirm them.</p>
-          )}
-        </details>
-      )}
-
-      {(e.demoUrl || e.repoUrl) && (
-        <div className="proj-links">
-          {e.demoUrl && (
-            <a href={e.demoUrl} target="_blank" rel="noreferrer">
-              Live site <Arrow s={13} />
-            </a>
-          )}
-          {e.repoUrl && (
-            <a href={e.repoUrl} target="_blank" rel="noreferrer">
-              Code <Arrow s={13} />
-            </a>
-          )}
-        </div>
-      )}
+      <p className="cg-team-count mono">
+        {e.credits.length > 0 ? `${e.credits.length} team ${e.credits.length === 1 ? "member" : "members"}` : "Team pending"}
+        {" · "}View project
+      </p>
+      <ProjectLinks e={e} />
     </article>
   );
 }
 
 const CreateGallery = () => {
   const [semesters, setSemesters] = useState<CreateGallerySemester[] | null>(null);
+  const [open, setOpen] = useState<{ e: CreateGalleryEntry; term: string } | null>(null);
 
   useEffect(() => {
     getCreateGallery().then(setSemesters);
@@ -182,7 +257,7 @@ const CreateGallery = () => {
               <ul className="cg-list proj-grid">
                 {s.entries.map((e) => (
                   <li key={e.id}>
-                    <GalleryEntry e={e} term={s.label} />
+                    <GalleryEntry e={e} term={s.label} onOpen={() => setOpen({ e, term: s.label })} />
                   </li>
                 ))}
               </ul>
@@ -192,6 +267,8 @@ const CreateGallery = () => {
           </div>
         </section>
       ))}
+
+      {open && <ProjectDialog e={open.e} term={open.term} onClose={() => setOpen(null)} />}
 
       <section className="section cg-foot">
         <div className="wrap">
